@@ -32,7 +32,7 @@ class ArticleRepository extends ServiceEntityRepository
     }
 
     /**
-     * Titles of the articles whose blocks use this media or visualization.
+     * Titles of the articles and pages whose blocks use this media or visualization.
      *
      * @return list<string>
      */
@@ -42,9 +42,10 @@ class ArticleRepository extends ServiceEntityRepository
 
         /** @var list<string> $titles */
         $titles = $this->getEntityManager()->createQueryBuilder()
-            ->select('DISTINCT a.title')
+            ->select('DISTINCT COALESCE(a.title, p.title)')
             ->from(Block::class, 'b')
-            ->join('b.article', 'a')
+            ->leftJoin('b.article', 'a')
+            ->leftJoin('b.page', 'p')
             ->where("b.$field = :item")
             ->setParameter('item', $item)
             ->getQuery()

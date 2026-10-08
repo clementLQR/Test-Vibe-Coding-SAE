@@ -13,13 +13,21 @@ import { MEDIA_ROLES, STAFF_ROLES } from '../features/auth/useAuth'
 import { DatasetDetailPage } from '../features/datasets/DatasetDetailPage'
 import { DatasetsPage } from '../features/datasets/DatasetsPage'
 import { HomePage } from '../features/home/HomePage'
+import { PageEditorPage } from '../features/pages/PageEditorPage'
+import { PagesPage } from '../features/pages/PagesPage'
+import { ArticlePage } from '../features/public/ArticlePage'
+import { ArticlesListPage } from '../features/public/ArticlesListPage'
+import { PagePage } from '../features/public/PagePage'
+import { ThemesPage } from '../features/themes/ThemesPage'
+import type { Role } from '../lib/api/types'
 import { InstallerPage } from '../features/install/InstallerPage'
 import { InstallGate, INSTALLER_PATH } from '../features/install/InstallGate'
 import { MediaPage } from '../features/media/MediaPage'
 import { UsersPage } from '../features/users/UsersPage'
 import { NotFoundPage } from './NotFoundPage'
 
-const forAuthors = (page: ReactNode) => <RequireRole roles={['ROLE_AUTHOR']}>{page}</RequireRole>
+const forRoles = (roles: Role[], page: ReactNode) => <RequireRole roles={roles}>{page}</RequireRole>
+const forAuthors = (page: ReactNode) => forRoles(['ROLE_AUTHOR'], page)
 
 export const routes: RouteObject[] = [
   {
@@ -30,6 +38,9 @@ export const routes: RouteObject[] = [
         element: <PublicLayout />,
         children: [
           { index: true, element: <HomePage /> },
+          { path: 'articles', element: <ArticlesListPage /> },
+          { path: 'articles/:slug', element: <ArticlePage /> },
+          { path: 'pages/:slug', element: <PagePage /> },
           { path: 'login', element: <LoginPage /> },
           { path: 'register', element: <RegisterPage /> },
           {
@@ -45,6 +56,10 @@ export const routes: RouteObject[] = [
               { path: 'articles/new', element: forAuthors(<ArticleEditorPage />) },
               { path: 'articles/:id', element: forAuthors(<ArticleEditorPage />) },
               { path: 'charts', element: forAuthors(<ChartsPage />) },
+              { path: 'pages', element: forRoles(['ROLE_EDITOR'], <PagesPage />) },
+              { path: 'pages/new', element: forRoles(['ROLE_EDITOR'], <PageEditorPage />) },
+              { path: 'pages/:id', element: forRoles(['ROLE_EDITOR'], <PageEditorPage />) },
+              { path: 'themes', element: forRoles(['ROLE_DESIGNER'], <ThemesPage />) },
               {
                 path: 'datasets',
                 element: (

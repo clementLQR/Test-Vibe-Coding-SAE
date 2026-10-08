@@ -20,7 +20,8 @@
   },
   "nav": {
     "home": "Home",
-    "admin": "Admin"
+    "admin": "Admin",
+    "articles": "Articles"
   },
   "language": {
     "label": "Language",
@@ -84,7 +85,23 @@
       "backOffice": "Technical back-office",
       "datasets": "Data sets",
       "articles": "Articles",
-      "charts": "Charts"
+      "charts": "Charts",
+      "pages": "Pages",
+      "themes": "Themes"
+    },
+    "cards": {
+      "drafts_zero": "No drafts",
+      "drafts_one": "{{count}} draft to finish",
+      "drafts_other": "{{count}} drafts to finish",
+      "pendingDatasets_zero": "No data sets to validate",
+      "pendingDatasets_one": "{{count}} data set to validate",
+      "pendingDatasets_other": "{{count}} data sets to validate",
+      "proposedThemes_zero": "No themes waiting",
+      "proposedThemes_one": "{{count}} theme waiting for approval",
+      "proposedThemes_other": "{{count}} themes waiting for approval",
+      "pages_zero": "No pages",
+      "pages_one": "{{count}} page",
+      "pages_other": "{{count}} pages"
     }
   },
   "users": {
@@ -351,5 +368,123 @@
     "caption": "Caption",
     "chart": "Chart",
     "newChart": "New chart"
+  },
+  "public": {
+    "articles": {
+      "title": "Articles",
+      "filter": "Show",
+      "all": "All",
+      "empty": "No published articles yet."
+    },
+    "latest": "Latest articles",
+    "allArticles": "All articles",
+    "practicalInfo": "Practical information"
+  },
+  "ratings": {
+    "average_one": "Average rating: {{average}} / 5 ({{count}} rating)",
+    "average_other": "Average rating: {{average}} / 5 ({{count}} ratings)",
+    "none": "Not rated yet",
+    "loginToRate": "Log in to rate",
+    "legend": "Your rating for this block",
+    "yourRating": "Your rating:",
+    "stars_zero": "0 stars",
+    "stars_one": "{{count}} star",
+    "stars_other": "{{count}} stars"
+  },
+  "pages": {
+    "new": "New page",
+    "edit": "Edit the page",
+    "back": "← All pages",
+    "intro": "Published pages shown in the menu appear in the site header, in their language.",
+    "empty": "No pages yet.",
+    "summaryLine": "{{status}} · {{locale}} · {{menu}}",
+    "inMenu": "in the menu (order {{order}})",
+    "notInMenu": "not in the menu",
+    "template": "Template",
+    "templates": {
+      "blank": {
+        "name": "Blank page",
+        "help": "Only your blocks."
+      },
+      "contact": {
+        "name": "Contact",
+        "help": "Your blocks, followed by the event dates and place."
+      }
+    },
+    "showInMenu": "Show in the menu",
+    "menuOrder": "Order in the menu",
+    "saved": "Page saved.",
+    "delete": "Delete the page",
+    "confirmDelete": "Permanently delete the page “{{title}}”?"
+  },
+  "themes": {
+    "new": "Propose a theme",
+    "edit": "Edit the theme",
+    "introAdmin": "Designers propose themes; approve them to apply them to the public site. An approved theme replaces the one that was active on the same target.",
+    "introDesigner": "Propose a theme for the site, a page or an article. An administrator approves it before it is applied.",
+    "empty": "No themes yet.",
+    "name": "Theme name",
+    "scope": "Applies to",
+    "scopes": {
+      "site": "The whole site",
+      "page": "A page",
+      "article": "An article"
+    },
+    "targetPage": "Page",
+    "targetArticle": "Article",
+    "colors": "Colours",
+    "colorsHint": "Only the colours you change are saved; the others keep the base design.",
+    "default": "Default",
+    "reset": "Reset",
+    "contrastWarning": "Insufficient contrast (WCAG AA, 4.5:1 minimum):",
+    "contrastPair": "{{fg}} on {{bg}}: {{ratio}}:1",
+    "typography": "Typography and shapes",
+    "fonts": {
+      "system": "System (sans serif)",
+      "serif": "Serif",
+      "rounded": "Rounded",
+      "mono": "Monospace"
+    },
+    "paletteHint": "Colours used by charts that have no colours of their own.",
+    "submit": "Submit for approval",
+    "preview": "Theme preview",
+    "sample": {
+      "site": "My festival",
+      "title": "Article title",
+      "text": "A paragraph of text with",
+      "link": "a link",
+      "block": "A content block",
+      "button": "Button"
+    },
+    "tokens": {
+      "headerBg": "Header background",
+      "headerFg": "Header text",
+      "pageBg": "Page background",
+      "pageFg": "Text",
+      "accent": "Accent colour (links, buttons)",
+      "accentFg": "Text on accent",
+      "titleColor": "Article titles",
+      "blockBg": "Block background",
+      "blockFg": "Block text",
+      "titleSize": "Title size",
+      "blockRadius": "Block corner radius",
+      "fontSizeBase": "Text size",
+      "fontBody": "Text font",
+      "fontHeading": "Heading font",
+      "chartPalette": "Chart palette"
+    },
+    "statuses": {
+      "proposed": "Waiting",
+      "active": "Applied",
+      "rejected": "Rejected",
+      "archived": "Archived"
+    },
+    "reviewComment": "Comment:",
+    "reviewHint": "Tell the designer what to change.",
+    "approve": "Approve and apply",
+    "reject": "Reject",
+    "withdraw": "Withdraw",
+    "rejectTitle": "Reject the theme",
+    "confirmDelete": "Permanently delete the theme “{{name}}”?"
   }
 }

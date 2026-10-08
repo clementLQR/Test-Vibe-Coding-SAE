@@ -48,3 +48,9 @@ block:
     visualization:
         classic: "A classic article cannot contain charts: switch it to a dashboard."
         required: "Choose a chart."
+theme:
+    token:
+        unknown: "Unknown theme setting."
+        invalid: "Invalid value for this setting."
+    target:
+        mismatch: "Choose the target that matches the scope of the theme."

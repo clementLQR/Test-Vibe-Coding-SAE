@@ -4,14 +4,15 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Article\BlockContainer;
 use App\Article\BlockType;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Attribute\Groups;
 
 /**
- * A block of an article: a heading (levels 2 to 4), a text (restricted Markdown),
- * an image of the media library or a visualization (dashboard articles only).
+ * A block of an article or of a page: a heading (levels 2 to 4), a text (restricted Markdown),
+ * an image of the media library or a visualization.
  * Media and visualizations in use cannot be deleted (RESTRICT).
  */
 #[ORM\Entity]
@@ -20,44 +21,53 @@ class Block
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['article:read'])]
+    #[Groups(['content:read'])]
     private ?int $id = null;
 
+    /** Exactly one of article and page is set, guaranteed by the constructor (MySQL refuses CHECK constraints on cascading foreign keys). */
     #[ORM\ManyToOne(inversedBy: 'blocks')]
-    #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
-    private Article $article;
+    #[ORM\JoinColumn(nullable: true, onDelete: 'CASCADE')]
+    private ?Article $article = null;
+
+    #[ORM\ManyToOne(inversedBy: 'blocks')]
+    #[ORM\JoinColumn(nullable: true, onDelete: 'CASCADE')]
+    private ?Page $page = null;
 
     #[ORM\Column]
-    #[Groups(['article:read'])]
+    #[Groups(['content:read'])]
     private int $position = 0;
 
     #[ORM\Column(length: 15, enumType: BlockType::class)]
-    #[Groups(['article:read'])]
+    #[Groups(['content:read'])]
     private BlockType $type;
 
     #[ORM\Column(type: Types::SMALLINT, nullable: true)]
-    #[Groups(['article:read'])]
+    #[Groups(['content:read'])]
     private ?int $headingLevel = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
-    #[Groups(['article:read'])]
+    #[Groups(['content:read'])]
     private ?string $text = null;
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: true, onDelete: 'RESTRICT')]
-    #[Groups(['article:read'])]
+    #[Groups(['content:read'])]
     private ?Media $media = null;
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: true, onDelete: 'RESTRICT')]
-    #[Groups(['article:read'])]
+    #[Groups(['content:read'])]
     private ?Visualization $visualization = null;
 
-    public function __construct(Article $article, BlockType $type)
+    public function __construct(BlockContainer $owner, BlockType $type)
     {
-        $this->article = $article;
+        if ($owner instanceof Article) {
+            $this->article = $owner;
+        } elseif ($owner instanceof Page) {
+            $this->page = $owner;
+        }
         $this->type = $type;
-        $article->addBlock($this);
+        $owner->addBlock($this);
     }
 
     public function getId(): ?int
@@ -65,9 +75,14 @@ class Block
         return $this->id;
     }
 
-    public function getArticle(): Article
+    public function getArticle(): ?Article
     {
         return $this->article;
+    }
+
+    public function getPage(): ?Page
+    {
+        return $this->page;
     }
 
     public function getPosition(): int

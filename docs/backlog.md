@@ -38,8 +38,8 @@ Projet du lundi 12/10/2026 (S42) au vendredi 29/01/2027 (S4). Les dates exactes 
 - [x] **E1-2** (M, 1 j) En tant que visiteur, je crée un compte abonné et je me connecte / déconnecte.
   - Session cookie, limitation des tentatives de connexion, messages d'erreur FR/EN.
 - [x] **E1-3** (M, 1 j) En tant qu'admin, je liste les utilisateurs et je change leurs rôles (admin React + EasyAdmin).
-- [ ] **E1-4** (M, 1 j) Voters pour articles, jeux de données, thèmes, médias ; tests fonctionnels de la matrice des droits (`architecture.md` §3).
-  - Fait : hiérarchie des rôles, `MediaVoter` (S1), `DatasetVoter` (S2), `ArticleVoter` et `VisualizationVoter` (S3), tous testés. Reste le voter des thèmes (S4).
+- [x] **E1-4** (M, 1 j) Voters pour articles, jeux de données, thèmes, médias ; tests fonctionnels de la matrice des droits (`architecture.md` §3).
+  - Fait : hiérarchie des rôles, voters des médias, jeux de données, articles, graphiques, pages et thèmes, tous couverts par des tests fonctionnels.
 - [x] **E1-5** (M, 0,5 j) Front : garde de routes par rôle, menu admin adapté au rôle.
 - [ ] **E1-6** (C, 0,5 j) Réinitialisation du mot de passe par e-mail (Mailpit en dev).
 
@@ -92,34 +92,36 @@ Projet du lundi 12/10/2026 (S42) au vendredi 29/01/2027 (S4). Les dates exactes 
 - [x] **E6-4** (M, 0,5 j) Un auteur ne voit et ne modifie que ses articles ; un éditeur voit et modifie tous les articles.
 - [x] **E6-5** (M, 0,5 j) Texte en Markdown restreint (gras, italique, liens, listes), assaini à l'affichage.
 - [x] **E6-6** (S, 0,5 j) Prévisualisation de l'article tel qu'il sera publié (avec son thème).
-  - Le thème sera appliqué à l'aperçu quand les thèmes existeront (S4).
+  - L’aperçu de l’éditeur garde le design de base ; le thème s’applique sur la page publique.
 - [ ] **E6-7** (C, 1 j) Sauvegarde automatique du brouillon.
 
 ## E7 — Notation (S4)
 
-- [ ] **E7-1** (M, 1 j) En tant qu'abonné, je note chaque bloc d'un article de 0 à 5 étoiles (une note par bloc, modifiable).
+- [x] **E7-1** (M, 1 j) En tant qu'abonné, je note chaque bloc d'un article de 0 à 5 étoiles (une note par bloc, modifiable).
+  - Les titres ne sont pas notables (seuls les textes, images et graphiques).
   - Composant étoiles accessible au clavier ; visiteur invité à se connecter.
-- [ ] **E7-2** (M, 0,5 j) Moyenne et nombre de votes affichés sur chaque bloc.
+- [x] **E7-2** (M, 0,5 j) Moyenne et nombre de votes affichés sur chaque bloc.
 - [ ] **E7-3** (S, 1 j) Tableau de bord admin : blocs et articles les mieux notés (lui-même en visualisation).
 
 ## E8 — Thèmes et design (S4)
 
-- [ ] **E8-1** (M, 1 j) Design de base responsive, mobile first, piloté par variables CSS (`--ev-*`).
-- [ ] **E8-2** (M, 1,5 j) En tant que designer, je propose un thème (site, page ou article) via un formulaire avec aperçu en direct.
+- [x] **E8-1** (M, 1 j) Design de base responsive, mobile first, piloté par variables CSS (`--ev-*`).
+- [x] **E8-2** (M, 1,5 j) En tant que designer, je propose un thème (site, page ou article) via un formulaire avec aperçu en direct.
   - Avertissement si le contraste texte / fond est insuffisant.
-- [ ] **E8-3** (M, 1 j) En tant qu'admin, j'approuve, je rejette (avec commentaire) ou j'active une proposition de thème.
-- [ ] **E8-4** (M, 0,5 j) Cascade article > page > site appliquée sur le site public.
-- [ ] **E8-5** (S, 0,5 j) Palette de graphiques du thème utilisée par défaut par les visualisations.
+- [x] **E8-3** (M, 1 j) En tant qu'admin, j'approuve, je rejette (avec commentaire) ou j'active une proposition de thème.
+  - Approuver = appliquer : le thème remplace celui qui était actif sur la même cible (archivé, réactivable). Refuser demande un commentaire facultatif ; un designer qui modifie un thème refusé le renvoie en validation.
+- [x] **E8-4** (M, 0,5 j) Cascade article > page > site appliquée sur le site public.
+- [x] **E8-5** (S, 0,5 j) Palette de graphiques du thème utilisée par défaut par les visualisations.
 - [ ] **E8-6** (C, 0,5 j) Thèmes prédéfinis (festival, salon, sport) à dupliquer.
 
 ## E9 — Site public et pages (S4)
 
-- [ ] **E9-1** (M, 1 j) Accueil public de l'événement : nom, dates, lieu, derniers articles, accès aux modules.
-- [ ] **E9-2** (M, 1 j) Liste des articles (filtre classique / dashboard) et page article.
-- [ ] **E9-3** (M, 1 j) En tant qu'éditeur, je crée des pages (vierge, contact) composées de blocs, je gère leur statut et leur place dans le menu.
-- [ ] **E9-4** (M, 0,5 j) Header, navigation, footer, sélecteur de langue, page 404.
-- [ ] **E9-5** (S, 0,5 j) Métadonnées SEO et Open Graph par article / page.
-- [ ] **E9-6** (M, 1 j) Tableau de bord admin : raccourcis selon le rôle, brouillons, jeux de données en attente, thèmes proposés.
+- [x] **E9-1** (M, 1 j) Accueil public de l'événement : nom, dates, lieu, derniers articles, accès aux modules.
+- [x] **E9-2** (M, 1 j) Liste des articles (filtre classique / dashboard) et page article.
+- [x] **E9-3** (M, 1 j) En tant qu'éditeur, je crée des pages (vierge, contact) composées de blocs, je gère leur statut et leur place dans le menu.
+- [x] **E9-4** (M, 0,5 j) Header, navigation, footer, sélecteur de langue, page 404.
+- [x] **E9-5** (S, 0,5 j) Métadonnées SEO et Open Graph par article / page.
+- [x] **E9-6** (M, 1 j) Tableau de bord admin : raccourcis selon le rôle, brouillons, jeux de données en attente, thèmes proposés.
 
 ## E10 — Modules événementiels (S5)
 

@@ -1,6 +1,7 @@
 /** Shapes of the Symfony API responses. */
 
 import type { Locale } from '../i18n'
+import type { ThemeTokens } from '../theme'
 
 export type { Locale }
 
@@ -214,4 +215,55 @@ export interface ArticleInput {
   status: ArticleStatus
   locale: Locale
   blocks: BlockInput[]
+}
+
+export type PageTemplate = 'blank' | 'contact'
+
+export interface Page {
+  id: number
+  title: string
+  slug: string
+  template: PageTemplate
+  status: ArticleStatus
+  showInMenu: boolean
+  menuOrder: number
+  locale: Locale
+  blocks: Block[]
+  updatedAt: string
+}
+
+export interface PageInput {
+  title: string
+  template: PageTemplate
+  status: ArticleStatus
+  showInMenu: boolean
+  menuOrder: number
+  locale: Locale
+  blocks: BlockInput[]
+}
+
+export interface MenuItem {
+  title: string
+  slug: string
+}
+
+export type ThemeScope = 'site' | 'page' | 'article'
+export type ThemeStatus = 'proposed' | 'active' | 'rejected' | 'archived'
+
+export interface Theme {
+  id: number
+  name: string
+  scope: ThemeScope
+  /** IRIs of the target */
+  page: string | null
+  article: string | null
+  pageId: number | null
+  articleId: number | null
+  targetTitle: string | null
+  tokens: ThemeTokens
+  status: ThemeStatus
+  proposedById: number | null
+  proposedByName: string | null
+  reviewComment: string | null
+  updatedAt: string
 }

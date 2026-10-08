@@ -20,7 +20,8 @@
   },
   "nav": {
     "home": "Accueil",
-    "admin": "Administration"
+    "admin": "Administration",
+    "articles": "Articles"
   },
   "language": {
     "label": "Langue",
@@ -84,7 +85,23 @@
       "backOffice": "Back-office technique",
       "datasets": "Jeux de données",
       "articles": "Articles",
-      "charts": "Graphiques"
+      "charts": "Graphiques",
+      "pages": "Pages",
+      "themes": "Thèmes"
+    },
+    "cards": {
+      "drafts_zero": "Aucun brouillon",
+      "drafts_one": "{{count}} brouillon à terminer",
+      "drafts_other": "{{count}} brouillons à terminer",
+      "pendingDatasets_zero": "Aucun jeu à valider",
+      "pendingDatasets_one": "{{count}} jeu de données à valider",
+      "pendingDatasets_other": "{{count}} jeux de données à valider",
+      "proposedThemes_zero": "Aucun thème en attente",
+      "proposedThemes_one": "{{count}} thème en attente de validation",
+      "proposedThemes_other": "{{count}} thèmes en attente de validation",
+      "pages_zero": "Aucune page",
+      "pages_one": "{{count}} page",
+      "pages_other": "{{count}} pages"
     }
   },
   "users": {
@@ -351,5 +368,123 @@
     "caption": "Légende",
     "chart": "Graphique",
     "newChart": "Nouveau graphique"
+  },
+  "public": {
+    "articles": {
+      "title": "Articles",
+      "filter": "Afficher",
+      "all": "Tous",
+      "empty": "Aucun article publié pour l’instant."
+    },
+    "latest": "Derniers articles",
+    "allArticles": "Tous les articles",
+    "practicalInfo": "Informations pratiques"
+  },
+  "ratings": {
+    "average_one": "Note moyenne : {{average}} / 5 ({{count}} avis)",
+    "average_other": "Note moyenne : {{average}} / 5 ({{count}} avis)",
+    "none": "Pas encore noté",
+    "loginToRate": "Connectez-vous pour noter",
+    "legend": "Votre note pour ce bloc",
+    "yourRating": "Votre note :",
+    "stars_zero": "0 étoile",
+    "stars_one": "{{count}} étoile",
+    "stars_other": "{{count}} étoiles"
+  },
+  "pages": {
+    "new": "Nouvelle page",
+    "edit": "Modifier la page",
+    "back": "← Toutes les pages",
+    "intro": "Les pages publiées et affichées dans le menu apparaissent dans l’en-tête du site, dans leur langue.",
+    "empty": "Aucune page pour l’instant.",
+    "summaryLine": "{{status}} · {{locale}} · {{menu}}",
+    "inMenu": "dans le menu (ordre {{order}})",
+    "notInMenu": "hors menu",
+    "template": "Modèle",
+    "templates": {
+      "blank": {
+        "name": "Page vierge",
+        "help": "Uniquement vos blocs."
+      },
+      "contact": {
+        "name": "Contact",
+        "help": "Vos blocs, suivis des dates et du lieu de l’événement."
+      }
+    },
+    "showInMenu": "Afficher dans le menu",
+    "menuOrder": "Ordre dans le menu",
+    "saved": "Page enregistrée.",
+    "delete": "Supprimer la page",
+    "confirmDelete": "Supprimer définitivement la page « {{title}} » ?"
+  },
+  "themes": {
+    "new": "Proposer un thème",
+    "edit": "Modifier le thème",
+    "introAdmin": "Les designers proposent des thèmes ; approuvez-les pour les appliquer au site public. Un thème approuvé remplace celui qui était actif sur la même cible.",
+    "introDesigner": "Proposez un thème pour le site, une page ou un article. Un administrateur le valide avant qu’il soit appliqué.",
+    "empty": "Aucun thème pour l’instant.",
+    "name": "Nom du thème",
+    "scope": "S’applique à",
+    "scopes": {
+      "site": "Tout le site",
+      "page": "Une page",
+      "article": "Un article"
+    },
+    "targetPage": "Page",
+    "targetArticle": "Article",
+    "colors": "Couleurs",
+    "colorsHint": "Seules les couleurs modifiées sont enregistrées ; les autres gardent le design de base.",
+    "default": "Par défaut",
+    "reset": "Rétablir",
+    "contrastWarning": "Contraste insuffisant (WCAG AA, 4,5:1 minimum) :",
+    "contrastPair": "{{fg}} sur {{bg}} : {{ratio}}:1",
+    "typography": "Typographie et formes",
+    "fonts": {
+      "system": "Système (sans empattement)",
+      "serif": "Avec empattements",
+      "rounded": "Arrondie",
+      "mono": "Chasse fixe"
+    },
+    "paletteHint": "Couleurs utilisées par les graphiques qui n’ont pas de couleurs propres.",
+    "submit": "Envoyer pour validation",
+    "preview": "Aperçu du thème",
+    "sample": {
+      "site": "Mon festival",
+      "title": "Titre d’article",
+      "text": "Un paragraphe de texte avec",
+      "link": "un lien",
+      "block": "Un bloc de contenu",
+      "button": "Bouton"
+    },
+    "tokens": {
+      "headerBg": "Fond de l’en-tête",
+      "headerFg": "Texte de l’en-tête",
+      "pageBg": "Fond de page",
+      "pageFg": "Texte",
+      "accent": "Couleur d’accent (liens, boutons)",
+      "accentFg": "Texte sur l’accent",
+      "titleColor": "Titres d’articles",
+      "blockBg": "Fond des blocs",
+      "blockFg": "Texte des blocs",
+      "titleSize": "Taille des titres",
+      "blockRadius": "Arrondi des blocs",
+      "fontSizeBase": "Taille du texte",
+      "fontBody": "Police du texte",
+      "fontHeading": "Police des titres",
+      "chartPalette": "Palette des graphiques"
+    },
+    "statuses": {
+      "proposed": "En attente",
+      "active": "Appliqué",
+      "rejected": "Refusé",
+      "archived": "Archivé"
+    },
+    "reviewComment": "Commentaire :",
+    "reviewHint": "Expliquez au designer ce qu’il faut changer.",
+    "approve": "Approuver et appliquer",
+    "reject": "Refuser",
+    "withdraw": "Retirer",
+    "rejectTitle": "Refuser le thème",
+    "confirmDelete": "Supprimer définitivement le thème « {{name}} » ?"
   }
 }

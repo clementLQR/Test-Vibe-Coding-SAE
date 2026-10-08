@@ -100,14 +100,13 @@ Exposée avec API Platform sous `/api` (documentation OpenAPI sur `/api/docs`).
 | --- | --- |
 | Auth | `POST /api/login`, `POST /api/logout`, `POST /api/register`, `GET /api/me` |
 | Installation | `GET /api/install/status`, `POST /api/install` (uniquement si aucun admin n'existe) |
-| Articles | CRUD `/api/articles` (filtres : status, type, author, locale), `GET /api/articles/by-slug/{slug}` |
-| Blocs | CRUD `/api/blocks`, `PUT /api/articles/{id}/blocks/order` |
-| Notes | `PUT /api/blocks/{id}/rating`, moyenne et nombre de votes inclus dans le bloc |
+| Articles | `GET /api/articles` (filtres : status, type, locale ; visibilité selon le rôle), `GET/DELETE /api/articles/{id}`, `POST` et `PUT` avec tous les blocs (`ArticleInput`), `GET /api/articles/by-slug/{slug}` (public si publié) |
+| Notes | `PUT /api/blocks/{id}/rating` (0 à 5, abonnés, articles publiés), `GET /api/articles/{id}/ratings` (moyenne, nombre et note de l’utilisateur pour chaque bloc, en une requête) |
 | Médias | `GET/POST/DELETE /api/media` (multipart) |
 | Jeux de données | CRUD `/api/datasets` (création en multipart : `file` ou `url`), `GET /api/datasets/{id}/preview` (50 premières lignes, type détecté et statistiques par colonne), `PUT /api/datasets/{id}/variables`, `POST /api/datasets/{id}/validate`, `GET /api/datasets/{id}/data` (lignes typées, public une fois le jeu validé) |
 | Graphiques | `GET /api/chart-types` (matrice de compatibilité), CRUD `/api/visualizations` |
-| Thèmes | CRUD `/api/themes`, `POST /api/themes/{id}/approve`, `POST /api/themes/{id}/reject`, `GET /api/themes/resolved?article=…&page=…` |
-| Pages | CRUD `/api/pages`, `GET /api/menu` |
+| Thèmes | CRUD `/api/themes` (designers), `POST /api/themes/{id}/approve` et `/reject` (admins), `GET /api/active-themes` (public : thèmes appliqués et leur cible, la cascade est calculée par le front) |
+| Pages | CRUD `/api/pages` (éditeurs, `POST`/`PUT` avec tous les blocs), `GET /api/pages/by-slug/{slug}` (public si publiée), `GET /api/menu?locale=fr` |
 | Modules | CRUD `/api/venues`, `/api/program-slots`, `/api/map-items`, `/api/ticket-offers`, `GET/PUT /api/map-config` |
 | Réglages | `GET/PUT /api/settings` |
 
@@ -145,16 +144,18 @@ Jetons modifiables par un designer (formulaire, aperçu en direct) :
 
 | Jeton | Exemple |
 | --- | --- |
-| `header.bg`, `header.fg` | couleurs du header |
-| `page.bg`, `page.fg` | fond et texte global |
-| `accent` | liens, boutons |
-| `article.title.color`, `article.title.size` | titre d'article |
-| `block.bg`, `block.fg`, `block.radius` | blocs |
-| `font.body`, `font.heading` | parmi une liste fermée de polices locales |
-| `font.size.base` | taille de base (14–20 px) |
-| `chart.palette` | palette par défaut des graphiques |
+| `headerBg`, `headerFg` | couleurs de l’en-tête |
+| `pageBg`, `pageFg` | fond et texte global |
+| `accent`, `accentFg` | liens, boutons et texte sur l’accent |
+| `titleColor`, `titleSize` (1,5 à 3,5 rem) | titres d’articles et de pages |
+| `blockBg`, `blockFg`, `blockRadius` (0 à 2 rem) | blocs |
+| `fontBody`, `fontHeading` | `system`, `serif`, `rounded` ou `mono` (polices locales, rien n’est téléchargé) |
+| `fontSizeBase` | taille de base (14 à 20 px) |
+| `chartPalette` | jusqu’à 8 couleurs pour les graphiques sans couleurs propres |
 
-Appliqués comme variables CSS (`--ev-header-bg`, …) sur `:root` (site), puis sur le conteneur de page et d'article. Résolution : article > page > site > valeurs par défaut. Contraste texte / fond vérifié à la saisie (alerte si < AA).
+Un thème ne contient que des valeurs vérifiées une à une (classe `ThemeTokens` du back), jamais de CSS libre.
+
+Appliqués comme variables CSS (`--ev-header-bg`, …) sur `<html>` pour la page publique affichée, après résolution article > page > site > design de base ; l’administration garde le design de base. Un seul thème actif par cible : en approuver un archive le précédent. Contraste texte / fond vérifié pendant la saisie (alerte si < AA, 4,5:1).
 
 ## 8. Installation « à la WordPress »
 

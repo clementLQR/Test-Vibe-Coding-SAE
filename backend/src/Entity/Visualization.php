@@ -44,47 +44,47 @@ class Visualization
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['visualization:read', 'article:read'])]
+    #[Groups(['visualization:read', 'content:read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 160)]
     #[Assert\NotBlank]
     #[Assert\Length(max: 160)]
-    #[Groups(['visualization:read', 'visualization:write', 'article:read'])]
+    #[Groups(['visualization:read', 'visualization:write', 'content:read'])]
     private string $title = '';
 
     /** Text alternative of the chart (accessibility): what it shows, in one or two sentences. */
     #[ORM\Column(type: Types::TEXT)]
     #[Assert\NotBlank(message: 'visualization.description.required')]
     #[Assert\Length(max: 1000)]
-    #[Groups(['visualization:read', 'visualization:write', 'article:read'])]
+    #[Groups(['visualization:read', 'visualization:write', 'content:read'])]
     private string $description = '';
 
     #[ORM\Column(length: 30)]
-    #[Groups(['visualization:read', 'visualization:write', 'article:read'])]
+    #[Groups(['visualization:read', 'visualization:write', 'content:read'])]
     private string $chartType = '';
 
     #[ORM\ManyToOne]
     #[ORM\JoinColumn(nullable: false, onDelete: 'RESTRICT')]
     #[Assert\NotNull]
-    #[Groups(['visualization:read', 'visualization:write', 'article:read'])]
+    #[Groups(['visualization:read', 'visualization:write', 'content:read'])]
     // Null only until validation (NotNull) refuses it: never persisted without a data set
     /** @phpstan-ignore doctrine.associationType */
     private ?Dataset $dataset = null;
 
     /** @var array<string, string> chart role => variable name (CSV column) */
     #[ORM\Column]
-    #[Groups(['visualization:read', 'visualization:write', 'article:read'])]
+    #[Groups(['visualization:read', 'visualization:write', 'content:read'])]
     private array $mapping = [];
 
     /** @var list<string> palette, "#rrggbb" */
     #[ORM\Column]
-    #[Groups(['visualization:read', 'visualization:write', 'article:read'])]
+    #[Groups(['visualization:read', 'visualization:write', 'content:read'])]
     private array $colors = [];
 
     /** @var array<string, mixed> */
     #[ORM\Column]
-    #[Groups(['visualization:read', 'visualization:write', 'article:read'])]
+    #[Groups(['visualization:read', 'visualization:write', 'content:read'])]
     private array $options = [];
 
     #[ORM\ManyToOne]
@@ -92,11 +92,11 @@ class Visualization
     private ?User $createdBy = null;
 
     #[ORM\Column]
-    #[Groups(['visualization:read', 'article:read'])]
+    #[Groups(['visualization:read', 'content:read'])]
     private \DateTimeImmutable $createdAt;
 
     #[ORM\Column]
-    #[Groups(['visualization:read', 'article:read'])]
+    #[Groups(['visualization:read', 'content:read'])]
     private \DateTimeImmutable $updatedAt;
 
     public function __construct()
@@ -164,7 +164,7 @@ class Visualization
         return $this;
     }
 
-    #[Groups(['visualization:read', 'article:read'])]
+    #[Groups(['visualization:read', 'content:read'])]
     public function getDatasetId(): ?int
     {
         return $this->dataset?->getId();
@@ -225,7 +225,7 @@ class Visualization
         return $this;
     }
 
-    #[Groups(['visualization:read', 'article:read'])]
+    #[Groups(['visualization:read', 'content:read'])]
     public function getCreatedById(): ?int
     {
         return $this->createdBy?->getId();

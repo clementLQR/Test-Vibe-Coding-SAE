@@ -48,3 +48,9 @@ block:
     visualization:
         classic: "Un article classique ne peut pas contenir de graphique : passez-le en tableau de bord."
         required: "Choisissez un graphique."
+theme:
+    token:
+        unknown: "Réglage de thème inconnu."
+        invalid: "Valeur invalide pour ce réglage."
+    target:
+        mismatch: "Choisissez la cible qui correspond à la portée du thème."

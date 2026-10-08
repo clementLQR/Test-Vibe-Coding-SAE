@@ -1,7 +1,8 @@
-import { lazy, Suspense, useId, useMemo, useState } from 'react'
+import { lazy, Suspense, useContext, useId, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Alert, Loading } from '../../components/ui'
 import { errorMessageOf } from '../../lib/api/client'
+import { ChartPaletteContext } from '../themes/themeContext'
 import { buildChart, ChartBuildError, type ChartSpec } from './buildChart'
 import { useDatasetData } from './useChartData'
 
@@ -24,9 +25,11 @@ export function ChartFigure({ title, description, datasetId, ...spec }: ChartFig
   const titleId = useId()
   const [showTable, setShowTable] = useState(false)
   const data = useDatasetData(datasetId)
+  const themePalette = useContext(ChartPaletteContext)
 
-  // The spec object is recreated on every render: its JSON form is the stable memo key
-  const specKey = JSON.stringify(spec)
+  // The spec object is recreated on every render: its JSON form is the stable memo key.
+  // Charts without colours of their own follow the theme palette.
+  const specKey = JSON.stringify({ ...spec, colors: spec.colors.length > 0 ? spec.colors : (themePalette ?? []) })
   const built = useMemo(() => {
     if (!data.data) return null
     try {

@@ -1,30 +1,50 @@
+import type { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import type { Block } from '../../lib/api/types'
 import { renderMarkdown } from '../../lib/markdown'
 import { ChartFigure } from '../charts/ChartFigure'
 
+export type ViewBlock = Omit<Block, 'id' | 'position'> & { id?: number }
+
 export interface ArticleViewModel {
   title: string
   summary: string
-  blocks: Omit<Block, 'id' | 'position'>[]
+  blocks: ViewBlock[]
 }
 
-/** Renders an article as readers see it (preview in the editor, public page). */
-export function ArticleView({ article }: { article: ArticleViewModel }) {
+interface ArticleViewProps {
+  article: ArticleViewModel
+  /** Shown under each block (e.g. its rating); blocks are wrapped when it returns something. */
+  blockFooter?: (block: ViewBlock) => ReactNode
+  /** Extra content after the blocks (e.g. practical information of a contact page). */
+  children?: ReactNode
+}
+
+/** Renders an article or a page as readers see it (editor preview, public pages). */
+export function ArticleView({ article, blockFooter, children }: ArticleViewProps) {
   return (
     <article className="mx-auto max-w-3xl space-y-6">
       <header className="space-y-3">
-        <h1 className="font-heading text-3xl font-bold sm:text-4xl">{article.title}</h1>
+        <h1 className="ev-title font-heading font-bold">{article.title}</h1>
         {article.summary && <p className="text-lg text-muted">{article.summary}</p>}
       </header>
-      {article.blocks.map((block, i) => (
-        <BlockView key={i} block={block} />
-      ))}
+      {article.blocks.map((block, i) => {
+        const footer = blockFooter?.(block)
+        return footer ? (
+          <div key={block.id ?? i} className="space-y-2">
+            <BlockView block={block} />
+            {footer}
+          </div>
+        ) : (
+          <BlockView key={block.id ?? i} block={block} />
+        )
+      })}
+      {children}
     </article>
   )
 }
 
-function BlockView({ block }: { block: ArticleViewModel['blocks'][number] }) {
+function BlockView({ block }: { block: ViewBlock }) {
   const { i18n } = useTranslation()
 
   switch (block.type) {

@@ -58,7 +58,7 @@ class Media
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['media:read', 'article:read'])]
+    #[Groups(['media:read', 'content:read'])]
     private ?int $id = null;
 
     /** Base name of the stored files, without extension (random, unguessable). */
@@ -66,34 +66,34 @@ class Media
     private string $storageKey;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['media:read', 'article:read'])]
+    #[Groups(['media:read', 'content:read'])]
     private string $originalName;
 
     #[ORM\Column(length: 50)]
-    #[Groups(['media:read', 'article:read'])]
+    #[Groups(['media:read', 'content:read'])]
     private string $mimeType = 'image/webp';
 
     /** Size in bytes of the main WebP variant. */
     #[ORM\Column]
-    #[Groups(['media:read', 'article:read'])]
+    #[Groups(['media:read', 'content:read'])]
     private int $size;
 
     #[ORM\Column]
-    #[Groups(['media:read', 'article:read'])]
+    #[Groups(['media:read', 'content:read'])]
     private int $width;
 
     #[ORM\Column]
-    #[Groups(['media:read', 'article:read'])]
+    #[Groups(['media:read', 'content:read'])]
     private int $height;
 
     #[ORM\Column(length: 255)]
     #[Assert\Length(max: 255)]
-    #[Groups(['media:read', 'media:write', 'article:read'])]
+    #[Groups(['media:read', 'media:write', 'content:read'])]
     private string $altFr = '';
 
     #[ORM\Column(length: 255)]
     #[Assert\Length(max: 255)]
-    #[Groups(['media:read', 'media:write', 'article:read'])]
+    #[Groups(['media:read', 'media:write', 'content:read'])]
     private string $altEn = '';
 
     #[ORM\ManyToOne]
@@ -101,7 +101,7 @@ class Media
     private ?User $uploadedBy;
 
     #[ORM\Column]
-    #[Groups(['media:read', 'article:read'])]
+    #[Groups(['media:read', 'content:read'])]
     private \DateTimeImmutable $createdAt;
 
     public function __construct(string $storageKey, string $originalName, int $size, int $width, int $height, ?User $uploadedBy)
@@ -175,7 +175,7 @@ class Media
     }
 
     /** True when both alternative texts are filled: required before insertion in an article. */
-    #[Groups(['media:read', 'article:read'])]
+    #[Groups(['media:read', 'content:read'])]
     public function isAltComplete(): bool
     {
         return '' !== $this->altFr && '' !== $this->altEn;
@@ -186,7 +186,7 @@ class Media
         return $this->uploadedBy;
     }
 
-    #[Groups(['media:read', 'article:read'])]
+    #[Groups(['media:read', 'content:read'])]
     public function getUploadedByName(): ?string
     {
         return $this->uploadedBy?->getDisplayName();
@@ -197,13 +197,13 @@ class Media
         return $this->createdAt;
     }
 
-    #[Groups(['media:read', 'article:read'])]
+    #[Groups(['media:read', 'content:read'])]
     public function getUrl(): string
     {
         return '/uploads/media/'.$this->storageKey.'.webp';
     }
 
-    #[Groups(['media:read', 'article:read'])]
+    #[Groups(['media:read', 'content:read'])]
     public function getThumbnailUrl(): string
     {
         return '/uploads/media/'.$this->storageKey.'-thumb.webp';

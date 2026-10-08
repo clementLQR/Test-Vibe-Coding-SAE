@@ -32,6 +32,9 @@ dataset:
         locked: "Le type ne peut plus changer : le jeu de données est validé et peut déjà être utilisé dans des graphiques."
         no_number: "« %name% » ne contient aucun nombre : elle ne peut pas être numérique."
 in_use:
-    media: "Cette image est utilisée dans : %articles%. Retirez-la de ces articles avant de la supprimer."
-    visualization: "Ce graphique est utilisé dans : %articles%. Retirez-le de ces articles avant de le supprimer."
+    media: "Cette image est utilisée dans : %articles%. Retirez-la de ces contenus avant de la supprimer."
+    visualization: "Ce graphique est utilisé dans : %articles%. Retirez-le de ces contenus avant de le supprimer."
     dataset: "Ce jeu de données est utilisé par %count% graphique(s). Supprimez-les avant de supprimer le jeu."
+rating:
+    not_ratable: "Seuls les blocs d'un article publié peuvent être notés."
+    invalid_score: "La note doit être un nombre entier de 0 à 5."

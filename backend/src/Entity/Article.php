@@ -14,6 +14,7 @@ use ApiPlatform\Metadata\Put;
 use ApiPlatform\Metadata\QueryParameter;
 use App\Article\ArticleStatus;
 use App\Article\ArticleType;
+use App\Article\BlockContainer;
 use App\Dto\ArticleInput;
 use App\Repository\ArticleRepository;
 use App\State\ArticleWriteProcessor;
@@ -45,39 +46,39 @@ use Symfony\Component\Serializer\Attribute\Groups;
         new Put(input: ArticleInput::class, processor: ArticleWriteProcessor::class, security: "is_granted('ARTICLE_EDIT', object)"),
         new Delete(security: "is_granted('ARTICLE_EDIT', object)"),
     ],
-    normalizationContext: ['groups' => ['article:read']],
+    normalizationContext: ['groups' => ['content:read']],
     paginationItemsPerPage: 20,
 )]
-class Article
+class Article implements BlockContainer
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['article:read'])]
+    #[Groups(['content:read'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 200)]
-    #[Groups(['article:read'])]
+    #[Groups(['content:read'])]
     private string $title = '';
 
     #[ORM\Column(length: 220, unique: true)]
-    #[Groups(['article:read'])]
+    #[Groups(['content:read'])]
     private string $slug = '';
 
     #[ORM\Column(type: Types::TEXT)]
-    #[Groups(['article:read'])]
+    #[Groups(['content:read'])]
     private string $summary = '';
 
     #[ORM\Column(length: 12, enumType: ArticleType::class)]
-    #[Groups(['article:read'])]
+    #[Groups(['content:read'])]
     private ArticleType $type = ArticleType::Classic;
 
     #[ORM\Column(length: 12, enumType: ArticleStatus::class)]
-    #[Groups(['article:read'])]
+    #[Groups(['content:read'])]
     private ArticleStatus $status = ArticleStatus::Draft;
 
     #[ORM\Column(length: 2)]
-    #[Groups(['article:read'])]
+    #[Groups(['content:read'])]
     private string $locale = 'fr';
 
     #[ORM\ManyToOne]
@@ -87,19 +88,19 @@ class Article
     /** @var Collection<int, Block> */
     #[ORM\OneToMany(targetEntity: Block::class, mappedBy: 'article', cascade: ['persist', 'remove'], orphanRemoval: true)]
     #[ORM\OrderBy(['position' => 'ASC'])]
-    #[Groups(['article:read'])]
+    #[Groups(['content:read'])]
     private Collection $blocks;
 
     #[ORM\Column]
-    #[Groups(['article:read'])]
+    #[Groups(['content:read'])]
     private \DateTimeImmutable $createdAt;
 
     #[ORM\Column]
-    #[Groups(['article:read'])]
+    #[Groups(['content:read'])]
     private \DateTimeImmutable $updatedAt;
 
     #[ORM\Column(nullable: true)]
-    #[Groups(['article:read'])]
+    #[Groups(['content:read'])]
     private ?\DateTimeImmutable $publishedAt = null;
 
     public function __construct(?User $author)
@@ -206,13 +207,13 @@ class Article
         return $this->author;
     }
 
-    #[Groups(['article:read'])]
+    #[Groups(['content:read'])]
     public function getAuthorId(): ?int
     {
         return $this->author?->getId();
     }
 
-    #[Groups(['article:read'])]
+    #[Groups(['content:read'])]
     public function getAuthorName(): ?string
     {
         return $this->author?->getDisplayName();

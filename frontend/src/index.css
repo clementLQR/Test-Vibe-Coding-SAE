@@ -18,6 +18,8 @@
   --ev-font-body: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
   --ev-font-heading: var(--ev-font-body);
   --ev-font-size-base: 1rem;
+  --ev-title-color: var(--ev-page-fg);
+  --ev-title-size: 2.25rem;
 }
 
 @theme inline {
@@ -43,6 +45,20 @@ body {
   background: var(--ev-page-bg);
   color: var(--ev-page-fg);
   font-family: var(--ev-font-body);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--ev-font-heading);
+}
+
+/* Title of an article or page: size and colour are theme tokens */
+.ev-title {
+  color: var(--ev-title-color);
+  font-size: clamp(1.75rem, 6vw, var(--ev-title-size));
+  line-height: 1.15;
 }
 
 :focus-visible {

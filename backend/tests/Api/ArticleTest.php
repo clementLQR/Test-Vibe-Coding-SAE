@@ -181,7 +181,7 @@ final class ArticleTest extends ApiTestCase
         $this->client->loginUser($this->createUser('editor@example.com', ['ROLE_EDITOR']));
         $json = $this->jsonRequest('DELETE', '/api/media/'.$media->getId(), headers: ['HTTP_ACCEPT_LANGUAGE' => 'fr']);
         self::assertResponseStatusCodeSame(409);
-        self::assertSame('Cette image est utilisée dans : Bilan. Retirez-la de ces articles avant de la supprimer.', $json['detail']);
+        self::assertSame('Cette image est utilisée dans : Bilan. Retirez-la de ces contenus avant de la supprimer.', $json['detail']);
 
         $this->jsonRequest('DELETE', '/api/visualizations/'.$chart->getId());
         self::assertResponseStatusCodeSame(409);
