@@ -68,6 +68,7 @@ Pièges de l'environnement (Windows + Docker Desktop) :
 
 - `backend/vendor` et `backend/var` sont dans des **volumes Docker**, pas dans le dossier partagé (sinon chaque requête prend environ 15 s). Toujours lancer `composer` **dans le conteneur** ; le `vendor/` visible sous Windows n'est qu'une copie pour l'éditeur et peut être en retard.
 - Après avoir recréé les volumes : `docker compose exec php composer install`.
+- Les modifications de fichiers dans le dossier partagé n'envoient aucun événement à Docker : Vite surveille donc les fichiers par interrogation (`VITE_USE_POLLING=true` dans `compose.yaml`). Si le navigateur affiche une ancienne version, vérifier ce réglage avant de chercher ailleurs.
 - En dev, le conteneur PHP tourne en root (`php-fpm -R`) pour éviter les conflits de droits sur le dossier partagé. L'image de prod tourne en `www-data`.
 
 ## Règles métier essentielles

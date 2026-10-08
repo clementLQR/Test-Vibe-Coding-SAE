@@ -56,3 +56,4 @@ Format : date — décision — raison.
 - 2026-10-08 — Le plan est doublé d'une liste textuelle des lieux et services, avec un lien d'évitement. — Une carte n'est pas accessible au lecteur d'écran.
 - 2026-10-08 — Billetterie sans paiement : chaque offre renvoie vers le service de billetterie de l'organisateur. Les prix sont stockés en centimes. — Périmètre du MVP ; pas d'erreur d'arrondi sur des montants.
 - 2026-10-08 — Favoris du programme gardés dans le navigateur (`localStorage`), sans compte. — Fonction de confort, aucune donnée personnelle côté serveur.
+- 2026-10-08 — Vite surveille les fichiers par interrogation dans Docker (`VITE_USE_POLLING`). — Sous Windows, le dossier partagé n'envoie pas d'événements : Vite servait encore le code du sprint 0 (signalé par l'utilisateur).
