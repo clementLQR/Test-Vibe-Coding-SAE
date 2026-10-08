@@ -4,6 +4,18 @@
     "mainNav": "Navigation principale",
     "poweredBy": "Propulsé par Evently"
   },
+  "common": {
+    "loading": "Chargement…",
+    "error": "Une erreur est survenue. Réessayez.",
+    "apiUnreachable": "Le serveur est injoignable. Vérifiez que l'application est démarrée.",
+    "optional": "Facultatif",
+    "save": "Enregistrer",
+    "delete": "Supprimer",
+    "previous": "Précédent",
+    "next": "Suivant",
+    "pagination": "Pagination",
+    "pageOf": "Page {{page}} sur {{count}}"
+  },
   "nav": {
     "home": "Accueil",
     "admin": "Administration"
@@ -13,17 +25,91 @@
     "fr": "Français",
     "en": "English"
   },
+  "roles": {
+    "ROLE_SUBSCRIBER": "Abonné·e",
+    "ROLE_AUTHOR": "Auteur·rice",
+    "ROLE_EDITOR": "Éditeur·rice",
+    "ROLE_DESIGNER": "Designer",
+    "ROLE_DATA_PROVIDER": "Fournisseur de données",
+    "ROLE_ADMIN": "Administrateur·rice"
+  },
+  "auth": {
+    "email": "Adresse e-mail",
+    "password": "Mot de passe",
+    "passwordHint": "Au moins 10 caractères.",
+    "displayName": "Nom affiché",
+    "logout": "Se déconnecter ({{name}})",
+    "forbidden": "Vous n'avez pas accès à cette page.",
+    "login": {
+      "title": "Se connecter",
+      "submit": "Se connecter",
+      "noAccount": "Pas encore de compte ?"
+    },
+    "register": {
+      "title": "Créer un compte",
+      "intro": "Un compte vous permet de noter les contenus des articles.",
+      "submit": "Créer mon compte",
+      "hasAccount": "Déjà inscrit·e ?"
+    }
+  },
+  "install": {
+    "title": "Installation de votre site",
+    "intro": "Bienvenue ! Renseignez les informations de votre événement et créez le compte administrateur. Vous pourrez tout modifier ensuite.",
+    "siteSection": "Votre événement",
+    "siteName": "Nom du site ou de l'événement",
+    "tagline": "Accroche",
+    "eventStart": "Date de début",
+    "eventEnd": "Date de fin",
+    "location": "Lieu",
+    "adminSection": "Compte administrateur",
+    "submit": "Installer le site"
+  },
   "home": {
-    "title": "Bienvenue sur Evently",
-    "intro": "Le CMS pour créer le site de votre événement et raconter ses données.",
-    "apiStatus": "État de l'API",
-    "apiOk": "API connectée (version {{version}})",
-    "apiError": "API injoignable",
-    "loading": "Chargement…"
+    "title": "Bienvenue",
+    "when": "Quand",
+    "where": "Où",
+    "dateRange": "Du {{start}} au {{end}}"
   },
   "admin": {
     "title": "Administration",
-    "comingSoon": "L'interface d'administration arrive au sprint 1."
+    "welcome": "Bonjour {{name}} !",
+    "yourRoles": "Vos rôles :",
+    "nav": {
+      "label": "Menu de l'administration",
+      "dashboard": "Tableau de bord",
+      "media": "Médiathèque",
+      "users": "Utilisateurs",
+      "backOffice": "Back-office technique"
+    }
+  },
+  "users": {
+    "intro": "Attribuez les rôles de chaque compte. Tout compte connecté peut noter les blocs des articles.",
+    "since": "Inscrit·e le {{date}}",
+    "rolesOf": "Rôles de {{name}}",
+    "save": "Enregistrer les rôles",
+    "saved": "Rôles enregistrés."
+  },
+  "media": {
+    "intro": "Les images sont converties en WebP et redimensionnées pour alléger le site. Elles sont réutilisables dans tous les articles.",
+    "search": "Rechercher une image",
+    "count_zero": "Aucune image.",
+    "count_one": "{{count}} image",
+    "count_other": "{{count}} images",
+    "altFr": "Texte alternatif (français)",
+    "altEn": "Texte alternatif (anglais)",
+    "altMissing": "Texte alternatif à compléter avant utilisation.",
+    "edit": "Modifier",
+    "select": "Choisir",
+    "selectNamed": "Choisir {{name}}",
+    "confirmDelete": "Supprimer définitivement « {{name}} » ?",
+    "upload": {
+      "title": "Ajouter une image",
+      "file": "Fichier image",
+      "hint": "JPEG, PNG ou WebP, 10 Mo maximum.",
+      "submit": "Envoyer",
+      "sending": "Envoi en cours…",
+      "done": "Image ajoutée à la médiathèque."
+    }
   },
   "notFound": {
     "title": "Page introuvable",

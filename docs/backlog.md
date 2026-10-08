@@ -34,17 +34,18 @@ Projet du lundi 12/10/2026 (S42) au vendredi 29/01/2027 (S4). Les dates exactes 
 
 ## E1 — Comptes et rôles (S1)
 
-- [ ] **E1-1** (M, 1 j) Entité `User`, hiérarchie des rôles, hachage des mots de passe.
-- [ ] **E1-2** (M, 1 j) En tant que visiteur, je crée un compte abonné et je me connecte / déconnecte.
+- [x] **E1-1** (M, 1 j) Entité `User`, hiérarchie des rôles, hachage des mots de passe.
+- [x] **E1-2** (M, 1 j) En tant que visiteur, je crée un compte abonné et je me connecte / déconnecte.
   - Session cookie, limitation des tentatives de connexion, messages d'erreur FR/EN.
-- [ ] **E1-3** (M, 1 j) En tant qu'admin, je liste les utilisateurs et je change leurs rôles (admin React + EasyAdmin).
+- [x] **E1-3** (M, 1 j) En tant qu'admin, je liste les utilisateurs et je change leurs rôles (admin React + EasyAdmin).
 - [ ] **E1-4** (M, 1 j) Voters pour articles, jeux de données, thèmes, médias ; tests fonctionnels de la matrice des droits (`architecture.md` §3).
-- [ ] **E1-5** (M, 0,5 j) Front : garde de routes par rôle, menu admin adapté au rôle.
+  - Fait en S1 : hiérarchie des rôles, `MediaVoter`, droits utilisateurs et back-office testés. Les voters des articles, jeux de données et thèmes sont écrits avec leurs entités (S2 à S4).
+- [x] **E1-5** (M, 0,5 j) Front : garde de routes par rôle, menu admin adapté au rôle.
 - [ ] **E1-6** (C, 0,5 j) Réinitialisation du mot de passe par e-mail (Mailpit en dev).
 
 ## E2 — Installation à la WordPress (S1, S6)
 
-- [ ] **E2-1** (M, 1,5 j) En tant que nouvel utilisateur, à la première visite, l'installeur me fait choisir la langue, le nom du site, les dates et lieu de l'événement, et créer le compte admin.
+- [x] **E2-1** (M, 1,5 j) En tant que nouvel utilisateur, à la première visite, l'installeur me fait choisir la langue, le nom du site, les dates et lieu de l'événement, et créer le compte admin.
   - Installeur inaccessible dès qu'un admin existe (vérifié côté API).
 - [ ] **E2-2** (S, 1 j) Option « installer les données de démonstration » (articles, jeux de données, programme, plan).
 - [ ] **E2-3** (M, 1 j, S6) Paquet téléchargeable : `compose.yaml` de prod utilisant les images publiées, `.env.example`, `README` d'installation FR/EN.
@@ -52,10 +53,13 @@ Projet du lundi 12/10/2026 (S42) au vendredi 29/01/2027 (S4). Les dates exactes 
 
 ## E3 — Médiathèque (S1)
 
-- [ ] **E3-1** (M, 1 j) En tant qu'auteur, je dépose une image (types et taille contrôlés) ; une variante WebP redimensionnée est générée.
+- [x] **E3-1** (M, 1 j) En tant qu'auteur, je dépose une image (types et taille contrôlés) ; une variante WebP redimensionnée est générée.
 - [ ] **E3-2** (M, 1 j) En tant qu'auteur, je parcours la médiathèque (grille, recherche) et je choisis une image existante pour un bloc.
+  - Fait en S1 : grille, recherche, pagination, mode « sélection » du composant. Reste : le brancher dans l’éditeur de blocs (S3).
 - [ ] **E3-3** (M, 0,5 j) Texte alternatif FR/EN obligatoire avant insertion dans un article.
+  - Fait en S1 : champs alt FR/EN, signalement des images incomplètes, sélection impossible sans alt. Reste : refus côté API à l’insertion d’un bloc (S3).
 - [ ] **E3-4** (S, 0,5 j) Suppression impossible si le média est utilisé (liste des articles qui l'utilisent).
+  - Reporté en S3 : dépend des blocs d’articles.
 
 ## E4 — Jeux de données (S2)
 

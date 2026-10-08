@@ -19,3 +19,9 @@ Format : date — décision — raison.
 - 2026-10-08 — nelmio/cors-bundle conservé (imposé par le pack API Platform) mais inutile : front et API sont sur la même origine.
 - 2026-10-08 — `vendor/` et `var/` du back dans des volumes Docker, conteneur PHP de dev en root. — Sur un dossier partagé Windows, une requête prenait environ 16 s (0,3 à 1 s ensuite) et `www-data` ne pouvait pas créer de fichiers.
 - 2026-10-08 — Le tableau de bord EasyAdmin (`/admin`, actuellement 404) est reporté à E1-3. — Il doit être protégé par `ROLE_ADMIN`, qui n'existe qu'avec l'entité `User`.
+- 2026-10-08 — Tableau de bord EasyAdmin livré (E1-3) : `/admin` réservé à `ROLE_ADMIN`, un visiteur est redirigé vers `/login`. — Remplace la ligne précédente.
+- 2026-10-08 — Protection CSRF de l'API par contrôle d'origine (`Sec-Fetch-Site`, puis `Origin`) sur les requêtes qui modifient, plus cookie `SameSite=Lax`. — Pas de jeton à faire circuler dans le front ; protège aussi la connexion et la déconnexion.
+- 2026-10-08 — Règle « pas de lock-out admin » (ne pas retirer son propre rôle admin, garder au moins un admin) dans un service unique `RoleChangeGuard`, utilisé par l'API et par EasyAdmin. — Une seule règle, deux interfaces.
+- 2026-10-08 — Envoi d'image via un « state processor » API Platform, pas un contrôleur. — API Platform 5 n'accepte plus qu'un contrôleur personnalisé renvoie l'entité.
+- 2026-10-08 — Seules des variantes WebP sont conservées (1600 px et miniature 400 px) ; l'original n'est pas gardé. Formats acceptés : JPEG, PNG, WebP (pas de SVG, risque XSS). — Éco-conception et sécurité.
+- 2026-10-08 — Les tests écrivent les images dans `var/test-uploads/`, jamais dans la vraie médiathèque. — Éviter qu'un test efface des médias de développement.

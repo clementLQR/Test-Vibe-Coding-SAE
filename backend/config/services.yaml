@@ -8,6 +8,8 @@
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
     app.version: '0.1.0'
+    # Where optimised images are written (served by nginx under /uploads/media)
+    app.media_dir: '%kernel.project_dir%/public/uploads/media'
 
 services:
     # default configuration for services in *this* file
@@ -22,3 +24,8 @@ services:
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
+
+when@test:
+    parameters:
+        # Tests never touch the real media library
+        app.media_dir: '%kernel.project_dir%/var/test-uploads/media'

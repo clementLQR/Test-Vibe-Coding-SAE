@@ -1,0 +1,12 @@
+user:
+    email:
+        taken: "Cette adresse e-mail est déjà utilisée."
+    password:
+        too_short: "Le mot de passe doit contenir au moins {{ limit }} caractères."
+settings:
+    event_end:
+        before_start: "La date de fin doit être postérieure ou égale à la date de début."
+media:
+    file:
+        required: "Choisissez une image à envoyer."
+        type: "Formats acceptés : JPEG, PNG ou WebP."

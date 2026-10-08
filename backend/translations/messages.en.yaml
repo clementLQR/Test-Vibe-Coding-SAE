@@ -1,0 +1,12 @@
+auth:
+    invalid_credentials: "Incorrect email or password."
+    too_many_attempts: "Too many login attempts. Please try again in a few minutes."
+    required: "You must be logged in."
+    cross_origin: "Request refused: it does not come from this site."
+install:
+    required: "The site is not installed yet."
+    already_done: "The site is already installed."
+user:
+    roles:
+        cannot_demote_self: "You cannot remove your own administrator role."
+        last_admin: "The site must keep at least one administrator."

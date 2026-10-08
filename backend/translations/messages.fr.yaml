@@ -1,0 +1,12 @@
+auth:
+    invalid_credentials: "E-mail ou mot de passe incorrect."
+    too_many_attempts: "Trop de tentatives de connexion. Réessayez dans quelques minutes."
+    required: "Vous devez être connecté·e."
+    cross_origin: "Requête refusée : elle ne provient pas de ce site."
+install:
+    required: "Le site n'est pas encore installé."
+    already_done: "Le site est déjà installé."
+user:
+    roles:
+        cannot_demote_self: "Vous ne pouvez pas retirer votre propre rôle d'administrateur."
+        last_admin: "Le site doit garder au moins un administrateur."

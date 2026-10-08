@@ -1,0 +1,12 @@
+user:
+    email:
+        taken: "This email address is already in use."
+    password:
+        too_short: "The password must contain at least {{ limit }} characters."
+settings:
+    event_end:
+        before_start: "The end date must be on or after the start date."
+media:
+    file:
+        required: "Choose an image to upload."
+        type: "Accepted formats: JPEG, PNG or WebP."

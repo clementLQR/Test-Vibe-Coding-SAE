@@ -1,12 +1,21 @@
 import { useTranslation } from 'react-i18next'
-import { NavLink, Outlet } from 'react-router'
+import { NavLink, Outlet, useNavigate } from 'react-router'
+import { hasAnyRole, STAFF_ROLES, useCurrentUser, useLogout } from '../features/auth/useAuth'
+import { useSiteSettings } from '../features/install/useSite'
 import { LanguageSwitcher } from './LanguageSwitcher'
 
 export function PublicLayout() {
   const { t } = useTranslation()
+  const navigate = useNavigate()
+  const settings = useSiteSettings()
+  const { user } = useCurrentUser()
+  const logout = useLogout()
+  const siteName = settings.data?.siteName ?? 'Evently'
 
   const linkClass = ({ isActive }: { isActive: boolean }) =>
-    `rounded px-2 py-1 hover:underline ${isActive ? 'underline underline-offset-4' : ''}`
+    `inline-flex min-h-11 items-center rounded px-2 hover:underline ${isActive ? 'underline underline-offset-4' : ''}`
+
+  const onLogout = () => logout.mutate(undefined, { onSuccess: () => void navigate('/') })
 
   return (
     <div className="flex min-h-screen flex-col">
@@ -18,17 +27,37 @@ export function PublicLayout() {
       </a>
 
       <header className="bg-header text-header-ink">
-        <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-3 px-4 py-3">
+        <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-x-4 gap-y-2 px-4 py-3">
           <NavLink to="/" className="font-heading text-xl font-bold">
-            Evently
+            {siteName}
           </NavLink>
-          <nav aria-label={t('app.mainNav')} className="flex items-center gap-2">
+          <nav aria-label={t('app.mainNav')} className="flex flex-wrap items-center gap-x-2">
             <NavLink to="/" end className={linkClass}>
               {t('nav.home')}
             </NavLink>
-            <NavLink to="/admin-app" className={linkClass}>
-              {t('nav.admin')}
-            </NavLink>
+            {hasAnyRole(user, STAFF_ROLES) && (
+              <NavLink to="/admin-app" className={linkClass}>
+                {t('nav.admin')}
+              </NavLink>
+            )}
+            {user === null ? (
+              <>
+                <NavLink to="/login" className={linkClass}>
+                  {t('auth.login.title')}
+                </NavLink>
+                <NavLink to="/register" className={linkClass}>
+                  {t('auth.register.title')}
+                </NavLink>
+              </>
+            ) : (
+              <button
+                type="button"
+                onClick={onLogout}
+                className="inline-flex min-h-11 items-center rounded px-2 hover:underline"
+              >
+                {t('auth.logout', { name: user.displayName })}
+              </button>
+            )}
             <LanguageSwitcher />
           </nav>
         </div>

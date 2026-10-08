@@ -4,6 +4,18 @@
     "mainNav": "Main navigation",
     "poweredBy": "Powered by Evently"
   },
+  "common": {
+    "loading": "Loading…",
+    "error": "Something went wrong. Please try again.",
+    "apiUnreachable": "The server cannot be reached. Check that the application is running.",
+    "optional": "Optional",
+    "save": "Save",
+    "delete": "Delete",
+    "previous": "Previous",
+    "next": "Next",
+    "pagination": "Pagination",
+    "pageOf": "Page {{page}} of {{count}}"
+  },
   "nav": {
     "home": "Home",
     "admin": "Admin"
@@ -13,17 +25,91 @@
     "fr": "Français",
     "en": "English"
   },
+  "roles": {
+    "ROLE_SUBSCRIBER": "Subscriber",
+    "ROLE_AUTHOR": "Author",
+    "ROLE_EDITOR": "Editor",
+    "ROLE_DESIGNER": "Designer",
+    "ROLE_DATA_PROVIDER": "Data provider",
+    "ROLE_ADMIN": "Administrator"
+  },
+  "auth": {
+    "email": "Email address",
+    "password": "Password",
+    "passwordHint": "At least 10 characters.",
+    "displayName": "Display name",
+    "logout": "Log out ({{name}})",
+    "forbidden": "You do not have access to this page.",
+    "login": {
+      "title": "Log in",
+      "submit": "Log in",
+      "noAccount": "No account yet?"
+    },
+    "register": {
+      "title": "Sign up",
+      "intro": "An account lets you rate the content of the articles.",
+      "submit": "Create my account",
+      "hasAccount": "Already registered?"
+    }
+  },
+  "install": {
+    "title": "Install your website",
+    "intro": "Welcome! Fill in your event details and create the administrator account. You can change everything later.",
+    "siteSection": "Your event",
+    "siteName": "Website or event name",
+    "tagline": "Tagline",
+    "eventStart": "Start date",
+    "eventEnd": "End date",
+    "location": "Location",
+    "adminSection": "Administrator account",
+    "submit": "Install the website"
+  },
   "home": {
-    "title": "Welcome to Evently",
-    "intro": "The CMS to build your event website and tell the story of its data.",
-    "apiStatus": "API status",
-    "apiOk": "API connected (version {{version}})",
-    "apiError": "API unreachable",
-    "loading": "Loading…"
+    "title": "Welcome",
+    "when": "When",
+    "where": "Where",
+    "dateRange": "From {{start}} to {{end}}"
   },
   "admin": {
     "title": "Admin",
-    "comingSoon": "The admin interface is coming in sprint 1."
+    "welcome": "Hello {{name}}!",
+    "yourRoles": "Your roles:",
+    "nav": {
+      "label": "Admin menu",
+      "dashboard": "Dashboard",
+      "media": "Media library",
+      "users": "Users",
+      "backOffice": "Technical back-office"
+    }
+  },
+  "users": {
+    "intro": "Assign the roles of each account. Any logged-in account can rate article blocks.",
+    "since": "Joined on {{date}}",
+    "rolesOf": "Roles of {{name}}",
+    "save": "Save roles",
+    "saved": "Roles saved."
+  },
+  "media": {
+    "intro": "Images are converted to WebP and resized to keep the website light. They can be reused in every article.",
+    "search": "Search for an image",
+    "count_zero": "No images.",
+    "count_one": "{{count}} image",
+    "count_other": "{{count}} images",
+    "altFr": "Alternative text (French)",
+    "altEn": "Alternative text (English)",
+    "altMissing": "Alternative text required before use.",
+    "edit": "Edit",
+    "select": "Choose",
+    "selectNamed": "Choose {{name}}",
+    "confirmDelete": "Permanently delete \"{{name}}\"?",
+    "upload": {
+      "title": "Add an image",
+      "file": "Image file",
+      "hint": "JPEG, PNG or WebP, 10 MB max.",
+      "submit": "Upload",
+      "sending": "Uploading…",
+      "done": "Image added to the media library."
+    }
   },
   "notFound": {
     "title": "Page not found",

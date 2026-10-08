@@ -1,16 +1,59 @@
 import type { RouteObject } from 'react-router'
 import { PublicLayout } from '../components/PublicLayout'
 import { AdminHomePage } from '../features/admin/AdminHomePage'
+import { AdminLayout } from '../features/admin/AdminLayout'
+import { LoginPage } from '../features/auth/LoginPage'
+import { RegisterPage } from '../features/auth/RegisterPage'
+import { RequireRole } from '../features/auth/RequireRole'
+import { MEDIA_ROLES, STAFF_ROLES } from '../features/auth/useAuth'
 import { HomePage } from '../features/home/HomePage'
+import { InstallerPage } from '../features/install/InstallerPage'
+import { InstallGate, INSTALLER_PATH } from '../features/install/InstallGate'
+import { MediaPage } from '../features/media/MediaPage'
+import { UsersPage } from '../features/users/UsersPage'
 import { NotFoundPage } from './NotFoundPage'
 
 export const routes: RouteObject[] = [
   {
-    element: <PublicLayout />,
+    element: <InstallGate />,
     children: [
-      { index: true, element: <HomePage /> },
-      { path: 'admin-app', element: <AdminHomePage /> },
-      { path: '*', element: <NotFoundPage /> },
+      { path: INSTALLER_PATH, element: <InstallerPage /> },
+      {
+        element: <PublicLayout />,
+        children: [
+          { index: true, element: <HomePage /> },
+          { path: 'login', element: <LoginPage /> },
+          { path: 'register', element: <RegisterPage /> },
+          {
+            path: 'admin-app',
+            element: (
+              <RequireRole roles={STAFF_ROLES}>
+                <AdminLayout />
+              </RequireRole>
+            ),
+            children: [
+              { index: true, element: <AdminHomePage /> },
+              {
+                path: 'media',
+                element: (
+                  <RequireRole roles={MEDIA_ROLES}>
+                    <MediaPage />
+                  </RequireRole>
+                ),
+              },
+              {
+                path: 'users',
+                element: (
+                  <RequireRole roles={['ROLE_ADMIN']}>
+                    <UsersPage />
+                  </RequireRole>
+                ),
+              },
+            ],
+          },
+          { path: '*', element: <NotFoundPage /> },
+        ],
+      },
     ],
   },
 ]

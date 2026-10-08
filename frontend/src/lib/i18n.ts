@@ -6,12 +6,16 @@ import frCommon from '../locales/fr/common.json'
 export const SUPPORTED_LOCALES = ['fr', 'en'] as const
 export type Locale = (typeof SUPPORTED_LOCALES)[number]
 
+export function isLocale(value: string): value is Locale {
+  return (SUPPORTED_LOCALES as readonly string[]).includes(value)
+}
+
 const STORAGE_KEY = 'evently.locale'
 
 function initialLocale(): Locale {
   try {
     const stored = localStorage.getItem(STORAGE_KEY)
-    if (stored === 'fr' || stored === 'en') return stored
+    if (stored !== null && isLocale(stored)) return stored
   } catch {
     // Storage unavailable (private mode): fall back to the browser language
   }
