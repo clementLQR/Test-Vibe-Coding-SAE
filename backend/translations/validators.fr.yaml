@@ -54,3 +54,15 @@ theme:
         invalid: "Valeur invalide pour ce réglage."
     target:
         mismatch: "Choisissez la cible qui correspond à la portée du thème."
+program:
+    ends_before_start: "La fin doit être après le début."
+map:
+    point:
+        invalid: "Placez le point sur le plan (une latitude et une longitude)."
+    zone:
+        invalid: "Une zone a besoin d'au moins trois sommets."
+    config:
+        mode: "Choisissez une carte ou une image."
+        center: "Centre de la carte invalide."
+        zoom: "Le zoom doit être compris entre 1 et 19."
+        image_required: "Choisissez l'image du plan dans la médiathèque."

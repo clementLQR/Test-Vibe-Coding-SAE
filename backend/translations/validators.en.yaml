@@ -54,3 +54,15 @@ theme:
         invalid: "Invalid value for this setting."
     target:
         mismatch: "Choose the target that matches the scope of the theme."
+program:
+    ends_before_start: "The end must be after the start."
+map:
+    point:
+        invalid: "Place the point on the map (a latitude and a longitude)."
+    zone:
+        invalid: "A zone needs at least three corners."
+    config:
+        mode: "Choose a map or an image."
+        center: "Invalid map centre."
+        zoom: "The zoom must be between 1 and 19."
+        image_required: "Choose the plan image from the media library."

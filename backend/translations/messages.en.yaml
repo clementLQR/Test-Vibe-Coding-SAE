@@ -35,6 +35,7 @@ in_use:
     media: "This image is used in: %articles%. Remove it from this content before deleting it."
     visualization: "This chart is used in: %articles%. Remove it from this content before deleting it."
     dataset: "This data set is used by %count% chart(s). Delete them before deleting the data set."
+    map: "This image is the background of the interactive map: choose another background before deleting it."
 rating:
     not_ratable: "Only blocks of a published article can be rated."
     invalid_score: "The rating must be a whole number from 0 to 5."

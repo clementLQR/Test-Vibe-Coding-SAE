@@ -26,6 +26,25 @@ export function HomePage() {
         {settings && <EventInfo settings={settings} />}
       </section>
 
+      <nav aria-label={t('public.modules')}>
+        <ul className="grid gap-4 sm:grid-cols-3">
+          {(
+            [
+              ['/programme', 'nav.program', 'public.moduleHints.program'],
+              ['/plan', 'nav.map', 'public.moduleHints.map'],
+              ['/billetterie', 'nav.tickets', 'public.moduleHints.tickets'],
+            ] as const
+          ).map(([to, label, hint]) => (
+            <li key={to}>
+              <Link to={to} className="block h-full rounded-block bg-block p-4 text-block-ink hover:underline">
+                <span className="block font-heading text-lg font-semibold">{t(label)}</span>
+                <span className="block text-sm">{t(hint)}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
       {latest.length > 0 && (
         <section className="space-y-4" aria-labelledby="latest-articles">
           <div className="flex flex-wrap items-baseline justify-between gap-2">

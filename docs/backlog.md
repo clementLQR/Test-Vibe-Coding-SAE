@@ -117,6 +117,7 @@ Projet du lundi 12/10/2026 (S42) au vendredi 29/01/2027 (S4). Les dates exactes 
 ## E9 — Site public et pages (S4)
 
 - [x] **E9-1** (M, 1 j) Accueil public de l'événement : nom, dates, lieu, derniers articles, accès aux modules.
+  - Accès aux modules (programme, plan, billetterie) ajouté au sprint 5.
 - [x] **E9-2** (M, 1 j) Liste des articles (filtre classique / dashboard) et page article.
 - [x] **E9-3** (M, 1 j) En tant qu'éditeur, je crée des pages (vierge, contact) composées de blocs, je gère leur statut et leur place dans le menu.
 - [x] **E9-4** (M, 0,5 j) Header, navigation, footer, sélecteur de langue, page 404.
@@ -127,21 +128,22 @@ Projet du lundi 12/10/2026 (S42) au vendredi 29/01/2027 (S4). Les dates exactes 
 
 ### Programme
 
-- [ ] **E10-1** (M, 1 j) En tant qu'éditeur, je gère les lieux (scènes, salles, zones) et les créneaux du programme.
-- [ ] **E10-2** (M, 1 j) En tant que visiteur, je consulte le programme par jour et par lieu, et je filtre par catégorie (vue liste sur mobile, grille sur desktop).
-- [ ] **E10-3** (C, 0,5 j) En tant que visiteur, je mets des créneaux en favoris (stockage local).
+- [x] **E10-1** (M, 1 j) En tant qu'éditeur, je gère les lieux (scènes, salles, zones) et les créneaux du programme.
+- [x] **E10-2** (M, 1 j) En tant que visiteur, je consulte le programme par jour et par lieu, et je filtre par catégorie (vue liste sur mobile, grille sur desktop).
+- [x] **E10-3** (C, 0,5 j) En tant que visiteur, je mets des créneaux en favoris (stockage local).
 
 ### Plan interactif
 
-- [ ] **E10-4** (M, 1,5 j) En tant qu'éditeur, je configure le fond du plan (carte OpenStreetMap ou image du lieu) et je place des points et des zones dessinées.
-- [ ] **E10-5** (M, 1 j) En tant que visiteur, je consulte le plan : zoom, légende, clic sur un élément pour voir sa description et son programme lié.
-- [ ] **E10-6** (S, 0,5 j) Alternative accessible : liste textuelle des éléments du plan.
+- [x] **E10-4** (M, 1,5 j) En tant qu'éditeur, je configure le fond du plan (carte OpenStreetMap ou image du lieu) et je place des points et des zones dessinées.
+  - Points et zones se placent en cliquant sur la carte ou en saisissant les coordonnées (utilisable au clavier).
+- [x] **E10-5** (M, 1 j) En tant que visiteur, je consulte le plan : zoom, légende, clic sur un élément pour voir sa description et son programme lié.
+- [x] **E10-6** (S, 0,5 j) Alternative accessible : liste textuelle des éléments du plan.
 - [ ] **E10-7** (C, 1 j) Dimensions réelles des zones (mètres) affichées.
 
 ### Billetterie (vitrine, sans paiement)
 
-- [ ] **E10-8** (M, 0,5 j) En tant qu'éditeur, je gère des offres (nom, description, prix, disponibilité, lien externe).
-- [ ] **E10-9** (M, 0,5 j) En tant que visiteur, je vois les offres et je suis redirigé vers le lien d'achat externe.
+- [x] **E10-8** (M, 0,5 j) En tant qu'éditeur, je gère des offres (nom, description, prix, disponibilité, lien externe).
+- [x] **E10-9** (M, 0,5 j) En tant que visiteur, je vois les offres et je suis redirigé vers le lien d'achat externe.
 
 ## E11 — Internationalisation (S6)
 

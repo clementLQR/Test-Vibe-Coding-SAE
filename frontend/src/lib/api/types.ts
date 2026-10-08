@@ -267,3 +267,59 @@ export interface Theme {
   reviewComment: string | null
   updatedAt: string
 }
+
+export interface Venue {
+  id: number
+  name: string
+  description: string | null
+  color: string
+  position: number
+}
+
+/** Times are the event's local time "YYYY-MM-DDTHH:MM" (no time zone). */
+export interface ProgramSlot {
+  id: number
+  title: string
+  description: string | null
+  startsAt: string
+  endsAt: string
+  venue: Pick<Venue, 'id' | 'name' | 'color'> | null
+  speakers: string | null
+  category: string | null
+  locale: Locale
+}
+
+/** [lat, lng] on a real map, [y, x] on an image plan. */
+export type MapPosition = [number, number]
+
+export interface MapItem {
+  id: number
+  label: string
+  description: string | null
+  kind: 'point' | 'zone'
+  coordinates: MapPosition[]
+  color: string
+  venue: Pick<Venue, 'id' | 'name' | 'color'> | null
+}
+
+export interface MapConfig {
+  mode: 'osm' | 'image'
+  centerLat: number
+  centerLng: number
+  zoom: number
+  background: { mediaId: number; url: string; width: number; height: number; altFr: string; altEn: string } | null
+}
+
+export type TicketAvailability = 'available' | 'soon' | 'sold_out'
+
+export interface TicketOffer {
+  id: number
+  name: string
+  description: string | null
+  priceCents: number
+  currency: string
+  externalUrl: string | null
+  availability: TicketAvailability
+  position: number
+  locale: Locale
+}

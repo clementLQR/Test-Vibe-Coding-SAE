@@ -17,5 +17,8 @@ export const ADMIN_LINKS: AdminLink[] = [
   { to: '/admin-app/media', labelKey: 'admin.nav.media', roles: MEDIA_ROLES },
   { to: '/admin-app/pages', labelKey: 'admin.nav.pages', roles: ['ROLE_EDITOR'] },
   { to: '/admin-app/themes', labelKey: 'admin.nav.themes', roles: ['ROLE_DESIGNER'] },
+  { to: '/admin-app/program', labelKey: 'admin.nav.program', roles: ['ROLE_EDITOR'] },
+  { to: '/admin-app/map', labelKey: 'admin.nav.map', roles: ['ROLE_EDITOR'] },
+  { to: '/admin-app/tickets', labelKey: 'admin.nav.tickets', roles: ['ROLE_EDITOR'] },
   { to: '/admin-app/users', labelKey: 'admin.nav.users', roles: ['ROLE_ADMIN'] },
 ]

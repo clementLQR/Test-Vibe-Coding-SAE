@@ -13,6 +13,12 @@ import { MEDIA_ROLES, STAFF_ROLES } from '../features/auth/useAuth'
 import { DatasetDetailPage } from '../features/datasets/DatasetDetailPage'
 import { DatasetsPage } from '../features/datasets/DatasetsPage'
 import { HomePage } from '../features/home/HomePage'
+import { MapAdminPage } from '../features/modules/MapAdminPage'
+import { MapPage } from '../features/modules/MapPage'
+import { ProgramAdminPage } from '../features/modules/ProgramAdminPage'
+import { ProgramPage } from '../features/modules/ProgramPage'
+import { TicketsAdminPage } from '../features/modules/TicketsAdminPage'
+import { TicketsPage } from '../features/modules/TicketsPage'
 import { PageEditorPage } from '../features/pages/PageEditorPage'
 import { PagesPage } from '../features/pages/PagesPage'
 import { ArticlePage } from '../features/public/ArticlePage'
@@ -41,6 +47,9 @@ export const routes: RouteObject[] = [
           { path: 'articles', element: <ArticlesListPage /> },
           { path: 'articles/:slug', element: <ArticlePage /> },
           { path: 'pages/:slug', element: <PagePage /> },
+          { path: 'programme', element: <ProgramPage /> },
+          { path: 'plan', element: <MapPage /> },
+          { path: 'billetterie', element: <TicketsPage /> },
           { path: 'login', element: <LoginPage /> },
           { path: 'register', element: <RegisterPage /> },
           {
@@ -60,6 +69,9 @@ export const routes: RouteObject[] = [
               { path: 'pages/new', element: forRoles(['ROLE_EDITOR'], <PageEditorPage />) },
               { path: 'pages/:id', element: forRoles(['ROLE_EDITOR'], <PageEditorPage />) },
               { path: 'themes', element: forRoles(['ROLE_DESIGNER'], <ThemesPage />) },
+              { path: 'program', element: forRoles(['ROLE_EDITOR'], <ProgramAdminPage />) },
+              { path: 'map', element: forRoles(['ROLE_EDITOR'], <MapAdminPage />) },
+              { path: 'tickets', element: forRoles(['ROLE_EDITOR'], <TicketsAdminPage />) },
               {
                 path: 'datasets',
                 element: (

@@ -16,12 +16,16 @@
     "pagination": "Pagination",
     "pageOf": "Page {{page}} of {{count}}",
     "cancel": "Cancel",
-    "close": "Close"
+    "close": "Close",
+    "newTab": "(new tab)"
   },
   "nav": {
     "home": "Home",
     "admin": "Admin",
-    "articles": "Articles"
+    "articles": "Articles",
+    "program": "Programme",
+    "map": "Map",
+    "tickets": "Tickets"
   },
   "language": {
     "label": "Language",
@@ -87,7 +91,10 @@
       "articles": "Articles",
       "charts": "Charts",
       "pages": "Pages",
-      "themes": "Themes"
+      "themes": "Themes",
+      "program": "Programme",
+      "map": "Map",
+      "tickets": "Tickets"
     },
     "cards": {
       "drafts_zero": "No drafts",
@@ -378,7 +385,13 @@
     },
     "latest": "Latest articles",
     "allArticles": "All articles",
-    "practicalInfo": "Practical information"
+    "practicalInfo": "Practical information",
+    "modules": "Quick access",
+    "moduleHints": {
+      "program": "Every time slot, day by day.",
+      "map": "Stages, services and areas of the site.",
+      "tickets": "Offers and where to buy your tickets."
+    }
   },
   "ratings": {
     "average_one": "Average rating: {{average}} / 5 ({{count}} rating)",
@@ -486,5 +499,87 @@
     "withdraw": "Withdraw",
     "rejectTitle": "Reject the theme",
     "confirmDelete": "Permanently delete the theme “{{name}}”?"
+  },
+  "modules": {
+    "program": {
+      "title": "Programme",
+      "empty": "The programme is not published yet.",
+      "venue": "Venue",
+      "allVenues": "All venues",
+      "category": "Category",
+      "allCategories": "All categories",
+      "onlyFavorites": "Only my favourites ({{count}})",
+      "count_zero": "No time slot matches.",
+      "count_one": "{{count}} time slot",
+      "count_other": "{{count}} time slots",
+      "nextDay": "next day",
+      "favorite": "Add “{{title}}” to my favourites",
+      "unfavorite": "Remove “{{title}}” from my favourites",
+      "favoriteShort": "Favourite"
+    },
+    "map": {
+      "title": "Site map",
+      "skipToList": "Go to the list of places (text version of the map)",
+      "list": "Places and services",
+      "empty": "Nothing on the map yet.",
+      "kinds": {
+        "point": "Point",
+        "zone": "Area"
+      },
+      "programOf": "Programme: {{venue}}"
+    },
+    "tickets": {
+      "title": "Tickets",
+      "empty": "No offers yet.",
+      "buy": "Buy: {{name}}",
+      "notice": "Payment happens on the organiser’s ticketing service, not on this website.",
+      "availability": {
+        "available": "Available",
+        "soon": "Coming soon",
+        "sold_out": "Sold out"
+      }
+    },
+    "admin": {
+      "venues": "Venues",
+      "venue": "Venue",
+      "newVenue": "New venue",
+      "slots": "Time slots",
+      "slot": "Time slot",
+      "newSlot": "New time slot",
+      "slotTitle": "Title",
+      "startsAt": "Start",
+      "endsAt": "End",
+      "speakers": "Speakers or artists",
+      "name": "Name",
+      "color": "Colour",
+      "confirmDelete": "Permanently delete “{{name}}”?",
+      "background": "Map background",
+      "modes": {
+        "osm": "Map (OpenStreetMap)",
+        "image": "Plan image (media library)"
+      },
+      "latitude": "Latitude",
+      "longitude": "Longitude",
+      "x": "X (pixels)",
+      "y": "Y (pixels)",
+      "zoom": "Zoom",
+      "saved": "Map background saved.",
+      "mapItems": "Map elements",
+      "newPoint": "New point",
+      "newZone": "New area",
+      "editItem": "Edit “{{label}}”",
+      "pickPoint": "Click on the map to place the point, or type its coordinates.",
+      "pickZone": "Click on the map to add each corner of the area (at least three), or type them.",
+      "coordinates": "Coordinates",
+      "noCoordinates": "No coordinates yet.",
+      "removeCorner": "Delete corner {{index}}",
+      "newOffer": "New offer",
+      "offer": "Offer",
+      "price": "Price",
+      "currency": "Currency",
+      "externalUrl": "Purchase link",
+      "externalUrlHint": "Address of your ticketing service (HelloAsso, Weezevent…).",
+      "availability": "Availability"
+    }
   }
 }

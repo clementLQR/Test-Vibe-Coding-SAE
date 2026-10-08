@@ -16,12 +16,16 @@
     "pagination": "Pagination",
     "pageOf": "Page {{page}} sur {{count}}",
     "cancel": "Annuler",
-    "close": "Fermer"
+    "close": "Fermer",
+    "newTab": "(nouvel onglet)"
   },
   "nav": {
     "home": "Accueil",
     "admin": "Administration",
-    "articles": "Articles"
+    "articles": "Articles",
+    "program": "Programme",
+    "map": "Plan",
+    "tickets": "Billetterie"
   },
   "language": {
     "label": "Langue",
@@ -87,7 +91,10 @@
       "articles": "Articles",
       "charts": "Graphiques",
       "pages": "Pages",
-      "themes": "Thèmes"
+      "themes": "Thèmes",
+      "program": "Programme",
+      "map": "Plan",
+      "tickets": "Billetterie"
     },
     "cards": {
       "drafts_zero": "Aucun brouillon",
@@ -378,7 +385,13 @@
     },
     "latest": "Derniers articles",
     "allArticles": "Tous les articles",
-    "practicalInfo": "Informations pratiques"
+    "practicalInfo": "Informations pratiques",
+    "modules": "Accès rapides",
+    "moduleHints": {
+      "program": "Tous les créneaux, jour par jour.",
+      "map": "Scènes, services et zones du site.",
+      "tickets": "Les offres et où acheter vos billets."
+    }
   },
   "ratings": {
     "average_one": "Note moyenne : {{average}} / 5 ({{count}} avis)",
@@ -486,5 +499,87 @@
     "withdraw": "Retirer",
     "rejectTitle": "Refuser le thème",
     "confirmDelete": "Supprimer définitivement le thème « {{name}} » ?"
+  },
+  "modules": {
+    "program": {
+      "title": "Programme",
+      "empty": "Le programme n’est pas encore publié.",
+      "venue": "Lieu",
+      "allVenues": "Tous les lieux",
+      "category": "Catégorie",
+      "allCategories": "Toutes les catégories",
+      "onlyFavorites": "Seulement mes favoris ({{count}})",
+      "count_zero": "Aucun créneau ne correspond.",
+      "count_one": "{{count}} créneau",
+      "count_other": "{{count}} créneaux",
+      "nextDay": "le lendemain",
+      "favorite": "Ajouter « {{title}} » à mes favoris",
+      "unfavorite": "Retirer « {{title}} » de mes favoris",
+      "favoriteShort": "Favori"
+    },
+    "map": {
+      "title": "Plan du site",
+      "skipToList": "Aller à la liste des lieux (version texte du plan)",
+      "list": "Lieux et services",
+      "empty": "Aucun élément sur le plan pour l’instant.",
+      "kinds": {
+        "point": "Point",
+        "zone": "Zone"
+      },
+      "programOf": "Programme : {{venue}}"
+    },
+    "tickets": {
+      "title": "Billetterie",
+      "empty": "Aucune offre pour l’instant.",
+      "buy": "Acheter : {{name}}",
+      "notice": "Le paiement se fait sur le service de billetterie de l’organisateur, pas sur ce site.",
+      "availability": {
+        "available": "Disponible",
+        "soon": "Bientôt",
+        "sold_out": "Complet"
+      }
+    },
+    "admin": {
+      "venues": "Lieux",
+      "venue": "Lieu",
+      "newVenue": "Nouveau lieu",
+      "slots": "Créneaux",
+      "slot": "Créneau",
+      "newSlot": "Nouveau créneau",
+      "slotTitle": "Intitulé",
+      "startsAt": "Début",
+      "endsAt": "Fin",
+      "speakers": "Intervenants ou artistes",
+      "name": "Nom",
+      "color": "Couleur",
+      "confirmDelete": "Supprimer définitivement « {{name}} » ?",
+      "background": "Fond du plan",
+      "modes": {
+        "osm": "Carte (OpenStreetMap)",
+        "image": "Image du plan (médiathèque)"
+      },
+      "latitude": "Latitude",
+      "longitude": "Longitude",
+      "x": "X (pixels)",
+      "y": "Y (pixels)",
+      "zoom": "Zoom",
+      "saved": "Fond du plan enregistré.",
+      "mapItems": "Éléments du plan",
+      "newPoint": "Nouveau point",
+      "newZone": "Nouvelle zone",
+      "editItem": "Modifier « {{label}} »",
+      "pickPoint": "Cliquez sur la carte pour placer le point, ou saisissez ses coordonnées.",
+      "pickZone": "Cliquez sur la carte pour ajouter chaque sommet de la zone (trois au minimum), ou saisissez-les.",
+      "coordinates": "Coordonnées",
+      "noCoordinates": "Aucune coordonnée pour l’instant.",
+      "removeCorner": "Supprimer le sommet {{index}}",
+      "newOffer": "Nouvelle offre",
+      "offer": "Offre",
+      "price": "Prix",
+      "currency": "Devise",
+      "externalUrl": "Lien d’achat",
+      "externalUrlHint": "Adresse de votre billetterie (HelloAsso, Weezevent…).",
+      "availability": "Disponibilité"
+    }
   }
 }

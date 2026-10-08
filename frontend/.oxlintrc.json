@@ -1,12 +1,6 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": [
-    "react",
-    "typescript",
-    "oxc",
-    "jsx-a11y",
-    "vitest"
-  ],
+  "plugins": ["react", "typescript", "oxc", "jsx-a11y", "vitest"],
   "rules": {
     "react/rules-of-hooks": "error",
     "react/only-export-components": [
@@ -18,12 +12,8 @@
     "jsx-a11y/no-noninteractive-tabindex": [
       "warn",
       {
-        "tags": [
-          "section"
-        ],
-        "roles": [
-          "tabpanel"
-        ]
+        "tags": ["section"],
+        "roles": ["tabpanel"]
       }
     ]
   }

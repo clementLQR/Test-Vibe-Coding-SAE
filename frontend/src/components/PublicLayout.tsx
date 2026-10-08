@@ -45,6 +45,15 @@ export function PublicLayout() {
               <NavLink to="/articles" className={linkClass}>
                 {t('nav.articles')}
               </NavLink>
+              <NavLink to="/programme" className={linkClass}>
+                {t('nav.program')}
+              </NavLink>
+              <NavLink to="/plan" className={linkClass}>
+                {t('nav.map')}
+              </NavLink>
+              <NavLink to="/billetterie" className={linkClass}>
+                {t('nav.tickets')}
+              </NavLink>
               {menu.data?.map((item) => (
                 <NavLink key={item.slug} to={`/pages/${item.slug}`} className={linkClass}>
                   {item.title}

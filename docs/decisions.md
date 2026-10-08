@@ -50,3 +50,9 @@ Format : date — décision — raison.
 - 2026-10-08 — Approuver un thème l'applique et archive celui qu'il remplace sur la même cible. Un designer ne modifie que ses thèmes en attente ou refusés, et une modification les renvoie en validation. — Le designer « propose » (brief), l'admin décide.
 - 2026-10-08 — Le thème s'applique sur `<html>` (en-tête compris) pour la page publique affichée ; l'administration garde le design de base. — Un thème raté ne doit pas rendre l'administration illisible.
 - 2026-10-08 — Titres et métadonnées (`<title>`, `description`, Open Graph) écrits directement dans les composants : React 19 les place dans `<head>`. — SEO sans dépendance.
+- 2026-10-08 — Horaires du programme stockés et échangés en heure locale de l'événement (`2027-07-09T20:30`, sans fuseau). — 20 h 30 reste 20 h 30 pour tous les visiteurs, et les champs `datetime-local` utilisent ce format.
+- 2026-10-08 — Leaflet utilisé directement par un petit composant maison, sans `react-leaflet`. Il est chargé à la demande (44 Ko compressés), et le texte des bulles est inséré en texte brut. — Pas de dépendance hors stack, éco-conception, pas d'injection HTML.
+- 2026-10-08 — Fond du plan : carte OpenStreetMap ou image de la médiathèque (repère en pixels). Une image servant de fond ne peut pas être supprimée. — Un festival a souvent son propre plan dessiné ; un trail, une vraie carte.
+- 2026-10-08 — Le plan est doublé d'une liste textuelle des lieux et services, avec un lien d'évitement. — Une carte n'est pas accessible au lecteur d'écran.
+- 2026-10-08 — Billetterie sans paiement : chaque offre renvoie vers le service de billetterie de l'organisateur. Les prix sont stockés en centimes. — Périmètre du MVP ; pas d'erreur d'arrondi sur des montants.
+- 2026-10-08 — Favoris du programme gardés dans le navigateur (`localStorage`), sans compte. — Fonction de confort, aucune donnée personnelle côté serveur.
