@@ -31,3 +31,7 @@ dataset:
         bad_type: "The type must be \"categorical\" or \"numerical\"."
         locked: "The type can no longer change: the data set is validated and may already be used in charts."
         no_number: "\"%name%\" contains no number: it cannot be numerical."
+in_use:
+    media: "This image is used in: %articles%. Remove it from these articles before deleting it."
+    visualization: "This chart is used in: %articles%. Remove it from these articles before deleting it."
+    dataset: "This data set is used by %count% chart(s). Delete them before deleting the data set."

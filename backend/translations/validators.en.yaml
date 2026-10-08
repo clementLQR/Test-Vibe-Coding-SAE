@@ -16,3 +16,35 @@ dataset:
         both: "Choose a file OR an address, not both."
     file:
         extension: "The file must be a CSV (.csv or .txt)."
+visualization:
+    description:
+        required: "Describe in one or two sentences what the chart shows (alternative text)."
+    chart_type:
+        unknown: "Unknown chart type: \"%type%\"."
+    dataset:
+        not_validated: "This data set is not validated yet."
+    mapping:
+        unknown_role: "Unknown role for this chart type: \"%role%\"."
+        required: "Choose a variable."
+        unknown_variable: "Variable \"%name%\" does not exist in this data set."
+        wrong_type:
+            categorical: "\"%name%\" is numerical: this role expects a categorical variable."
+            numerical: "\"%name%\" is categorical: this role expects a numerical variable."
+    option:
+        unknown: "Unknown option: \"%option%\"."
+        invalid: "Invalid value for option \"%option%\"."
+    colors:
+        too_many: "%max% colors at most."
+        invalid: "Invalid color (expected format: #RRGGBB)."
+article:
+    dashboard:
+        needs_chart: "A dashboard article needs at least one chart to be published."
+block:
+    text:
+        required: "This block is empty."
+    image:
+        required: "Choose an image from the media library."
+        alt_missing: "This image has no French and English alternative text: complete it in the media library."
+    visualization:
+        classic: "A classic article cannot contain charts: switch it to a dashboard."
+        required: "Choose a chart."

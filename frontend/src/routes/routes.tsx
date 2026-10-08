@@ -1,6 +1,10 @@
+import type { ReactNode } from 'react'
 import type { RouteObject } from 'react-router'
 import { PublicLayout } from '../components/PublicLayout'
 import { AdminHomePage } from '../features/admin/AdminHomePage'
+import { ArticleEditorPage } from '../features/articles/ArticleEditorPage'
+import { ArticlesPage } from '../features/articles/ArticlesPage'
+import { ChartsPage } from '../features/charts/ChartsPage'
 import { AdminLayout } from '../features/admin/AdminLayout'
 import { LoginPage } from '../features/auth/LoginPage'
 import { RegisterPage } from '../features/auth/RegisterPage'
@@ -14,6 +18,8 @@ import { InstallGate, INSTALLER_PATH } from '../features/install/InstallGate'
 import { MediaPage } from '../features/media/MediaPage'
 import { UsersPage } from '../features/users/UsersPage'
 import { NotFoundPage } from './NotFoundPage'
+
+const forAuthors = (page: ReactNode) => <RequireRole roles={['ROLE_AUTHOR']}>{page}</RequireRole>
 
 export const routes: RouteObject[] = [
   {
@@ -35,6 +41,10 @@ export const routes: RouteObject[] = [
             ),
             children: [
               { index: true, element: <AdminHomePage /> },
+              { path: 'articles', element: forAuthors(<ArticlesPage />) },
+              { path: 'articles/new', element: forAuthors(<ArticleEditorPage />) },
+              { path: 'articles/:id', element: forAuthors(<ArticleEditorPage />) },
+              { path: 'charts', element: forAuthors(<ChartsPage />) },
               {
                 path: 'datasets',
                 element: (

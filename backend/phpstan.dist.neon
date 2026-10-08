@@ -6,6 +6,8 @@ includes:
 
 parameters:
     level: 8
+    # API input is deserialized from untrusted JSON: runtime checks on PHPDoc-typed values are intended
+    treatPhpDocTypesAsCertain: false
     paths:
         - src
         - tests

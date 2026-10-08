@@ -39,7 +39,7 @@ Projet du lundi 12/10/2026 (S42) au vendredi 29/01/2027 (S4). Les dates exactes 
   - Session cookie, limitation des tentatives de connexion, messages d'erreur FR/EN.
 - [x] **E1-3** (M, 1 j) En tant qu'admin, je liste les utilisateurs et je change leurs rôles (admin React + EasyAdmin).
 - [ ] **E1-4** (M, 1 j) Voters pour articles, jeux de données, thèmes, médias ; tests fonctionnels de la matrice des droits (`architecture.md` §3).
-  - Fait : hiérarchie des rôles, `MediaVoter` (S1), `DatasetVoter` (S2), droits utilisateurs et back-office testés. Restent les voters des articles (S3) et des thèmes (S4).
+  - Fait : hiérarchie des rôles, `MediaVoter` (S1), `DatasetVoter` (S2), `ArticleVoter` et `VisualizationVoter` (S3), tous testés. Reste le voter des thèmes (S4).
 - [x] **E1-5** (M, 0,5 j) Front : garde de routes par rôle, menu admin adapté au rôle.
 - [ ] **E1-6** (C, 0,5 j) Réinitialisation du mot de passe par e-mail (Mailpit en dev).
 
@@ -54,12 +54,9 @@ Projet du lundi 12/10/2026 (S42) au vendredi 29/01/2027 (S4). Les dates exactes 
 ## E3 — Médiathèque (S1)
 
 - [x] **E3-1** (M, 1 j) En tant qu'auteur, je dépose une image (types et taille contrôlés) ; une variante WebP redimensionnée est générée.
-- [ ] **E3-2** (M, 1 j) En tant qu'auteur, je parcours la médiathèque (grille, recherche) et je choisis une image existante pour un bloc.
-  - Fait en S1 : grille, recherche, pagination, mode « sélection » du composant. Reste : le brancher dans l’éditeur de blocs (S3).
-- [ ] **E3-3** (M, 0,5 j) Texte alternatif FR/EN obligatoire avant insertion dans un article.
-  - Fait en S1 : champs alt FR/EN, signalement des images incomplètes, sélection impossible sans alt. Reste : refus côté API à l’insertion d’un bloc (S3).
-- [ ] **E3-4** (S, 0,5 j) Suppression impossible si le média est utilisé (liste des articles qui l'utilisent).
-  - Reporté en S3 : dépend des blocs d’articles.
+- [x] **E3-2** (M, 1 j) En tant qu'auteur, je parcours la médiathèque (grille, recherche) et je choisis une image existante pour un bloc.
+- [x] **E3-3** (M, 0,5 j) Texte alternatif FR/EN obligatoire avant insertion dans un article.
+- [x] **E3-4** (S, 0,5 j) Suppression impossible si le média est utilisé (liste des articles qui l'utilisent).
 
 ## E4 — Jeux de données (S2)
 
@@ -75,24 +72,27 @@ Projet du lundi 12/10/2026 (S42) au vendredi 29/01/2027 (S4). Les dates exactes 
 
 ## E5 — Visualisations (S3)
 
-- [ ] **E5-1** (M, 1 j) `ChartTypeRegistry` + `GET /api/chart-types` + validation serveur d'une visualisation (rôles obligatoires, types de variables compatibles).
-  - Inclure : refuser la suppression d'un jeu de données utilisé par une visualisation.
-- [ ] **E5-2** (M, 2 j) En tant qu'auteur, je crée une visualisation en choisissant le jeu de données, le type, les variables (seules les variables compatibles sont proposées) et les couleurs, avec un aperçu en direct.
-- [ ] **E5-3** (M, 2 j) Rendu ECharts des types MVP : bar, line, pie/donut, histogram, scatter (imports à la carte).
-- [ ] **E5-4** (M, 1 j) Interactivité : infobulle, légende cliquable, zoom sur axes continus, export PNG.
-- [ ] **E5-5** (M, 0,5 j) Accessibilité : titre, description, bascule « voir les données » en tableau.
-- [ ] **E5-6** (S, 1,5 j) Types heatmap et treemap.
+- [x] **E5-1** (M, 1 j) `ChartTypeRegistry` + `GET /api/chart-types` + validation serveur d'une visualisation (rôles obligatoires, types de variables compatibles).
+  - Fait aussi : suppression refusée (409 expliqué) pour un jeu de données utilisé par un graphique, un graphique ou une image utilisés dans un article.
+- [x] **E5-2** (M, 2 j) En tant qu'auteur, je crée une visualisation en choisissant le jeu de données, le type, les variables (seules les variables compatibles sont proposées) et les couleurs, avec un aperçu en direct.
+- [x] **E5-3** (M, 2 j) Rendu ECharts des types MVP : bar, line, pie/donut, histogram, scatter (imports à la carte).
+- [x] **E5-4** (M, 1 j) Interactivité : infobulle, légende cliquable, zoom sur axes continus, export PNG.
+  - Export en image SVG (rendu SVG choisi pour la netteté et la légèreté).
+- [x] **E5-5** (M, 0,5 j) Accessibilité : titre, description, bascule « voir les données » en tableau.
+- [x] **E5-6** (S, 1,5 j) Types heatmap et treemap.
 - [ ] **E5-7** (C, 2 j) Types boxplot, sankey, bar3d (echarts-gl, si plus-value démontrée).
 - [ ] **E5-8** (S, 1 j) Filtre interactif côté lecteur (ex. choisir une catégorie, une plage de valeurs) sur un graphique publié.
 
 ## E6 — Articles et blocs (S3)
 
-- [ ] **E6-1** (M, 1 j) Entités `Article` et `Block`, statuts brouillon / publié / masqué, slug unique.
-- [ ] **E6-2** (M, 2 j) En tant qu'auteur, j'édite un article : titre, résumé, puis j'ajoute, modifie, supprime et réordonne (glisser-déposer et clavier) des blocs titre, texte, image, visualisation.
-- [ ] **E6-3** (M, 0,5 j) Un article « dashboard » ne peut être publié qu'avec au moins une visualisation ; un article « classique » n'accepte pas de bloc visualisation.
-- [ ] **E6-4** (M, 0,5 j) Un auteur ne voit et ne modifie que ses articles ; un éditeur voit et modifie tous les articles.
-- [ ] **E6-5** (M, 0,5 j) Texte en Markdown restreint (gras, italique, liens, listes), assaini à l'affichage.
-- [ ] **E6-6** (S, 0,5 j) Prévisualisation de l'article tel qu'il sera publié (avec son thème).
+- [x] **E6-1** (M, 1 j) Entités `Article` et `Block`, statuts brouillon / publié / masqué, slug unique.
+- [x] **E6-2** (M, 2 j) En tant qu'auteur, j'édite un article : titre, résumé, puis j'ajoute, modifie, supprime et réordonne (glisser-déposer et clavier) des blocs titre, texte, image, visualisation.
+  - Réordonnancement par boutons « Monter / Descendre » accessibles au clavier (le focus suit le bloc). Pas de glisser-déposer à la souris : à ajouter si le temps le permet.
+- [x] **E6-3** (M, 0,5 j) Un article « dashboard » ne peut être publié qu'avec au moins une visualisation ; un article « classique » n'accepte pas de bloc visualisation.
+- [x] **E6-4** (M, 0,5 j) Un auteur ne voit et ne modifie que ses articles ; un éditeur voit et modifie tous les articles.
+- [x] **E6-5** (M, 0,5 j) Texte en Markdown restreint (gras, italique, liens, listes), assaini à l'affichage.
+- [x] **E6-6** (S, 0,5 j) Prévisualisation de l'article tel qu'il sera publié (avec son thème).
+  - Le thème sera appliqué à l'aperçu quand les thèmes existeront (S4).
 - [ ] **E6-7** (C, 1 j) Sauvegarde automatique du brouillon.
 
 ## E7 — Notation (S4)

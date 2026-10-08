@@ -1,4 +1,11 @@
-import { useId, type ButtonHTMLAttributes, type InputHTMLAttributes, type ReactNode } from 'react'
+import {
+  useId,
+  type ButtonHTMLAttributes,
+  type InputHTMLAttributes,
+  type ReactNode,
+  type SelectHTMLAttributes,
+  type TextareaHTMLAttributes,
+} from 'react'
 
 type ButtonVariant = 'primary' | 'secondary' | 'danger'
 
@@ -58,6 +65,94 @@ export function TextField({ label, error, hint, className = '', ...props }: Text
           {error}
         </p>
       )}
+    </div>
+  )
+}
+
+/** ids and aria attributes shared by labelled fields. */
+function useFieldIds(hint?: string, error?: string) {
+  const id = useId()
+  const describedBy = [hint ? `${id}-hint` : null, error ? `${id}-error` : null].filter(Boolean).join(' ') || undefined
+  return { id, hintId: `${id}-hint`, errorId: `${id}-error`, describedBy }
+}
+
+function FieldMessages({
+  hint,
+  error,
+  hintId,
+  errorId,
+}: {
+  hint?: string
+  error?: string
+  hintId: string
+  errorId: string
+}) {
+  return (
+    <>
+      {hint && (
+        <p id={hintId} className="text-sm text-muted">
+          {hint}
+        </p>
+      )}
+      {error && (
+        <p id={errorId} className="text-sm text-red-700">
+          {error}
+        </p>
+      )}
+    </>
+  )
+}
+
+interface TextAreaFieldProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+  label: string
+  error?: string
+  hint?: string
+}
+
+export function TextAreaField({ label, error, hint, className = '', ...props }: TextAreaFieldProps) {
+  const { id, hintId, errorId, describedBy } = useFieldIds(hint, error)
+  return (
+    <div className={`flex flex-col gap-1 ${className}`}>
+      <label htmlFor={id} className="font-medium">
+        {label}
+      </label>
+      <textarea
+        id={id}
+        rows={4}
+        aria-invalid={error ? true : undefined}
+        aria-describedby={describedBy}
+        className="rounded border border-black/30 bg-white px-3 py-2 text-black aria-invalid:border-red-700"
+        {...props}
+      />
+      <FieldMessages hint={hint} error={error} hintId={hintId} errorId={errorId} />
+    </div>
+  )
+}
+
+interface SelectFieldProps extends SelectHTMLAttributes<HTMLSelectElement> {
+  label: string
+  error?: string
+  hint?: string
+  children: ReactNode
+}
+
+export function SelectField({ label, error, hint, className = '', children, ...props }: SelectFieldProps) {
+  const { id, hintId, errorId, describedBy } = useFieldIds(hint, error)
+  return (
+    <div className={`flex flex-col gap-1 ${className}`}>
+      <label htmlFor={id} className="font-medium">
+        {label}
+      </label>
+      <select
+        id={id}
+        aria-invalid={error ? true : undefined}
+        aria-describedby={describedBy}
+        className="min-h-11 rounded border border-black/30 bg-white px-3 py-2 text-black aria-invalid:border-red-700"
+        {...props}
+      >
+        {children}
+      </select>
+      <FieldMessages hint={hint} error={error} hintId={hintId} errorId={errorId} />
     </div>
   )
 }

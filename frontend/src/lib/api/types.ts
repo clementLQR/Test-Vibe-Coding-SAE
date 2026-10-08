@@ -131,3 +131,87 @@ export interface DatasetData {
   variables: { name: string; label: string; type: VariableType }[]
   rows: (string | number | null)[][]
 }
+
+/** GET /api/chart-types: roles accept a variable type (null = any). */
+export interface ChartTypeDefinition {
+  name: ChartType
+  roles: { name: string; variableType: VariableType | null; required: boolean }[]
+  options: {
+    name: string
+    default: string | number | boolean
+    values?: (string | boolean)[]
+    min?: number
+    max?: number
+  }[]
+}
+
+export type ChartType = 'bar' | 'line' | 'pie' | 'histogram' | 'scatter' | 'heatmap' | 'treemap'
+
+export type ChartOptions = Record<string, string | number | boolean>
+
+export interface Visualization {
+  id: number
+  title: string
+  description: string
+  chartType: ChartType
+  /** IRI of the data set, e.g. "/api/datasets/3" */
+  dataset: string
+  datasetId: number
+  /** chart role => variable name (CSV column) */
+  mapping: Record<string, string>
+  colors: string[]
+  options: ChartOptions
+  createdById: number | null
+  createdAt: string
+  updatedAt: string
+}
+
+export type ArticleType = 'classic' | 'dashboard'
+export type ArticleStatus = 'draft' | 'published' | 'hidden'
+export type BlockType = 'heading' | 'text' | 'image' | 'visualization'
+
+export interface Block {
+  id: number
+  position: number
+  type: BlockType
+  headingLevel: number | null
+  /** Heading text, Markdown text, or image caption */
+  text: string | null
+  media: Media | null
+  visualization: Visualization | null
+}
+
+export interface Article {
+  id: number
+  title: string
+  slug: string
+  summary: string
+  type: ArticleType
+  status: ArticleStatus
+  locale: Locale
+  authorId: number | null
+  authorName: string | null
+  blocks: Block[]
+  createdAt: string
+  updatedAt: string
+  publishedAt: string | null
+}
+
+/** Block as sent to POST/PUT /api/articles: blocks with an id are updated in place. */
+export interface BlockInput {
+  id?: number
+  type: BlockType
+  headingLevel?: number
+  text?: string
+  mediaId?: number
+  visualizationId?: number
+}
+
+export interface ArticleInput {
+  title: string
+  summary: string
+  type: ArticleType
+  status: ArticleStatus
+  locale: Locale
+  blocks: BlockInput[]
+}

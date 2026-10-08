@@ -14,7 +14,9 @@
     "previous": "Previous",
     "next": "Next",
     "pagination": "Pagination",
-    "pageOf": "Page {{page}} of {{count}}"
+    "pageOf": "Page {{page}} of {{count}}",
+    "cancel": "Cancel",
+    "close": "Close"
   },
   "nav": {
     "home": "Home",
@@ -80,7 +82,9 @@
       "media": "Media library",
       "users": "Users",
       "backOffice": "Technical back-office",
-      "datasets": "Data sets"
+      "datasets": "Data sets",
+      "articles": "Articles",
+      "charts": "Charts"
     }
   },
   "users": {
@@ -177,5 +181,175 @@
       "caption": "First {{shown}} rows out of {{total}}",
       "empty": "(empty)"
     }
+  },
+  "charts": {
+    "count": "Count",
+    "download": "Download as image",
+    "dataError": "The data of this chart could not be loaded.",
+    "mappingError": "This chart no longer matches its data set (a column has disappeared).",
+    "showData": "Show the data",
+    "hideData": "Hide the data",
+    "tableCaption": "Data of the chart “{{title}}”",
+    "intro": "Charts can be reused in every dashboard article.",
+    "empty": "No charts yet.",
+    "confirmDelete": "Permanently delete the chart “{{title}}”?",
+    "editTitle": "Edit the chart",
+    "editor": {
+      "title": "Chart title",
+      "description": "Description",
+      "descriptionHint": "What the chart shows, in one or two sentences. It is read by screen readers.",
+      "dataset": "Data set",
+      "noDataset": "No validated data set: ask a data provider to import one.",
+      "choose": "Choose…",
+      "type": "Chart type",
+      "variables": "Variables",
+      "none": "None",
+      "expects": {
+        "categorical": "Categorical variable",
+        "numerical": "Numerical variable"
+      },
+      "options": "Options",
+      "colors": "Colours",
+      "color": "Colour {{index}}",
+      "resetColors": "Default colours",
+      "save": "Save the chart",
+      "preview": "Preview",
+      "previewHint": "Choose a data set and the required variables to see the preview.",
+      "untitled": "Untitled"
+    },
+    "types": {
+      "bar": {
+        "name": "Bar chart",
+        "help": "Compares a quantity across categories (e.g. spectators per stage)."
+      },
+      "line": {
+        "name": "Line chart",
+        "help": "Shows a change along an ordered axis (e.g. sales per week)."
+      },
+      "pie": {
+        "name": "Pie chart",
+        "help": "Shows the share of each category in a total."
+      },
+      "histogram": {
+        "name": "Histogram",
+        "help": "Shows the distribution of a numerical variable (e.g. runners’ times)."
+      },
+      "scatter": {
+        "name": "Scatter plot",
+        "help": "Shows the relation between two numerical variables."
+      },
+      "heatmap": {
+        "name": "Heatmap",
+        "help": "Shows an intensity at the crossing of two categories (e.g. day × time slot)."
+      },
+      "treemap": {
+        "name": "Treemap",
+        "help": "Shows proportions as nested rectangles."
+      }
+    },
+    "roles": {
+      "bar": {
+        "x": "Categories",
+        "y": "Value (otherwise: number of rows)",
+        "series": "Split by"
+      },
+      "line": {
+        "x": "Horizontal axis",
+        "y": "Value",
+        "series": "One line per"
+      },
+      "pie": {
+        "category": "Slices",
+        "value": "Value (otherwise: number of rows)"
+      },
+      "histogram": {
+        "value": "Variable to distribute"
+      },
+      "scatter": {
+        "x": "Horizontal axis",
+        "y": "Vertical axis",
+        "color": "Colour by",
+        "size": "Point size"
+      },
+      "heatmap": {
+        "x": "Columns",
+        "y": "Rows",
+        "value": "Value (otherwise: number of rows)"
+      },
+      "treemap": {
+        "category": "Rectangles",
+        "value": "Value (otherwise: number of rows)"
+      }
+    },
+    "options": {
+      "aggregation": "Calculation",
+      "horizontal": "Horizontal bars",
+      "stacked": "Stacked bars",
+      "area": "Fill under the line",
+      "donut": "Ring (donut)",
+      "bins": "Number of bins",
+      "values": {
+        "sum": "Sum",
+        "mean": "Mean",
+        "count": "Number of values"
+      }
+    }
+  },
+  "articles": {
+    "back": "← All articles",
+    "edit": "Edit the article",
+    "new": "New article",
+    "preview": "Preview",
+    "type": "Type",
+    "status": "Status",
+    "locale": "Language",
+    "title": "Title",
+    "summary": "Summary",
+    "blocks": "Blocks",
+    "types": {
+      "classic": {
+        "name": "Classic",
+        "help": "Text and images."
+      },
+      "dashboard": {
+        "name": "Dashboard",
+        "help": "Data story: at least one chart to be published."
+      }
+    },
+    "statuses": {
+      "draft": "Draft",
+      "published": "Published",
+      "hidden": "Hidden"
+    },
+    "noBlocks": "No blocks: add a heading, a text, an image or a chart.",
+    "addBlock": "Add a block",
+    "blockTypes": {
+      "heading": "Heading",
+      "text": "Text",
+      "image": "Image",
+      "visualization": "Chart"
+    },
+    "chartsInDashboards": "Charts are only available in dashboard articles.",
+    "fixErrors": "Fix the reported errors before saving.",
+    "saved": "Article saved.",
+    "delete": "Delete the article",
+    "confirmDelete": "Permanently delete the article “{{title}}”?",
+    "empty": "No articles yet.",
+    "summaryLine": "{{status}} · {{type}} · {{author}} · updated on {{date}}",
+    "blockTitle": "Block {{position}}: {{type}}",
+    "moveUp": "Move block {{position}} up",
+    "moveDown": "Move block {{position}} down",
+    "removeBlock": "Delete block {{position}}",
+    "headingLevel": "Level",
+    "level": "Level {{level}}",
+    "headingText": "Heading text",
+    "text": "Text",
+    "markdownHint": "**bold**, *italic*, [link](https://…), lists with “- ”, blank line between paragraphs.",
+    "noImage": "No image chosen.",
+    "changeImage": "Change image",
+    "chooseImage": "Choose an image",
+    "caption": "Caption",
+    "chart": "Chart",
+    "newChart": "New chart"
   }
 }

@@ -16,6 +16,7 @@ use App\Dataset\DatasetStatus;
 use App\Dataset\SourceType;
 use App\Repository\DatasetRepository;
 use App\State\DatasetCreateProcessor;
+use App\State\InUseGuardProcessor;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -45,7 +46,7 @@ use Symfony\Component\Validator\Constraints as Assert;
             denormalizationContext: ['groups' => ['dataset:write']],
             security: "is_granted('DATASET_MANAGE', object)",
         ),
-        new Delete(security: "is_granted('DATASET_MANAGE', object)"),
+        new Delete(security: "is_granted('DATASET_MANAGE', object)", processor: InUseGuardProcessor::class),
     ],
     normalizationContext: ['groups' => ['dataset:read']],
     paginationItemsPerPage: 30,

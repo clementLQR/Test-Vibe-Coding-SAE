@@ -16,3 +16,35 @@ dataset:
         both: "Choisissez un fichier OU une adresse, pas les deux."
     file:
         extension: "Le fichier doit être au format CSV (.csv ou .txt)."
+visualization:
+    description:
+        required: "Décrivez en une ou deux phrases ce que montre le graphique (texte alternatif)."
+    chart_type:
+        unknown: "Type de graphique inconnu : « %type% »."
+    dataset:
+        not_validated: "Ce jeu de données n'est pas encore validé."
+    mapping:
+        unknown_role: "Rôle inconnu pour ce type de graphique : « %role% »."
+        required: "Choisissez une variable."
+        unknown_variable: "La variable « %name% » n'existe pas dans ce jeu de données."
+        wrong_type:
+            categorical: "« %name% » est numérique : ce rôle attend une variable catégorielle."
+            numerical: "« %name% » est catégorielle : ce rôle attend une variable numérique."
+    option:
+        unknown: "Option inconnue : « %option% »."
+        invalid: "Valeur invalide pour l'option « %option% »."
+    colors:
+        too_many: "%max% couleurs au maximum."
+        invalid: "Couleur invalide (format attendu : #RRGGBB)."
+article:
+    dashboard:
+        needs_chart: "Un article de type tableau de bord doit contenir au moins un graphique pour être publié."
+block:
+    text:
+        required: "Ce bloc est vide."
+    image:
+        required: "Choisissez une image dans la médiathèque."
+        alt_missing: "Cette image n'a pas de texte alternatif en français et en anglais : complétez-le dans la médiathèque."
+    visualization:
+        classic: "Un article classique ne peut pas contenir de graphique : passez-le en tableau de bord."
+        required: "Choisissez un graphique."

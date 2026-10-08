@@ -14,7 +14,9 @@
     "previous": "Précédent",
     "next": "Suivant",
     "pagination": "Pagination",
-    "pageOf": "Page {{page}} sur {{count}}"
+    "pageOf": "Page {{page}} sur {{count}}",
+    "cancel": "Annuler",
+    "close": "Fermer"
   },
   "nav": {
     "home": "Accueil",
@@ -80,7 +82,9 @@
       "media": "Médiathèque",
       "users": "Utilisateurs",
       "backOffice": "Back-office technique",
-      "datasets": "Jeux de données"
+      "datasets": "Jeux de données",
+      "articles": "Articles",
+      "charts": "Graphiques"
     }
   },
   "users": {
@@ -177,5 +181,175 @@
       "caption": "{{shown}} premières lignes sur {{total}}",
       "empty": "(vide)"
     }
+  },
+  "charts": {
+    "count": "Nombre",
+    "download": "Télécharger en image",
+    "dataError": "Impossible de charger les données de ce graphique.",
+    "mappingError": "Ce graphique ne correspond plus à son jeu de données (une colonne a disparu).",
+    "showData": "Voir les données",
+    "hideData": "Masquer les données",
+    "tableCaption": "Données du graphique « {{title}} »",
+    "intro": "Les graphiques sont réutilisables dans tous les articles de type tableau de bord.",
+    "empty": "Aucun graphique pour l’instant.",
+    "confirmDelete": "Supprimer définitivement le graphique « {{title}} » ?",
+    "editTitle": "Modifier le graphique",
+    "editor": {
+      "title": "Titre du graphique",
+      "description": "Description",
+      "descriptionHint": "Ce que montre le graphique, en une ou deux phrases. Elle est lue par les lecteurs d’écran.",
+      "dataset": "Jeu de données",
+      "noDataset": "Aucun jeu de données validé : demandez à un fournisseur de données d’en importer un.",
+      "choose": "Choisir…",
+      "type": "Type de graphique",
+      "variables": "Variables",
+      "none": "Aucune",
+      "expects": {
+        "categorical": "Variable catégorielle",
+        "numerical": "Variable numérique"
+      },
+      "options": "Options",
+      "colors": "Couleurs",
+      "color": "Couleur {{index}}",
+      "resetColors": "Couleurs par défaut",
+      "save": "Enregistrer le graphique",
+      "preview": "Aperçu",
+      "previewHint": "Choisissez un jeu de données et les variables obligatoires pour voir l’aperçu.",
+      "untitled": "Sans titre"
+    },
+    "types": {
+      "bar": {
+        "name": "Barres",
+        "help": "Compare une quantité entre catégories (ex. spectateurs par scène)."
+      },
+      "line": {
+        "name": "Courbe",
+        "help": "Montre une évolution le long d’un axe ordonné (ex. ventes par semaine)."
+      },
+      "pie": {
+        "name": "Camembert",
+        "help": "Montre la part de chaque catégorie dans un total."
+      },
+      "histogram": {
+        "name": "Histogramme",
+        "help": "Montre la répartition d’une variable numérique (ex. temps des coureurs)."
+      },
+      "scatter": {
+        "name": "Nuage de points",
+        "help": "Montre la relation entre deux variables numériques."
+      },
+      "heatmap": {
+        "name": "Carte de chaleur",
+        "help": "Montre une intensité au croisement de deux catégories (ex. jour × créneau)."
+      },
+      "treemap": {
+        "name": "Treemap",
+        "help": "Montre des proportions sous forme de rectangles imbriqués."
+      }
+    },
+    "roles": {
+      "bar": {
+        "x": "Catégories",
+        "y": "Valeur (sinon : nombre de lignes)",
+        "series": "Découper par"
+      },
+      "line": {
+        "x": "Axe horizontal",
+        "y": "Valeur",
+        "series": "Une courbe par"
+      },
+      "pie": {
+        "category": "Parts",
+        "value": "Valeur (sinon : nombre de lignes)"
+      },
+      "histogram": {
+        "value": "Variable à répartir"
+      },
+      "scatter": {
+        "x": "Axe horizontal",
+        "y": "Axe vertical",
+        "color": "Couleur par",
+        "size": "Taille des points"
+      },
+      "heatmap": {
+        "x": "Colonnes",
+        "y": "Lignes",
+        "value": "Valeur (sinon : nombre de lignes)"
+      },
+      "treemap": {
+        "category": "Rectangles",
+        "value": "Valeur (sinon : nombre de lignes)"
+      }
+    },
+    "options": {
+      "aggregation": "Calcul",
+      "horizontal": "Barres horizontales",
+      "stacked": "Barres empilées",
+      "area": "Remplir sous la courbe",
+      "donut": "Anneau (donut)",
+      "bins": "Nombre de classes",
+      "values": {
+        "sum": "Somme",
+        "mean": "Moyenne",
+        "count": "Nombre de valeurs"
+      }
+    }
+  },
+  "articles": {
+    "back": "← Tous les articles",
+    "edit": "Modifier l’article",
+    "new": "Nouvel article",
+    "preview": "Aperçu",
+    "type": "Type",
+    "status": "Statut",
+    "locale": "Langue",
+    "title": "Titre",
+    "summary": "Résumé",
+    "blocks": "Blocs",
+    "types": {
+      "classic": {
+        "name": "Classique",
+        "help": "Texte et images."
+      },
+      "dashboard": {
+        "name": "Tableau de bord",
+        "help": "Récit de données : au moins un graphique pour être publié."
+      }
+    },
+    "statuses": {
+      "draft": "Brouillon",
+      "published": "Publié",
+      "hidden": "Masqué"
+    },
+    "noBlocks": "Aucun bloc : ajoutez un titre, un texte, une image ou un graphique.",
+    "addBlock": "Ajouter un bloc",
+    "blockTypes": {
+      "heading": "Titre",
+      "text": "Texte",
+      "image": "Image",
+      "visualization": "Graphique"
+    },
+    "chartsInDashboards": "Les graphiques sont réservés aux articles de type tableau de bord.",
+    "fixErrors": "Corrigez les erreurs signalées avant d’enregistrer.",
+    "saved": "Article enregistré.",
+    "delete": "Supprimer l’article",
+    "confirmDelete": "Supprimer définitivement l’article « {{title}} » ?",
+    "empty": "Aucun article pour l’instant.",
+    "summaryLine": "{{status}} · {{type}} · {{author}} · modifié le {{date}}",
+    "blockTitle": "Bloc {{position}} : {{type}}",
+    "moveUp": "Monter le bloc {{position}}",
+    "moveDown": "Descendre le bloc {{position}}",
+    "removeBlock": "Supprimer le bloc {{position}}",
+    "headingLevel": "Niveau",
+    "level": "Niveau {{level}}",
+    "headingText": "Texte du titre",
+    "text": "Texte",
+    "markdownHint": "**gras**, *italique*, [lien](https://…), listes avec « - », ligne vide entre deux paragraphes.",
+    "noImage": "Aucune image choisie.",
+    "changeImage": "Changer d’image",
+    "chooseImage": "Choisir une image",
+    "caption": "Légende",
+    "chart": "Graphique",
+    "newChart": "Nouveau graphique"
   }
 }

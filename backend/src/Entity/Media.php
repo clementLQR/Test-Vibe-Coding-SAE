@@ -15,6 +15,7 @@ use ApiPlatform\Metadata\Patch;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\QueryParameter;
 use App\Repository\MediaRepository;
+use App\State\InUseGuardProcessor;
 use App\State\MediaUploadProcessor;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Attribute\Groups;
@@ -47,7 +48,7 @@ use Symfony\Component\Validator\Constraints as Assert;
             denormalizationContext: ['groups' => ['media:write']],
             security: "is_granted('MEDIA_EDIT', object)",
         ),
-        new Delete(security: "is_granted('MEDIA_EDIT', object)"),
+        new Delete(security: "is_granted('MEDIA_EDIT', object)", processor: InUseGuardProcessor::class),
     ],
     normalizationContext: ['groups' => ['media:read']],
     paginationItemsPerPage: 24,
@@ -57,7 +58,7 @@ class Media
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups(['media:read'])]
+    #[Groups(['media:read', 'article:read'])]
     private ?int $id = null;
 
     /** Base name of the stored files, without extension (random, unguessable). */
@@ -65,34 +66,34 @@ class Media
     private string $storageKey;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['media:read'])]
+    #[Groups(['media:read', 'article:read'])]
     private string $originalName;
 
     #[ORM\Column(length: 50)]
-    #[Groups(['media:read'])]
+    #[Groups(['media:read', 'article:read'])]
     private string $mimeType = 'image/webp';
 
     /** Size in bytes of the main WebP variant. */
     #[ORM\Column]
-    #[Groups(['media:read'])]
+    #[Groups(['media:read', 'article:read'])]
     private int $size;
 
     #[ORM\Column]
-    #[Groups(['media:read'])]
+    #[Groups(['media:read', 'article:read'])]
     private int $width;
 
     #[ORM\Column]
-    #[Groups(['media:read'])]
+    #[Groups(['media:read', 'article:read'])]
     private int $height;
 
     #[ORM\Column(length: 255)]
     #[Assert\Length(max: 255)]
-    #[Groups(['media:read', 'media:write'])]
+    #[Groups(['media:read', 'media:write', 'article:read'])]
     private string $altFr = '';
 
     #[ORM\Column(length: 255)]
     #[Assert\Length(max: 255)]
-    #[Groups(['media:read', 'media:write'])]
+    #[Groups(['media:read', 'media:write', 'article:read'])]
     private string $altEn = '';
 
     #[ORM\ManyToOne]
@@ -100,7 +101,7 @@ class Media
     private ?User $uploadedBy;
 
     #[ORM\Column]
-    #[Groups(['media:read'])]
+    #[Groups(['media:read', 'article:read'])]
     private \DateTimeImmutable $createdAt;
 
     public function __construct(string $storageKey, string $originalName, int $size, int $width, int $height, ?User $uploadedBy)
@@ -174,7 +175,7 @@ class Media
     }
 
     /** True when both alternative texts are filled: required before insertion in an article. */
-    #[Groups(['media:read'])]
+    #[Groups(['media:read', 'article:read'])]
     public function isAltComplete(): bool
     {
         return '' !== $this->altFr && '' !== $this->altEn;
@@ -185,7 +186,7 @@ class Media
         return $this->uploadedBy;
     }
 
-    #[Groups(['media:read'])]
+    #[Groups(['media:read', 'article:read'])]
     public function getUploadedByName(): ?string
     {
         return $this->uploadedBy?->getDisplayName();
@@ -196,13 +197,13 @@ class Media
         return $this->createdAt;
     }
 
-    #[Groups(['media:read'])]
+    #[Groups(['media:read', 'article:read'])]
     public function getUrl(): string
     {
         return '/uploads/media/'.$this->storageKey.'.webp';
     }
 
-    #[Groups(['media:read'])]
+    #[Groups(['media:read', 'article:read'])]
     public function getThumbnailUrl(): string
     {
         return '/uploads/media/'.$this->storageKey.'-thumb.webp';
