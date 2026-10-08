@@ -10,3 +10,24 @@ user:
     roles:
         cannot_demote_self: "Vous ne pouvez pas retirer votre propre rôle d'administrateur."
         last_admin: "Le site doit garder au moins un administrateur."
+dataset:
+    csv:
+        empty: "Le fichier est vide."
+        no_rows: "Le fichier ne contient qu'une ligne d'en-tête, sans données."
+        empty_header: "La colonne %column% n'a pas de nom dans la ligne d'en-tête."
+        duplicate_header: "Deux colonnes portent le même nom : « %name% »."
+        wrong_delimiter: "Une seule colonne a été trouvée : les champs doivent être séparés par des points-virgules (;)."
+        column_count: "Ligne %line% : %found% valeurs au lieu de %expected%."
+        too_many_rows: "Le fichier dépasse %max% lignes."
+    source:
+        missing_file: "Le fichier du jeu de données est introuvable sur le serveur."
+        bad_url: "Seules les adresses http et https sont acceptées."
+        too_large: "Le fichier distant dépasse %max% Mo."
+        http_status: "Le serveur distant a répondu avec le code %status%."
+        unreachable: "Le fichier distant est inaccessible (adresse inconnue, interne ou serveur hors ligne)."
+        columns_changed: "La colonne « %name% » n'existe plus dans la source."
+    variables:
+        unknown: "Variable inconnue."
+        bad_type: "Le type doit être « catégorielle » ou « numérique »."
+        locked: "Le type ne peut plus changer : le jeu de données est validé et peut déjà être utilisé dans des graphiques."
+        no_number: "« %name% » ne contient aucun nombre : elle ne peut pas être numérique."

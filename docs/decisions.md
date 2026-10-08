@@ -25,3 +25,11 @@ Format : date — décision — raison.
 - 2026-10-08 — Envoi d'image via un « state processor » API Platform, pas un contrôleur. — API Platform 5 n'accepte plus qu'un contrôleur personnalisé renvoie l'entité.
 - 2026-10-08 — Seules des variantes WebP sont conservées (1600 px et miniature 400 px) ; l'original n'est pas gardé. Formats acceptés : JPEG, PNG, WebP (pas de SVG, risque XSS). — Éco-conception et sécurité.
 - 2026-10-08 — Les tests écrivent les images dans `var/test-uploads/`, jamais dans la vraie médiathèque. — Éviter qu'un test efface des médias de développement.
+- 2026-10-08 — `symfony/http-client` ajouté (composant officiel Symfony) pour charger un CSV par URL, à travers `NoPrivateNetworkHttpClient`. — Protection SSRF éprouvée (adresses internes, redirections) au lieu d'un contrôle maison.
+- 2026-10-08 — Sources par URL limitées aux CSV (pas d'API JSON). — Les portails open data exportent en CSV ; une API JSON demanderait un mappage par source, hors de portée du MVP.
+- 2026-10-08 — Fichiers CSV stockés dans `var/datasets` (volume Docker, hors `public/`), lecture mise en cache : sans limite pour un fichier déposé (il ne change pas), 10 min pour une URL. — Brief (contenu hors base) et éco-conception.
+- 2026-10-08 — Une variable est numérique si toutes ses valeurs non vides sont des nombres (virgule ou point décimal, espaces de milliers). Le fournisseur peut corriger, mais un type numérique sans aucun nombre est refusé à la validation. — Détection simple et explicable.
+- 2026-10-08 — Après validation, les types sont figés (les libellés restent modifiables). — Les graphiques s'appuient sur les types ; les changer casserait des visualisations publiées.
+- 2026-10-08 — `GET /api/datasets/{id}/data` est public pour un jeu validé. — Les graphiques des articles publiés doivent s'afficher pour les visiteurs anonymes.
+- 2026-10-08 — Le nom de colonne du CSV est la référence stable d'une variable, le libellé n'est qu'un affichage. — Renommer un libellé ne casse aucun graphique.
+- 2026-10-08 — Jeux d'exemple fictifs générés par script (graine fixe) dans `samples/`, en attendant ceux des enseignants. — Démo et tests manuels sans dépendre d'un envoi.

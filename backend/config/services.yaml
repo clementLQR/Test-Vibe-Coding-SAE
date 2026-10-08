@@ -10,6 +10,8 @@ parameters:
     app.version: '0.1.0'
     # Where optimised images are written (served by nginx under /uploads/media)
     app.media_dir: '%kernel.project_dir%/public/uploads/media'
+    # Uploaded CSV files: outside public/, never served directly (Docker volume "datasets")
+    app.dataset_dir: '%kernel.project_dir%/var/datasets'
 
 services:
     # default configuration for services in *this* file
@@ -29,3 +31,4 @@ when@test:
     parameters:
         # Tests never touch the real media library
         app.media_dir: '%kernel.project_dir%/var/test-uploads/media'
+        app.dataset_dir: '%kernel.project_dir%/var/test-uploads/datasets'

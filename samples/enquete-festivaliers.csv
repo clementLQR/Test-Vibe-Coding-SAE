@@ -1,0 +1,151 @@
+Répondant;Tranche d'âge;Origine;Transport;Jours présents;Note globale (/10);Note restauration (/10);Note son (/10);Dépenses sur place (€)
+1;18-24;Autre région;Voiture;2;9,2;4,4;7,5;292
+2;18-24;Étranger;Covoiturage;2;9,3;8,9;5,5;136
+3;55+;Indre-et-Loire;Navette;2;9,2;5,9;10,0;112
+4;45-54;Île-de-France;Train;1;5,7;7,2;5,5;276
+5;25-34;Autre région;Voiture;2;5,9;3,9;9,9;148
+6;18-24;Autre région;Voiture;2;8,4;3,8;8,8;182
+7;45-54;Tours;Voiture;1;5,1;7,8;6,4;142
+8;35-44;Tours;Navette;2;7,9;3,6;5,5;95
+9;45-54;Tours;Vélo;2;6,1;5,5;9,3;108
+10;35-44;Étranger;Train;2;8,5;4,3;6,5;134
+11;55+;Centre-Val de Loire;Covoiturage;2;6,8;4,5;9,9;136
+12;45-54;Île-de-France;Voiture;2;8,2;7,9;5,7;303
+13;18-24;Autre région;Covoiturage;1;9,2;6,8;6,2;276
+14;18-24;Indre-et-Loire;Covoiturage;2;9,3;7,1;9,2;93
+15;25-34;Tours;Voiture;3;9,9;7,6;10,0;139
+16;45-54;Indre-et-Loire;Vélo;2;8,8;8,5;6,7;150
+17;35-44;Étranger;Covoiturage;1;9,9;6,5;8,6;178
+18;55+;Tours;Voiture;2;8,2;7,1;9,9;140
+19;45-54;Tours;Covoiturage;2;5,2;5,9;8,1;121
+20;55+;Étranger;Train;3;9,5;3,8;9,9;266
+21;55+;Tours;Voiture;2;7,4;4,5;9,0;143
+22;45-54;Indre-et-Loire;Train;3;9,9;3,6;6,9;157
+23;45-54;Centre-Val de Loire;Vélo;2;8,6;7,6;8,5;91
+24;18-24;Centre-Val de Loire;Train;2;7,7;8,8;8,1;122
+25;55+;Tours;Train;2;6,6;8,1;7,7;78
+26;55+;Autre région;Train;2;7,0;5,8;7,9;151
+27;45-54;Autre région;Train;2;5,8;3,8;9,4;185
+28;45-54;Tours;Vélo;2;8,5;6,3;8,3;123
+29;18-24;Indre-et-Loire;Covoiturage;2;7,1;7,7;7,5;148
+30;35-44;Indre-et-Loire;Train;1;9,4;3,5;8,0;138
+31;25-34;Tours;Navette;1;8,0;5,2;7,3;94
+32;45-54;Centre-Val de Loire;Covoiturage;1;9,3;7,5;9,3;121
+33;35-44;Centre-Val de Loire;Navette;2;8,6;6,9;9,9;93
+34;45-54;Autre région;Train;2;9,8;8,2;7,3;255
+35;18-24;Indre-et-Loire;Voiture;3;6,2;5,5;6,1;102
+36;55+;Indre-et-Loire;Voiture;1;5,4;3,9;5,9;82
+37;18-24;Île-de-France;Train;2;6,0;4,6;5,6;258
+38;18-24;Étranger;Train;2;8,4;6,3;6,6;279
+39;18-24;Île-de-France;Covoiturage;2;6,5;5,7;8,2;315
+40;55+;Centre-Val de Loire;Vélo;3;9,5;3,2;7,0;174
+41;55+;Autre région;Voiture;1;9,3;6,8;6,3;138
+42;35-44;Étranger;Voiture;2;7,9;5,7;7,2;279
+43;18-24;Tours;Covoiturage;2;5,1;7,8;9,8;119
+44;18-24;Autre région;Covoiturage;1;6,8;5,0;8,6;212
+45;18-24;Autre région;Covoiturage;3;8,5;8,9;8,4;182
+46;45-54;Autre région;Voiture;3;8,7;7,1;6,7;147
+47;55+;Indre-et-Loire;Voiture;3;8,4;3,4;9,9;100
+48;55+;Île-de-France;Covoiturage;3;5,3;7,7;7,5;235
+49;25-34;Centre-Val de Loire;Covoiturage;3;8,6;7,2;6,9;79
+50;18-24;Autre région;Train;3;8,6;3,1;7,7;181
+51;55+;Île-de-France;Covoiturage;1;7,7;3,0;6,1;283
+52;55+;Étranger;Covoiturage;1;5,5;7,3;5,6;199
+53;25-34;Autre région;Voiture;2;9,8;5,6;8,5;349
+54;25-34;Étranger;Voiture;2;8,3;8,6;8,9;197
+55;18-24;Autre région;Voiture;3;9,5;6,5;7,5;196
+56;55+;Tours;Voiture;2;5,2;4,5;9,8;144
+57;55+;Indre-et-Loire;Covoiturage;1;7,4;3,0;9,4;114
+58;18-24;Indre-et-Loire;Covoiturage;2;5,7;6,8;9,9;98
+59;45-54;Tours;Train;2;5,3;8,9;8,6;83
+60;25-34;Autre région;Voiture;3;5,3;4,0;9,7;209
+61;55+;Autre région;Covoiturage;2;6,7;5,6;8,6;219
+62;35-44;Étranger;Covoiturage;3;6,5;8,9;6,1;141
+63;18-24;Indre-et-Loire;Vélo;2;6,7;6,6;6,4;134
+64;35-44;Indre-et-Loire;Navette;2;8,8;8,8;9,0;144
+65;35-44;Autre région;Covoiturage;2;8,0;8,7;8,2;160
+66;55+;Autre région;Train;2;9,0;6,6;7,3;175
+67;18-24;Centre-Val de Loire;Vélo;2;5,5;8,8;9,9;106
+68;18-24;Indre-et-Loire;Navette;2;6,5;7,9;7,7;80
+69;55+;Indre-et-Loire;Train;2;7,0;8,9;8,3;91
+70;45-54;Autre région;Train;3;8,9;7,6;5,7;186
+71;45-54;Étranger;Covoiturage;3;8,3;8,5;8,4;219
+72;25-34;Autre région;Voiture;2;6,9;6,8;6,2;293
+73;45-54;Centre-Val de Loire;Vélo;2;9,0;4,1;7,7;134
+74;25-34;Île-de-France;Covoiturage;2;9,7;5,9;7,8;242
+75;18-24;Indre-et-Loire;Covoiturage;2;7,1;5,5;7,8;71
+76;25-34;Île-de-France;Covoiturage;2;5,7;3,1;5,7;245
+77;55+;Étranger;Covoiturage;2;9,8;5,2;8,0;249
+78;25-34;Centre-Val de Loire;Vélo;3;7,3;5,7;7,2;77
+79;55+;Centre-Val de Loire;Voiture;2;8,7;7,0;7,7;172
+80;45-54;Île-de-France;Voiture;1;6,5;4,6;7,9;192
+81;45-54;Tours;Navette;1;5,1;6,7;9,1;127
+82;35-44;Autre région;Voiture;3;5,3;3,5;7,1;137
+83;45-54;Autre région;Covoiturage;2;5,2;3,3;6,1;167
+84;18-24;Centre-Val de Loire;Train;3;5,5;5,4;6,3;137
+85;35-44;Île-de-France;Train;2;5,6;3,8;9,3;262
+86;35-44;Centre-Val de Loire;Covoiturage;1;9,7;5,9;6,8;72
+87;55+;Indre-et-Loire;Navette;1;8,6;4,0;8,4;169
+88;45-54;Étranger;Covoiturage;1;6,2;3,8;8,3;152
+89;55+;Autre région;Covoiturage;2;7,3;5,3;10,0;322
+90;55+;Étranger;Train;2;9,4;5,9;6,4;315
+91;35-44;Indre-et-Loire;Navette;2;6,1;7,9;9,4;169
+92;45-54;Île-de-France;Voiture;2;10,0;8,1;8,8;330
+93;45-54;Autre région;Train;2;6,0;3,2;6,1;338
+94;25-34;Indre-et-Loire;Train;3;5,5;6,4;6,4;154
+95;25-34;Autre région;Train;3;9,9;3,1;6,8;164
+96;45-54;Indre-et-Loire;Vélo;2;5,5;7,2;7,3;87
+97;35-44;Étranger;Voiture;1;7,9;8,5;9,3;285
+98;18-24;Île-de-France;Covoiturage;2;7,0;8,8;8,0;185
+99;55+;Île-de-France;Voiture;2;7,4;8,7;5,6;320
+100;55+;Tours;Train;2;9,3;5,9;9,0;166
+101;35-44;Île-de-France;Train;1;9,0;3,7;6,8;210
+102;55+;Autre région;Train;1;5,2;6,6;8,7;191
+103;45-54;Étranger;Covoiturage;3;6,0;3,3;9,4;285
+104;55+;Tours;Navette;1;5,3;7,4;5,8;157
+105;35-44;Étranger;Voiture;3;5,4;8,2;7,0;234
+106;55+;Tours;Navette;2;9,2;3,6;6,4;156
+107;45-54;Île-de-France;Train;2;8,0;8,5;6,4;270
+108;35-44;Indre-et-Loire;Train;3;5,1;7,0;8,5;126
+109;45-54;Étranger;Train;3;8,5;6,8;7,4;327
+110;18-24;Tours;Covoiturage;3;5,5;7,8;8,9;139
+111;18-24;Centre-Val de Loire;Covoiturage;2;6,1;5,2;5,7;169
+112;18-24;Indre-et-Loire;Covoiturage;2;7,7;4,3;5,9;121
+113;18-24;Étranger;Voiture;2;9,6;3,7;8,6;314
+114;25-34;Tours;Train;2;8,5;7,3;6,3;109
+115;25-34;Indre-et-Loire;Vélo;3;7,9;5,5;6,1;92
+116;45-54;Centre-Val de Loire;Voiture;3;9,9;3,1;9,9;170
+117;35-44;Autre région;Covoiturage;2;5,2;3,9;9,6;311
+118;18-24;Autre région;Covoiturage;1;9,7;6,5;7,6;224
+119;55+;Étranger;Covoiturage;2;6,1;4,8;9,0;236
+120;35-44;Indre-et-Loire;Train;3;6,0;5,4;6,3;173
+121;45-54;Centre-Val de Loire;Voiture;2;6,6;7,9;7,5;143
+122;45-54;Autre région;Voiture;3;8,5;8,0;8,9;134
+123;18-24;Tours;Train;1;8,5;5,6;9,8;166
+124;55+;Île-de-France;Voiture;2;7,9;5,5;8,1;240
+125;25-34;Tours;Voiture;1;5,5;5,5;7,1;141
+126;35-44;Étranger;Train;2;6,8;6,8;6,7;184
+127;35-44;Île-de-France;Voiture;3;7,9;5,7;6,6;163
+128;45-54;Indre-et-Loire;Vélo;1;9,9;7,7;6,7;93
+129;25-34;Centre-Val de Loire;Voiture;1;8,5;5,4;6,8;93
+130;45-54;Indre-et-Loire;Train;2;9,1;7,8;7,4;66
+131;25-34;Autre région;Covoiturage;2;7,3;4,0;9,5;155
+132;55+;Autre région;Voiture;3;9,2;8,9;7,8;309
+133;18-24;Île-de-France;Voiture;2;7,4;5,8;8,3;189
+134;45-54;Étranger;Voiture;3;7,6;8,3;9,0;143
+135;55+;Centre-Val de Loire;Voiture;2;9,7;6,8;9,3;71
+136;35-44;Étranger;Voiture;2;5,2;3,8;8,3;258
+137;25-34;Tours;Navette;1;8,9;6,0;6,7;162
+138;25-34;Étranger;Covoiturage;1;6,7;3,9;5,5;338
+139;25-34;Tours;Voiture;1;8,2;3,6;8,0;127
+140;25-34;Indre-et-Loire;Covoiturage;3;5,3;3,5;6,1;151
+141;25-34;Autre région;Voiture;1;5,0;6,5;9,3;263
+142;55+;Île-de-France;Covoiturage;1;8,7;6,2;9,7;145
+143;45-54;Tours;Voiture;1;6,0;8,9;6,7;125
+144;18-24;Indre-et-Loire;Train;1;9,1;5,4;8,5;116
+145;45-54;Centre-Val de Loire;Covoiturage;2;7,6;3,1;8,2;93
+146;25-34;Autre région;Voiture;3;8,5;7,2;7,8;270
+147;55+;Tours;Voiture;3;6,3;8,6;8,9;92
+148;45-54;Île-de-France;Train;3;9,0;5,1;5,6;246
+149;35-44;Autre région;Train;2;8,8;4,7;7,2;347
+150;35-44;Centre-Val de Loire;Navette;2;8,3;3,1;9,3;143

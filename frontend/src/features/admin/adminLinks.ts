@@ -11,6 +11,7 @@ export interface AdminLink {
 /** Admin sections; each one is shown only to the roles allowed by the API. */
 export const ADMIN_LINKS: AdminLink[] = [
   { to: '/admin-app', labelKey: 'admin.nav.dashboard', roles: STAFF_ROLES, end: true },
+  { to: '/admin-app/datasets', labelKey: 'admin.nav.datasets', roles: ['ROLE_DATA_PROVIDER'] },
   { to: '/admin-app/media', labelKey: 'admin.nav.media', roles: MEDIA_ROLES },
   { to: '/admin-app/users', labelKey: 'admin.nav.users', roles: ['ROLE_ADMIN'] },
 ]

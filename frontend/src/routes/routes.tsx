@@ -6,6 +6,8 @@ import { LoginPage } from '../features/auth/LoginPage'
 import { RegisterPage } from '../features/auth/RegisterPage'
 import { RequireRole } from '../features/auth/RequireRole'
 import { MEDIA_ROLES, STAFF_ROLES } from '../features/auth/useAuth'
+import { DatasetDetailPage } from '../features/datasets/DatasetDetailPage'
+import { DatasetsPage } from '../features/datasets/DatasetsPage'
 import { HomePage } from '../features/home/HomePage'
 import { InstallerPage } from '../features/install/InstallerPage'
 import { InstallGate, INSTALLER_PATH } from '../features/install/InstallGate'
@@ -33,6 +35,22 @@ export const routes: RouteObject[] = [
             ),
             children: [
               { index: true, element: <AdminHomePage /> },
+              {
+                path: 'datasets',
+                element: (
+                  <RequireRole roles={['ROLE_DATA_PROVIDER', 'ROLE_AUTHOR']}>
+                    <DatasetsPage />
+                  </RequireRole>
+                ),
+              },
+              {
+                path: 'datasets/:id',
+                element: (
+                  <RequireRole roles={['ROLE_DATA_PROVIDER', 'ROLE_AUTHOR']}>
+                    <DatasetDetailPage />
+                  </RequireRole>
+                ),
+              },
               {
                 path: 'media',
                 element: (

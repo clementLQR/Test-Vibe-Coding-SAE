@@ -10,3 +10,9 @@ media:
     file:
         required: "Choose an image to upload."
         type: "Accepted formats: JPEG, PNG or WebP."
+dataset:
+    source:
+        required: "Choose a CSV file or enter an address."
+        both: "Choose a file OR an address, not both."
+    file:
+        extension: "The file must be a CSV (.csv or .txt)."

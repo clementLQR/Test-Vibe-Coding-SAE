@@ -39,7 +39,7 @@ Projet du lundi 12/10/2026 (S42) au vendredi 29/01/2027 (S4). Les dates exactes 
   - Session cookie, limitation des tentatives de connexion, messages d'erreur FR/EN.
 - [x] **E1-3** (M, 1 j) En tant qu'admin, je liste les utilisateurs et je change leurs rôles (admin React + EasyAdmin).
 - [ ] **E1-4** (M, 1 j) Voters pour articles, jeux de données, thèmes, médias ; tests fonctionnels de la matrice des droits (`architecture.md` §3).
-  - Fait en S1 : hiérarchie des rôles, `MediaVoter`, droits utilisateurs et back-office testés. Les voters des articles, jeux de données et thèmes sont écrits avec leurs entités (S2 à S4).
+  - Fait : hiérarchie des rôles, `MediaVoter` (S1), `DatasetVoter` (S2), droits utilisateurs et back-office testés. Restent les voters des articles (S3) et des thèmes (S4).
 - [x] **E1-5** (M, 0,5 j) Front : garde de routes par rôle, menu admin adapté au rôle.
 - [ ] **E1-6** (C, 0,5 j) Réinitialisation du mot de passe par e-mail (Mailpit en dev).
 
@@ -63,18 +63,20 @@ Projet du lundi 12/10/2026 (S42) au vendredi 29/01/2027 (S4). Les dates exactes 
 
 ## E4 — Jeux de données (S2)
 
-- [ ] **E4-1** (M, 1 j) Entités `Dataset` et `DatasetVariable`, stockage du fichier hors base.
-- [ ] **E4-2** (M, 1,5 j) En tant que fournisseur, je dépose un CSV (séparateur `;`) et je vois un aperçu en tableau avec les variables et le type détecté.
+- [x] **E4-1** (M, 1 j) Entités `Dataset` et `DatasetVariable`, stockage du fichier hors base.
+- [x] **E4-2** (M, 1,5 j) En tant que fournisseur, je dépose un CSV (séparateur `;`) et je vois un aperçu en tableau avec les variables et le type détecté.
   - Gestion UTF-8 / Windows-1252, virgule décimale, lignes vides, erreurs claires si le fichier est mal formé.
-- [ ] **E4-3** (M, 1 j) En tant que fournisseur, je choisis pour chaque variable « catégorielle » ou « numérique », je renomme son libellé, puis je valide le jeu.
-- [ ] **E4-4** (M, 1 j) `GET /api/datasets/{id}/data` : lecture de la source à la demande, conversion selon les types, cache court.
-- [ ] **E4-5** (S, 1 j) En tant que fournisseur, j'ajoute un jeu par URL (CSV distant ou API open data) avec protection SSRF.
-- [ ] **E4-6** (M, 0,5 j) `samples/` : 4 à 6 jeux de données événementiels d'exemple (affluence par jour et par scène, ventes de billets, temps des coureurs d'un trail, fréquentation des stands d'un salon, satisfaction…).
-- [ ] **E4-7** (S, 0,5 j) Statistiques simples par variable dans l'aperçu (min, max, moyenne ; nombre de modalités).
+- [x] **E4-3** (M, 1 j) En tant que fournisseur, je choisis pour chaque variable « catégorielle » ou « numérique », je renomme son libellé, puis je valide le jeu.
+- [x] **E4-4** (M, 1 j) `GET /api/datasets/{id}/data` : lecture de la source à la demande, conversion selon les types, cache court.
+- [x] **E4-5** (S, 1 j) En tant que fournisseur, j'ajoute un jeu par URL (CSV distant ou API open data) avec protection SSRF.
+  - Fait : CSV distant (ex. export d'un portail open data), relu toutes les 10 min. Les API JSON ne sont pas prises en charge.
+- [x] **E4-6** (M, 0,5 j) `samples/` : 4 à 6 jeux de données événementiels d'exemple (affluence par jour et par scène, ventes de billets, temps des coureurs d'un trail, fréquentation des stands d'un salon, satisfaction…).
+- [x] **E4-7** (S, 0,5 j) Statistiques simples par variable dans l'aperçu (min, max, moyenne ; nombre de modalités).
 
 ## E5 — Visualisations (S3)
 
 - [ ] **E5-1** (M, 1 j) `ChartTypeRegistry` + `GET /api/chart-types` + validation serveur d'une visualisation (rôles obligatoires, types de variables compatibles).
+  - Inclure : refuser la suppression d'un jeu de données utilisé par une visualisation.
 - [ ] **E5-2** (M, 2 j) En tant qu'auteur, je crée une visualisation en choisissant le jeu de données, le type, les variables (seules les variables compatibles sont proposées) et les couleurs, avec un aperçu en direct.
 - [ ] **E5-3** (M, 2 j) Rendu ECharts des types MVP : bar, line, pie/donut, histogram, scatter (imports à la carte).
 - [ ] **E5-4** (M, 1 j) Interactivité : infobulle, légende cliquable, zoom sur axes continus, export PNG.
@@ -168,6 +170,6 @@ Claude peut aider à rédiger, mais ces livrables reflètent ton travail et ta p
 
 ## Questions ouvertes
 
-- Les enseignants fournissent des jeux de données d'exemple : les récupérer et les placer dans `samples/` (E4-6).
+- Les enseignants fournissent des jeux de données d'exemple : les récupérer et les ajouter dans `samples/` (5 jeux fictifs y sont déjà, voir `samples/README.md`).
 - Dates exactes de remise et de soutenance.
 - Registre Docker cible pour les images (Docker Hub ou registre du GitLab de l'université).

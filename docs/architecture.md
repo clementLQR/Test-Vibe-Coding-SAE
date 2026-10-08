@@ -104,7 +104,7 @@ Exposée avec API Platform sous `/api` (documentation OpenAPI sur `/api/docs`).
 | Blocs | CRUD `/api/blocks`, `PUT /api/articles/{id}/blocks/order` |
 | Notes | `PUT /api/blocks/{id}/rating`, moyenne et nombre de votes inclus dans le bloc |
 | Médias | `GET/POST/DELETE /api/media` (multipart) |
-| Jeux de données | CRUD `/api/datasets`, `POST /api/datasets/{id}/analyze` (aperçu + types détectés), `PUT /api/datasets/{id}/variables`, `POST /api/datasets/{id}/validate`, `GET /api/datasets/{id}/data` (lignes parsées, mises en cache) |
+| Jeux de données | CRUD `/api/datasets` (création en multipart : `file` ou `url`), `GET /api/datasets/{id}/preview` (50 premières lignes, type détecté et statistiques par colonne), `PUT /api/datasets/{id}/variables`, `POST /api/datasets/{id}/validate`, `GET /api/datasets/{id}/data` (lignes typées, public une fois le jeu validé) |
 | Graphiques | `GET /api/chart-types` (matrice de compatibilité), CRUD `/api/visualizations` |
 | Thèmes | CRUD `/api/themes`, `POST /api/themes/{id}/approve`, `POST /api/themes/{id}/reject`, `GET /api/themes/resolved?article=…&page=…` |
 | Pages | CRUD `/api/pages`, `GET /api/menu` |

@@ -79,7 +79,8 @@
       "dashboard": "Tableau de bord",
       "media": "Médiathèque",
       "users": "Utilisateurs",
-      "backOffice": "Back-office technique"
+      "backOffice": "Back-office technique",
+      "datasets": "Jeux de données"
     }
   },
   "users": {
@@ -115,5 +116,66 @@
     "title": "Page introuvable",
     "text": "La page demandée n'existe pas ou a été déplacée.",
     "back": "Retour à l'accueil"
+  },
+  "datasets": {
+    "intro": "Importez des fichiers CSV, vérifiez que le système a bien compris chaque variable, puis validez-les pour les utiliser dans des graphiques. Le contenu des fichiers n’est jamais copié en base : seul le lien vers la source est conservé.",
+    "listTitle": "Jeux de données",
+    "empty": "Aucun jeu de données pour l’instant.",
+    "summary": "{{rows}} lignes · {{variables}} variables · {{provider}} · {{date}}",
+    "name": "Nom du jeu de données",
+    "description": "Description",
+    "back": "← Tous les jeux de données",
+    "sourceFile": "Source : fichier CSV déposé sur le serveur.",
+    "sourceUrl": "Source : {{url}}",
+    "delete": "Supprimer le jeu de données",
+    "confirmDelete": "Supprimer définitivement « {{name}} » ?",
+    "status": {
+      "pending": "À valider",
+      "validated": "Validé"
+    },
+    "type": {
+      "categorical": "Catégorielle",
+      "numerical": "Numérique"
+    },
+    "import": {
+      "title": "Importer un jeu de données",
+      "format": "Format attendu : une ligne d’en-tête avec le nom des variables, puis une ligne par individu ; champs séparés par des points-virgules (;).",
+      "source": "Source des données",
+      "file": "Fichier CSV",
+      "url": "Adresse web (open data)",
+      "fileLabel": "Fichier CSV",
+      "fileHint": "5 Mo maximum. Encodage UTF-8 ou Windows (Excel).",
+      "urlLabel": "Adresse du fichier CSV",
+      "urlHint": "Lien direct vers un CSV public, par exemple l’export d’un portail open data. Il sera relu régulièrement.",
+      "submit": "Importer et analyser",
+      "reading": "Lecture du fichier…"
+    },
+    "variables": {
+      "title": "Variables",
+      "intro": "Vérifiez chaque variable : le type proposé a été détecté automatiquement. Une variable numérique sert de quantité (axe, valeur, taille) ; une variable catégorielle sert à regrouper (légende, catégories). Un identifiant comme un numéro de dossard est catégoriel.",
+      "lockedIntro": "Ce jeu de données est validé : les types sont figés car des graphiques peuvent les utiliser. Les libellés restent modifiables.",
+      "label": "Libellé affiché",
+      "type": "Type",
+      "detected": "Type détecté : {{type}}",
+      "save": "Enregistrer",
+      "validate": "Valider le jeu de données",
+      "saved": "Variables enregistrées.",
+      "validated": "Jeu de données validé : il peut maintenant être utilisé dans des graphiques.",
+      "fixErrors": "Corrigez les erreurs signalées sur les variables."
+    },
+    "stats": {
+      "filled": "Valeurs",
+      "filledValue": "{{filled}} remplies, {{empty}} vides",
+      "distinct": "Valeurs distinctes",
+      "range": "Min / max / moyenne",
+      "rangeValue": "{{min}} / {{max}} / {{mean}}",
+      "notNumbers": "Valeurs non numériques",
+      "examples": "Exemples"
+    },
+    "preview": {
+      "title": "Aperçu des données",
+      "caption": "{{shown}} premières lignes sur {{total}}",
+      "empty": "(vide)"
+    }
   }
 }

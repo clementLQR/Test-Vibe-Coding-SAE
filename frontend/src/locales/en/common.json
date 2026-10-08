@@ -79,7 +79,8 @@
       "dashboard": "Dashboard",
       "media": "Media library",
       "users": "Users",
-      "backOffice": "Technical back-office"
+      "backOffice": "Technical back-office",
+      "datasets": "Data sets"
     }
   },
   "users": {
@@ -115,5 +116,66 @@
     "title": "Page not found",
     "text": "The page you are looking for does not exist or has moved.",
     "back": "Back to home"
+  },
+  "datasets": {
+    "intro": "Import CSV files, check that the system understood each variable, then validate them to use them in charts. File contents are never copied into the database: only the link to the source is kept.",
+    "listTitle": "Data sets",
+    "empty": "No data sets yet.",
+    "summary": "{{rows}} rows · {{variables}} variables · {{provider}} · {{date}}",
+    "name": "Data set name",
+    "description": "Description",
+    "back": "← All data sets",
+    "sourceFile": "Source: CSV file uploaded to the server.",
+    "sourceUrl": "Source: {{url}}",
+    "delete": "Delete the data set",
+    "confirmDelete": "Permanently delete \"{{name}}\"?",
+    "status": {
+      "pending": "To validate",
+      "validated": "Validated"
+    },
+    "type": {
+      "categorical": "Categorical",
+      "numerical": "Numerical"
+    },
+    "import": {
+      "title": "Import a data set",
+      "format": "Expected format: a header line with the variable names, then one line per individual; fields separated by semicolons (;).",
+      "source": "Data source",
+      "file": "CSV file",
+      "url": "Web address (open data)",
+      "fileLabel": "CSV file",
+      "fileHint": "5 MB max. UTF-8 or Windows (Excel) encoding.",
+      "urlLabel": "Address of the CSV file",
+      "urlHint": "Direct link to a public CSV, such as an open data portal export. It will be read again regularly.",
+      "submit": "Import and analyse",
+      "reading": "Reading the file…"
+    },
+    "variables": {
+      "title": "Variables",
+      "intro": "Check each variable: the suggested type was detected automatically. A numerical variable is a quantity (axis, value, size); a categorical variable is used to group (legend, categories). An identifier such as a bib number is categorical.",
+      "lockedIntro": "This data set is validated: types are locked because charts may use them. Labels can still be edited.",
+      "label": "Displayed label",
+      "type": "Type",
+      "detected": "Detected type: {{type}}",
+      "save": "Save",
+      "validate": "Validate the data set",
+      "saved": "Variables saved.",
+      "validated": "Data set validated: it can now be used in charts.",
+      "fixErrors": "Fix the errors reported on the variables."
+    },
+    "stats": {
+      "filled": "Values",
+      "filledValue": "{{filled}} filled, {{empty}} empty",
+      "distinct": "Distinct values",
+      "range": "Min / max / mean",
+      "rangeValue": "{{min}} / {{max}} / {{mean}}",
+      "notNumbers": "Non-numeric values",
+      "examples": "Examples"
+    },
+    "preview": {
+      "title": "Data preview",
+      "caption": "First {{shown}} rows out of {{total}}",
+      "empty": "(empty)"
+    }
   }
 }

@@ -10,3 +10,24 @@ user:
     roles:
         cannot_demote_self: "You cannot remove your own administrator role."
         last_admin: "The site must keep at least one administrator."
+dataset:
+    csv:
+        empty: "The file is empty."
+        no_rows: "The file only has a header line, without data."
+        empty_header: "Column %column% has no name in the header line."
+        duplicate_header: "Two columns have the same name: \"%name%\"."
+        wrong_delimiter: "Only one column was found: fields must be separated by semicolons (;)."
+        column_count: "Line %line%: %found% values instead of %expected%."
+        too_many_rows: "The file has more than %max% lines."
+    source:
+        missing_file: "The data set file cannot be found on the server."
+        bad_url: "Only http and https addresses are accepted."
+        too_large: "The remote file is larger than %max% MB."
+        http_status: "The remote server answered with status %status%."
+        unreachable: "The remote file cannot be reached (unknown or internal address, or server offline)."
+        columns_changed: "Column \"%name%\" no longer exists in the source."
+    variables:
+        unknown: "Unknown variable."
+        bad_type: "The type must be \"categorical\" or \"numerical\"."
+        locked: "The type can no longer change: the data set is validated and may already be used in charts."
+        no_number: "\"%name%\" contains no number: it cannot be numerical."

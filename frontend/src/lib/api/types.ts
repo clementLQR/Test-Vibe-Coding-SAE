@@ -78,3 +78,56 @@ export interface Media {
   url: string
   thumbnailUrl: string
 }
+
+export type DatasetStatus = 'pending' | 'validated'
+export type VariableType = 'categorical' | 'numerical'
+
+export interface DatasetVariable {
+  id: number
+  columnIndex: number
+  /** Column header in the CSV: stable reference used by charts. */
+  name: string
+  label: string
+  type: VariableType
+  detectedType: VariableType
+}
+
+export interface Dataset {
+  id: number
+  name: string
+  description: string | null
+  sourceType: 'file' | 'url'
+  sourceUrl: string | null
+  delimiter: string
+  status: DatasetStatus
+  rowCount: number | null
+  providerId: number | null
+  providerName: string | null
+  variables: DatasetVariable[]
+  createdAt: string
+  validatedAt: string | null
+}
+
+export interface ColumnStats {
+  filled: number
+  empty: number
+  distinct: number
+  numeric: number
+  min: number | null
+  max: number | null
+  mean: number | null
+  examples: string[]
+}
+
+/** GET /api/datasets/{id}/preview */
+export interface DatasetPreview {
+  rowCount: number
+  columns: { index: number; name: string; detectedType: VariableType; stats: ColumnStats }[]
+  rows: string[][]
+}
+
+/** GET /api/datasets/{id}/data: rows in variable order, numbers for numerical variables. */
+export interface DatasetData {
+  variables: { name: string; label: string; type: VariableType }[]
+  rows: (string | number | null)[][]
+}

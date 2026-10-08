@@ -10,3 +10,9 @@ media:
     file:
         required: "Choisissez une image à envoyer."
         type: "Formats acceptés : JPEG, PNG ou WebP."
+dataset:
+    source:
+        required: "Choisissez un fichier CSV ou indiquez une adresse."
+        both: "Choisissez un fichier OU une adresse, pas les deux."
+    file:
+        extension: "Le fichier doit être au format CSV (.csv ou .txt)."
