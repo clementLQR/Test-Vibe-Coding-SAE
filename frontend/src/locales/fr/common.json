@@ -1,0 +1,33 @@
+{
+  "app": {
+    "skipToContent": "Aller au contenu",
+    "mainNav": "Navigation principale",
+    "poweredBy": "Propulsé par Evently"
+  },
+  "nav": {
+    "home": "Accueil",
+    "admin": "Administration"
+  },
+  "language": {
+    "label": "Langue",
+    "fr": "Français",
+    "en": "English"
+  },
+  "home": {
+    "title": "Bienvenue sur Evently",
+    "intro": "Le CMS pour créer le site de votre événement et raconter ses données.",
+    "apiStatus": "État de l'API",
+    "apiOk": "API connectée (version {{version}})",
+    "apiError": "API injoignable",
+    "loading": "Chargement…"
+  },
+  "admin": {
+    "title": "Administration",
+    "comingSoon": "L'interface d'administration arrive au sprint 1."
+  },
+  "notFound": {
+    "title": "Page introuvable",
+    "text": "La page demandée n'existe pas ou a été déplacée.",
+    "back": "Retour à l'accueil"
+  }
+}

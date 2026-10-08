@@ -1,0 +1,15 @@
+api_platform:
+    title: Evently API
+    description: API of the Evently event CMS.
+    version: '%app.version%'
+    formats:
+        jsonld: ['application/ld+json']
+        json: ['application/json']
+    docs_formats:
+        jsonopenapi: ['application/vnd.openapi+json']
+        html: ['text/html']
+    defaults:
+        # Session cookie authentication (same origin behind nginx): the API is not stateless
+        stateless: false
+        cache_headers:
+            vary: ['Content-Type', 'Cookie', 'Accept-Language']
