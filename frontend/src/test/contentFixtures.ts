@@ -108,6 +108,7 @@ export function article(overrides: Partial<Article> = {}): Article {
     createdAt: '2026-10-08T10:00:00+02:00',
     updatedAt: '2026-10-08T10:00:00+02:00',
     publishedAt: null,
+    translationKey: null,
     ...overrides,
   }
 }

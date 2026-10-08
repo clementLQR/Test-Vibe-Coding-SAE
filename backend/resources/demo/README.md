@@ -17,4 +17,6 @@ Pièges volontaires pour l'import :
 - `Temps (min)` est vide pour les coureurs qui ont abandonné.
 - `Date` et `Créneau` sont catégorielles (texte).
 
+Ces fichiers alimentent aussi les données de démonstration (`bin/console app:demo` ou option de l’installeur), d’où leur place dans `backend/` : ils sont embarqués dans l’image de production.
+
 Régénération : script `generate-samples.mjs` (graine fixe, mêmes valeurs à chaque exécution), non versionné.

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Api;
 
+use App\Demo\DemoContentLoader;
 use App\Dto\InstallRequest;
 use App\Entity\SiteSettings;
 use App\Entity\User;
@@ -48,6 +49,7 @@ final class InstallController extends AbstractController
         Security $security,
         UserPresenter $presenter,
         TranslatorInterface $translator,
+        DemoContentLoader $demo,
     ): JsonResponse {
         if (null !== $this->settings->findCurrent()) {
             return new JsonResponse(['message' => $translator->trans('install.already_done')], Response::HTTP_CONFLICT);
@@ -79,6 +81,9 @@ final class InstallController extends AbstractController
             $em->persist($settings);
             $em->persist($admin);
         });
+        if ($payload->demo) {
+            $demo->load($admin);
+        }
         $security->login($admin, 'json_login', 'main');
 
         return new JsonResponse(['user' => $presenter->present($admin)], Response::HTTP_CREATED);

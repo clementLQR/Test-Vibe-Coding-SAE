@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query'
 import { apiFetch } from '../../lib/api/client'
-import type { Article, ArticleType, Locale, MenuItem, Page } from '../../lib/api/types'
+import type { Article, ArticleType, Locale, MenuItem, Page, PublicArticle } from '../../lib/api/types'
 
 /** Published articles of a language, newest first (the public site never shows drafts, even to editors). */
 export function usePublishedArticles(locale: Locale, type: ArticleType | null = null) {
@@ -17,7 +17,7 @@ export function usePublishedArticles(locale: Locale, type: ArticleType | null = 
 export function useArticleBySlug(slug: string) {
   return useQuery({
     queryKey: ['article-by-slug', slug],
-    queryFn: () => apiFetch<Article>(`/articles/by-slug/${encodeURIComponent(slug)}`),
+    queryFn: () => apiFetch<PublicArticle>(`/articles/by-slug/${encodeURIComponent(slug)}`),
     retry: false,
   })
 }

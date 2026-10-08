@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { useParams } from 'react-router'
+import { Link, useParams } from 'react-router'
 import { Alert, Loading } from '../../components/ui'
 import { ApiError, errorMessageOf } from '../../lib/api/client'
 import { NotFoundPage } from '../../routes/NotFoundPage'
@@ -32,6 +32,24 @@ export function ArticlePage() {
       {data.summary && <meta name="description" content={data.summary} />}
       <meta property="og:title" content={data.title} />
       <meta property="og:type" content="article" />
+      {data.translations.map((tr) => (
+        <link key={tr.locale} rel="alternate" hrefLang={tr.locale} href={`/articles/${tr.slug}`} />
+      ))}
+      {data.translations.length > 0 && (
+        <p className="mx-auto mb-4 max-w-3xl">
+          {data.translations.map((tr) => (
+            <Link
+              key={tr.locale}
+              to={`/articles/${tr.slug}`}
+              hrefLang={tr.locale}
+              lang={tr.locale}
+              className="text-accent underline"
+            >
+              {t('public.readIn', { language: t(`language.in.${tr.locale}`, { lng: tr.locale }), lng: tr.locale })}
+            </Link>
+          ))}
+        </p>
+      )}
       <ArticleView
         article={data}
         blockFooter={(block) =>

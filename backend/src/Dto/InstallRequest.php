@@ -34,6 +34,8 @@ final class InstallRequest
         #[Assert\NotBlank]
         #[Assert\Length(min: 2, max: 80)]
         public readonly string $adminDisplayName = '',
+        /** Fill the new site with the demo event. */
+        public readonly bool $demo = false,
     ) {
     }
 }

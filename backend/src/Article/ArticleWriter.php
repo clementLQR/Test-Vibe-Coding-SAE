@@ -13,7 +13,8 @@ use Symfony\Component\Validator\ConstraintViolationList;
  * Applies an ArticleInput to an article. On top of the block rules (BlockWriter):
  * - charts only go in dashboard articles;
  * - a dashboard needs at least one chart to be published;
- * - the address (slug) stays stable once the article has been published.
+ * - the address (slug) stays stable once the article has been published;
+ * - a linked translation exists and is in the other language (both share a translation key).
  */
 final class ArticleWriter
 {
@@ -35,6 +36,10 @@ final class ArticleWriter
         if (ArticleType::Dashboard === $type && ArticleStatus::Published === $status && 0 === $chartCount) {
             $this->blocks->violation($violations, 'blocks', 'article.dashboard.needs_chart');
         }
+        $translation = null === $input->translationOfId ? null : $this->articles->find($input->translationOfId);
+        if (null !== $input->translationOfId && (null === $translation || $translation->getLocale() === $input->locale || $translation === $article)) {
+            $this->blocks->violation($violations, 'translationOfId', 'article.translation.invalid');
+        }
         if (\count($violations) > 0) {
             return $violations;
         }
@@ -48,6 +53,13 @@ final class ArticleWriter
         if ('' === $article->getSlug() || ($titleChanged && null === $article->getPublishedAt())) {
             $id = $article->getId();
             $article->setSlug($this->blocks->uniqueSlug($input->title, fn (string $slug): bool => $this->articles->slugExists($slug, $id), 'article'));
+        }
+
+        // Both versions share a translation key
+        if (null !== $translation) {
+            $key = $translation->getTranslationKey() ?? $article->getTranslationKey() ?? bin2hex(random_bytes(16));
+            $translation->setTranslationKey($key);
+            $article->setTranslationKey($key);
         }
 
         $this->blocks->sync($article, $input->blocks, $resolved);

@@ -28,6 +28,9 @@ final class ArticleInput
     #[Assert\Choice(choices: ['fr', 'en'])]
     public string $locale = 'fr';
 
+    /** Id of the same article in the other language, to link both versions (null: unchanged). */
+    public ?int $translationOfId = null;
+
     /** @var list<BlockInput> */
     #[Assert\Valid]
     #[Assert\Count(max: 200)]

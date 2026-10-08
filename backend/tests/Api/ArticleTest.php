@@ -168,6 +168,31 @@ final class ArticleTest extends ApiTestCase
         self::assertResponseStatusCodeSame(401);
     }
 
+    public function testLanguageVersionsAreLinkedAndShownWhenPublished(): void
+    {
+        $this->client->loginUser($this->author);
+        $fr = $this->save('POST', '/api/articles', ['title' => 'Bilan', 'status' => 'published']);
+        $en = $this->save('POST', '/api/articles', ['title' => 'Review', 'locale' => 'en', 'translationOfId' => $fr['id']]);
+        self::assertResponseStatusCodeSame(201);
+        self::assertNotNull($en['translationKey']);
+
+        // Same language: refused
+        $json = $this->save('POST', '/api/articles', ['title' => 'Doublon', 'translationOfId' => $fr['id']]);
+        self::assertResponseStatusCodeSame(422);
+        self::assertSame(['translationOfId'], self::violationPaths($json));
+
+        $this->client->getCookieJar()->clear();
+        self::assertSame([], $this->jsonRequest('GET', '/api/articles/by-slug/bilan')['translations'], 'drafts are not offered');
+
+        $this->client->loginUser($this->author);
+        $this->save('PUT', '/api/articles/'.$en['id'], ['title' => 'Review', 'locale' => 'en', 'status' => 'published']);
+        $this->client->getCookieJar()->clear();
+        self::assertSame(
+            [['locale' => 'en', 'slug' => 'review', 'title' => 'Review']],
+            $this->jsonRequest('GET', '/api/articles/by-slug/bilan')['translations'],
+        );
+    }
+
     public function testMediaAndChartsUsedInAnArticleCannotBeDeleted(): void
     {
         $this->client->loginUser($this->author);

@@ -37,6 +37,8 @@ visualization:
         too_many: "%max% couleurs au maximum."
         invalid: "Couleur invalide (format attendu : #RRGGBB)."
 article:
+    translation:
+        invalid: "Choisissez un article dans l'autre langue."
     dashboard:
         needs_chart: "Un article de type tableau de bord doit contenir au moins un graphique pour être publié."
 block:

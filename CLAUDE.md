@@ -41,7 +41,7 @@ backend/      Symfony (API, entités, sécurité, EasyAdmin)
 frontend/     React + TS (site public + admin)
 docker/       Dockerfiles et conf nginx / php
 site-vitrine/ Site vitrine (projet séparé)
-samples/      Jeux de données CSV d'exemple (séparateur « ; »)
+backend/resources/demo/  Jeux de données CSV d’exemple (séparateur « ; »), aussi utilisés par les données de démonstration
 docs/         architecture, backlog, décisions
 compose.yaml  environnement de développement
 ```

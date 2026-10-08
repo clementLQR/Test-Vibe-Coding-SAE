@@ -37,6 +37,8 @@ visualization:
         too_many: "%max% colors at most."
         invalid: "Invalid color (expected format: #RRGGBB)."
 article:
+    translation:
+        invalid: "Choose an article in the other language."
     dashboard:
         needs_chart: "A dashboard article needs at least one chart to be published."
 block:

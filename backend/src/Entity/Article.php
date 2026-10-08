@@ -29,6 +29,7 @@ use Symfony\Component\Serializer\Attribute\Groups;
  * through ArticleInput; see App\Article\ArticleWriter for the rules.
  */
 #[ORM\Entity(repositoryClass: ArticleRepository::class)]
+#[ORM\Index(columns: ['translation_key'])]
 #[ORM\HasLifecycleCallbacks]
 #[ApiResource(
     operations: [
@@ -102,6 +103,11 @@ class Article implements BlockContainer
     #[ORM\Column(nullable: true)]
     #[Groups(['content:read'])]
     private ?\DateTimeImmutable $publishedAt = null;
+
+    /** Shared by the versions of the same article in different languages. */
+    #[ORM\Column(length: 32, nullable: true)]
+    #[Groups(['content:read'])]
+    private ?string $translationKey = null;
 
     public function __construct(?User $author)
     {
@@ -249,6 +255,18 @@ class Article implements BlockContainer
     public function getUpdatedAt(): \DateTimeImmutable
     {
         return $this->updatedAt;
+    }
+
+    public function getTranslationKey(): ?string
+    {
+        return $this->translationKey;
+    }
+
+    public function setTranslationKey(?string $translationKey): static
+    {
+        $this->translationKey = $translationKey;
+
+        return $this;
     }
 
     public function getPublishedAt(): ?\DateTimeImmutable

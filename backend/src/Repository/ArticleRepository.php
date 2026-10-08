@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Repository;
 
+use App\Article\ArticleStatus;
 use App\Entity\Article;
 use App\Entity\Block;
 use App\Entity\Media;
@@ -29,6 +30,31 @@ class ArticleRepository extends ServiceEntityRepository
         }
 
         return (int) $qb->getQuery()->getSingleScalarResult() > 0;
+    }
+
+    /**
+     * Published versions of the same article in other languages.
+     *
+     * @return list<Article>
+     */
+    public function publishedTranslations(Article $article): array
+    {
+        if (null === $article->getTranslationKey()) {
+            return [];
+        }
+
+        /** @var list<Article> $translations */
+        $translations = $this->createQueryBuilder('a')
+            ->where('a.translationKey = :key')
+            ->andWhere('a.id != :id')
+            ->andWhere('a.status = :published')
+            ->setParameter('key', $article->getTranslationKey())
+            ->setParameter('id', $article->getId())
+            ->setParameter('published', ArticleStatus::Published)
+            ->getQuery()
+            ->getResult();
+
+        return $translations;
     }
 
     /**

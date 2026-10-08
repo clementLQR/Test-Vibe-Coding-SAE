@@ -10,7 +10,7 @@ import { ArticleView } from './ArticleView'
 import type { EditorBlock } from './BlockEditor'
 import { BlockListEditor } from './BlockListEditor'
 import { toBlockInputs, toEditorBlocks, withServerIds } from './blockDraft'
-import { canEditArticle, useArticle, useDeleteArticle, useSaveArticle } from './useArticles'
+import { canEditArticle, useArticle, useArticles, useDeleteArticle, useSaveArticle } from './useArticles'
 
 interface Draft {
   title: string
@@ -19,6 +19,8 @@ interface Draft {
   status: ArticleStatus
   locale: Locale
   blocks: EditorBlock[]
+  /** Set when the author links this article to its version in the other language */
+  translationOfId?: number
 }
 
 function toDraft(article: Article): Draft {
@@ -151,6 +153,13 @@ function ArticleEditor({ article }: { article: Article | null }) {
             error={errors.summary}
           />
 
+          <TranslationSelect
+            article={article}
+            locale={draft.locale}
+            value={draft.translationOfId}
+            onChange={(translationOfId) => update({ translationOfId })}
+          />
+
           <BlockListEditor
             blocks={draft.blocks}
             onChange={(blocks) => update({ blocks })}
@@ -179,5 +188,41 @@ function ArticleEditor({ article }: { article: Article | null }) {
         </form>
       )}
     </section>
+  )
+}
+
+/** Link to the same article in the other language (shown as "Read in English" on the public page). */
+function TranslationSelect({
+  article,
+  locale,
+  value,
+  onChange,
+}: {
+  article: Article | null
+  locale: Locale
+  value: number | undefined
+  onChange: (id: number | undefined) => void
+}) {
+  const { t } = useTranslation()
+  const articles = useArticles()
+  const candidates = articles.data?.filter((a) => a.locale !== locale && a.id !== article?.id) ?? []
+  const linked = article?.translationKey
+    ? candidates.find((a) => a.translationKey === article.translationKey)?.id
+    : undefined
+
+  return (
+    <SelectField
+      label={t('articles.translation')}
+      hint={t('articles.translationHint')}
+      value={value ?? linked ?? ''}
+      onChange={(e) => onChange(e.target.value === '' ? undefined : Number(e.target.value))}
+    >
+      <option value="">{t('charts.editor.none')}</option>
+      {candidates.map((a) => (
+        <option key={a.id} value={a.id}>
+          {a.title} ({t(`language.${a.locale}`)})
+        </option>
+      ))}
+    </SelectField>
   )
 }

@@ -2,23 +2,34 @@ import { screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { changeLocale } from '../../lib/i18n'
-import type { Page } from '../../lib/api/types'
+import type { Page, PublicArticle } from '../../lib/api/types'
 import { article } from '../../test/contentFixtures'
 import { installedSite, userWith } from '../../test/mockApi'
 import { renderRoute } from '../../test/renderWithProviders'
 
 vi.mock('../charts/EChart', () => ({ default: () => <div data-testid="echart" /> }))
 
-const PUBLISHED = article({
-  status: 'published',
-  type: 'classic',
-  slug: 'bilan',
-  publishedAt: '2027-07-13T10:00:00+02:00',
-  blocks: [
-    { id: 101, position: 0, type: 'heading', headingLevel: 2, text: 'Affluence', media: null, visualization: null },
-    { id: 102, position: 1, type: 'text', headingLevel: null, text: 'Merci à tous.', media: null, visualization: null },
-  ],
-})
+const PUBLISHED: PublicArticle = {
+  translations: [],
+  ...article({
+    status: 'published',
+    type: 'classic',
+    slug: 'bilan',
+    publishedAt: '2027-07-13T10:00:00+02:00',
+    blocks: [
+      { id: 101, position: 0, type: 'heading', headingLevel: 2, text: 'Affluence', media: null, visualization: null },
+      {
+        id: 102,
+        position: 1,
+        type: 'text',
+        headingLevel: null,
+        text: 'Merci à tous.',
+        media: null,
+        visualization: null,
+      },
+    ],
+  }),
+}
 
 describe('public site', () => {
   beforeEach(() => changeLocale('fr'))
@@ -76,6 +87,33 @@ describe('public site', () => {
     expect(await screen.findByText('Note moyenne : 4 / 5 (1 avis)')).toBeInTheDocument()
     expect(sent).toEqual({ score: 4 })
     expect(within(group).getByRole('radio', { name: '4 étoiles' })).toBeChecked()
+  })
+
+  it('links to the published version in the other language', async () => {
+    installedSite(null, {
+      'GET /api/articles/by-slug/bilan': {
+        ...PUBLISHED,
+        translations: [{ locale: 'en', slug: 'review', title: 'Review' }],
+      },
+      'GET /api/articles/21/ratings': { blocks: {} },
+    })
+    renderRoute('/articles/bilan')
+
+    const link = await screen.findByRole('link', { name: 'Read in English' })
+    expect(link).toHaveAttribute('href', '/articles/review')
+    expect(link).toHaveAttribute('lang', 'en')
+  })
+
+  it('collapses the main menu behind a button on small screens', async () => {
+    installedSite(null)
+    renderRoute('/')
+
+    const button = await screen.findByRole('button', { name: /Menu/ })
+    expect(button).toHaveAttribute('aria-expanded', 'false')
+    expect(document.getElementById('main-nav')).toHaveClass('hidden')
+    await userEvent.click(button)
+    expect(button).toHaveAttribute('aria-expanded', 'true')
+    expect(document.getElementById('main-nav')).not.toHaveClass('hidden')
   })
 
   it('shows the 404 page for an unknown or unpublished article', async () => {

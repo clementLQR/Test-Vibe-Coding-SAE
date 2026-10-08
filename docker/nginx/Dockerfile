@@ -9,4 +9,5 @@ RUN npm run build
 FROM nginx:stable-alpine AS prod
 COPY docker/nginx/default.conf /etc/nginx/conf.d/default.conf
 COPY docker/nginx/frontend.prod.inc /etc/nginx/conf.d/frontend.inc
+COPY docker/nginx/security-headers.inc /etc/nginx/conf.d/security-headers.inc
 COPY --from=build /app/dist /var/www/frontend

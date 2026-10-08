@@ -1,45 +1,55 @@
-import type { ReactNode } from 'react'
+import { lazy, Suspense, type ComponentType, type ReactNode } from 'react'
 import type { RouteObject } from 'react-router'
 import { PublicLayout } from '../components/PublicLayout'
-import { AdminHomePage } from '../features/admin/AdminHomePage'
-import { ArticleEditorPage } from '../features/articles/ArticleEditorPage'
-import { ArticlesPage } from '../features/articles/ArticlesPage'
-import { ChartsPage } from '../features/charts/ChartsPage'
-import { AdminLayout } from '../features/admin/AdminLayout'
+import { PageLoading } from '../components/PageLoading'
 import { LoginPage } from '../features/auth/LoginPage'
 import { RegisterPage } from '../features/auth/RegisterPage'
 import { RequireRole } from '../features/auth/RequireRole'
 import { MEDIA_ROLES, STAFF_ROLES } from '../features/auth/useAuth'
-import { DatasetDetailPage } from '../features/datasets/DatasetDetailPage'
-import { DatasetsPage } from '../features/datasets/DatasetsPage'
 import { HomePage } from '../features/home/HomePage'
-import { MapAdminPage } from '../features/modules/MapAdminPage'
-import { MapPage } from '../features/modules/MapPage'
-import { ProgramAdminPage } from '../features/modules/ProgramAdminPage'
-import { ProgramPage } from '../features/modules/ProgramPage'
-import { TicketsAdminPage } from '../features/modules/TicketsAdminPage'
-import { TicketsPage } from '../features/modules/TicketsPage'
-import { PageEditorPage } from '../features/pages/PageEditorPage'
-import { PagesPage } from '../features/pages/PagesPage'
+import { InstallGate, INSTALLER_PATH } from '../features/install/InstallGate'
 import { ArticlePage } from '../features/public/ArticlePage'
 import { ArticlesListPage } from '../features/public/ArticlesListPage'
 import { PagePage } from '../features/public/PagePage'
-import { ThemesPage } from '../features/themes/ThemesPage'
 import type { Role } from '../lib/api/types'
-import { InstallerPage } from '../features/install/InstallerPage'
-import { InstallGate, INSTALLER_PATH } from '../features/install/InstallGate'
-import { MediaPage } from '../features/media/MediaPage'
-import { UsersPage } from '../features/users/UsersPage'
 import { NotFoundPage } from './NotFoundPage'
 
-const forRoles = (roles: Role[], page: ReactNode) => <RequireRole roles={roles}>{page}</RequireRole>
-const forAuthors = (page: ReactNode) => forRoles(['ROLE_AUTHOR'], page)
+/**
+ * Code splitting (eco-design): the public pages visitors read most are in the main bundle;
+ * the installer, the event modules and the whole admin are downloaded only when opened.
+ */
+function lazyNamed<K extends string>(load: () => Promise<Record<K, ComponentType>>, name: K) {
+  return lazy(() => load().then((module) => ({ default: module[name] })))
+}
+
+const InstallerPage = lazyNamed(() => import('../features/install/InstallerPage'), 'InstallerPage')
+const ProgramPage = lazyNamed(() => import('../features/modules/ProgramPage'), 'ProgramPage')
+const MapPage = lazyNamed(() => import('../features/modules/MapPage'), 'MapPage')
+const TicketsPage = lazyNamed(() => import('../features/modules/TicketsPage'), 'TicketsPage')
+const AdminLayout = lazyNamed(() => import('../features/admin/AdminLayout'), 'AdminLayout')
+const AdminHomePage = lazyNamed(() => import('../features/admin/AdminHomePage'), 'AdminHomePage')
+const ArticlesPage = lazyNamed(() => import('../features/articles/ArticlesPage'), 'ArticlesPage')
+const ArticleEditorPage = lazyNamed(() => import('../features/articles/ArticleEditorPage'), 'ArticleEditorPage')
+const ChartsPage = lazyNamed(() => import('../features/charts/ChartsPage'), 'ChartsPage')
+const PagesPage = lazyNamed(() => import('../features/pages/PagesPage'), 'PagesPage')
+const PageEditorPage = lazyNamed(() => import('../features/pages/PageEditorPage'), 'PageEditorPage')
+const ThemesPage = lazyNamed(() => import('../features/themes/ThemesPage'), 'ThemesPage')
+const ProgramAdminPage = lazyNamed(() => import('../features/modules/ProgramAdminPage'), 'ProgramAdminPage')
+const MapAdminPage = lazyNamed(() => import('../features/modules/MapAdminPage'), 'MapAdminPage')
+const TicketsAdminPage = lazyNamed(() => import('../features/modules/TicketsAdminPage'), 'TicketsAdminPage')
+const DatasetsPage = lazyNamed(() => import('../features/datasets/DatasetsPage'), 'DatasetsPage')
+const DatasetDetailPage = lazyNamed(() => import('../features/datasets/DatasetDetailPage'), 'DatasetDetailPage')
+const MediaPage = lazyNamed(() => import('../features/media/MediaPage'), 'MediaPage')
+const UsersPage = lazyNamed(() => import('../features/users/UsersPage'), 'UsersPage')
+
+const page = (node: ReactNode) => <Suspense fallback={<PageLoading />}>{node}</Suspense>
+const forRoles = (roles: Role[], node: ReactNode) => <RequireRole roles={roles}>{page(node)}</RequireRole>
 
 export const routes: RouteObject[] = [
   {
     element: <InstallGate />,
     children: [
-      { path: INSTALLER_PATH, element: <InstallerPage /> },
+      { path: INSTALLER_PATH, element: page(<InstallerPage />) },
       {
         element: <PublicLayout />,
         children: [
@@ -47,24 +57,20 @@ export const routes: RouteObject[] = [
           { path: 'articles', element: <ArticlesListPage /> },
           { path: 'articles/:slug', element: <ArticlePage /> },
           { path: 'pages/:slug', element: <PagePage /> },
-          { path: 'programme', element: <ProgramPage /> },
-          { path: 'plan', element: <MapPage /> },
-          { path: 'billetterie', element: <TicketsPage /> },
+          { path: 'programme', element: page(<ProgramPage />) },
+          { path: 'plan', element: page(<MapPage />) },
+          { path: 'billetterie', element: page(<TicketsPage />) },
           { path: 'login', element: <LoginPage /> },
           { path: 'register', element: <RegisterPage /> },
           {
             path: 'admin-app',
-            element: (
-              <RequireRole roles={STAFF_ROLES}>
-                <AdminLayout />
-              </RequireRole>
-            ),
+            element: forRoles(STAFF_ROLES, <AdminLayout />),
             children: [
-              { index: true, element: <AdminHomePage /> },
-              { path: 'articles', element: forAuthors(<ArticlesPage />) },
-              { path: 'articles/new', element: forAuthors(<ArticleEditorPage />) },
-              { path: 'articles/:id', element: forAuthors(<ArticleEditorPage />) },
-              { path: 'charts', element: forAuthors(<ChartsPage />) },
+              { index: true, element: page(<AdminHomePage />) },
+              { path: 'articles', element: forRoles(['ROLE_AUTHOR'], <ArticlesPage />) },
+              { path: 'articles/new', element: forRoles(['ROLE_AUTHOR'], <ArticleEditorPage />) },
+              { path: 'articles/:id', element: forRoles(['ROLE_AUTHOR'], <ArticleEditorPage />) },
+              { path: 'charts', element: forRoles(['ROLE_AUTHOR'], <ChartsPage />) },
               { path: 'pages', element: forRoles(['ROLE_EDITOR'], <PagesPage />) },
               { path: 'pages/new', element: forRoles(['ROLE_EDITOR'], <PageEditorPage />) },
               { path: 'pages/:id', element: forRoles(['ROLE_EDITOR'], <PageEditorPage />) },
@@ -72,38 +78,10 @@ export const routes: RouteObject[] = [
               { path: 'program', element: forRoles(['ROLE_EDITOR'], <ProgramAdminPage />) },
               { path: 'map', element: forRoles(['ROLE_EDITOR'], <MapAdminPage />) },
               { path: 'tickets', element: forRoles(['ROLE_EDITOR'], <TicketsAdminPage />) },
-              {
-                path: 'datasets',
-                element: (
-                  <RequireRole roles={['ROLE_DATA_PROVIDER', 'ROLE_AUTHOR']}>
-                    <DatasetsPage />
-                  </RequireRole>
-                ),
-              },
-              {
-                path: 'datasets/:id',
-                element: (
-                  <RequireRole roles={['ROLE_DATA_PROVIDER', 'ROLE_AUTHOR']}>
-                    <DatasetDetailPage />
-                  </RequireRole>
-                ),
-              },
-              {
-                path: 'media',
-                element: (
-                  <RequireRole roles={MEDIA_ROLES}>
-                    <MediaPage />
-                  </RequireRole>
-                ),
-              },
-              {
-                path: 'users',
-                element: (
-                  <RequireRole roles={['ROLE_ADMIN']}>
-                    <UsersPage />
-                  </RequireRole>
-                ),
-              },
+              { path: 'datasets', element: forRoles(['ROLE_DATA_PROVIDER', 'ROLE_AUTHOR'], <DatasetsPage />) },
+              { path: 'datasets/:id', element: forRoles(['ROLE_DATA_PROVIDER', 'ROLE_AUTHOR'], <DatasetDetailPage />) },
+              { path: 'media', element: forRoles(MEDIA_ROLES, <MediaPage />) },
+              { path: 'users', element: forRoles(['ROLE_ADMIN'], <UsersPage />) },
             ],
           },
           { path: '*', element: <NotFoundPage /> },

@@ -2,7 +2,8 @@
   "app": {
     "skipToContent": "Aller au contenu",
     "mainNav": "Navigation principale",
-    "poweredBy": "Propulsé par Evently"
+    "poweredBy": "Propulsé par Evently",
+    "menu": "Menu"
   },
   "common": {
     "loading": "Chargement…",
@@ -30,7 +31,11 @@
   "language": {
     "label": "Langue",
     "fr": "Français",
-    "en": "English"
+    "en": "English",
+    "in": {
+      "fr": "français",
+      "en": "anglais"
+    }
   },
   "roles": {
     "ROLE_SUBSCRIBER": "Abonné·e",
@@ -69,7 +74,9 @@
     "eventEnd": "Date de fin",
     "location": "Lieu",
     "adminSection": "Compte administrateur",
-    "submit": "Installer le site"
+    "submit": "Installer le site",
+    "demo": "Installer les données de démonstration",
+    "demoHint": "Un festival fictif complet : jeux de données, graphiques, articles, programme, plan et billetterie. Pratique pour découvrir Evently ; tout reste modifiable."
   },
   "home": {
     "title": "Bienvenue",
@@ -374,7 +381,9 @@
     "chooseImage": "Choisir une image",
     "caption": "Légende",
     "chart": "Graphique",
-    "newChart": "Nouveau graphique"
+    "newChart": "Nouveau graphique",
+    "translation": "Version dans l’autre langue",
+    "translationHint": "Les lecteurs pourront passer d’une version à l’autre une fois les deux publiées."
   },
   "public": {
     "articles": {
@@ -391,7 +400,8 @@
       "program": "Tous les créneaux, jour par jour.",
       "map": "Scènes, services et zones du site.",
       "tickets": "Les offres et où acheter vos billets."
-    }
+    },
+    "readIn": "Lire en {{language}}"
   },
   "ratings": {
     "average_one": "Note moyenne : {{average}} / 5 ({{count}} avis)",

@@ -44,6 +44,15 @@ final class DatasetSource
         return $name;
     }
 
+    /** Copies a CSV shipped with the application (demo content) into the storage. */
+    public function storeCopy(string $path): string
+    {
+        $name = bin2hex(random_bytes(16)).'.csv';
+        $this->filesystem->copy($path, $this->directory.'/'.$name);
+
+        return $name;
+    }
+
     public function read(Dataset $dataset): string
     {
         return match ($dataset->getSourceType()) {

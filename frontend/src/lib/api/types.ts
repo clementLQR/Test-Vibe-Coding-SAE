@@ -196,6 +196,13 @@ export interface Article {
   createdAt: string
   updatedAt: string
   publishedAt: string | null
+  /** Shared by the language versions of the same article */
+  translationKey: string | null
+}
+
+/** GET /api/articles/by-slug/{slug}: the article and its published versions in other languages. */
+export interface PublicArticle extends Article {
+  translations: { locale: Locale; slug: string; title: string }[]
 }
 
 /** Block as sent to POST/PUT /api/articles: blocks with an id are updated in place. */
@@ -215,6 +222,8 @@ export interface ArticleInput {
   status: ArticleStatus
   locale: Locale
   blocks: BlockInput[]
+  /** Id of the same article in the other language (omitted: unchanged) */
+  translationOfId?: number
 }
 
 export type PageTemplate = 'blank' | 'contact'

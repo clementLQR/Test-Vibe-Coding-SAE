@@ -18,6 +18,7 @@ const EMPTY_FORM: FormState = {
   adminDisplayName: '',
   adminEmail: '',
   adminPassword: '',
+  demo: false,
 }
 
 /** WordPress-like first-run wizard: site information and administrator account. */
@@ -29,7 +30,7 @@ export function InstallerPage() {
   const errors = fieldErrorsOf(install.error)
   const hasFieldErrors = Object.keys(errors).length > 0
 
-  const field = (name: keyof FormState) => ({
+  const field = (name: Exclude<keyof FormState, 'demo'>) => ({
     value: form[name],
     onChange: (e: ChangeEvent<HTMLInputElement>) => setForm({ ...form, [name]: e.target.value }),
     error: errors[name],
@@ -79,6 +80,25 @@ export function InstallerPage() {
             {...field('adminPassword')}
           />
         </fieldset>
+
+        <div className="flex min-h-11 items-start gap-3">
+          <input
+            id="install-demo"
+            type="checkbox"
+            className="mt-1 size-5"
+            aria-describedby="install-demo-hint"
+            checked={form.demo}
+            onChange={(e) => setForm({ ...form, demo: e.target.checked })}
+          />
+          <div>
+            <label htmlFor="install-demo" className="font-medium">
+              {t('install.demo')}
+            </label>
+            <p id="install-demo-hint" className="text-sm text-muted">
+              {t('install.demoHint')}
+            </p>
+          </div>
+        </div>
 
         <Button type="submit" disabled={install.isPending} className="w-full sm:w-auto">
           {install.isPending ? t('common.loading') : t('install.submit')}

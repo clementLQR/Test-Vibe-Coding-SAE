@@ -34,6 +34,8 @@ export interface InstallInput {
   adminDisplayName: string
   adminEmail: string
   adminPassword: string
+  /** Fill the new site with the demo event */
+  demo: boolean
 }
 
 export function useInstall() {

@@ -30,7 +30,13 @@ final class ContentController extends AbstractController
         $article = $articles->findOneBy(['slug' => $slug]) ?? throw $this->createNotFoundException();
         $this->denyAccessUnlessGranted(ArticleVoter::VIEW, $article);
 
-        return new JsonResponse($this->normalizer->normalize($article, 'json', ['groups' => ['content:read']]));
+        $data = (array) $this->normalizer->normalize($article, 'json', ['groups' => ['content:read']]);
+        $data['translations'] = array_map(
+            static fn ($translation): array => ['locale' => $translation->getLocale(), 'slug' => $translation->getSlug(), 'title' => $translation->getTitle()],
+            $articles->publishedTranslations($article),
+        );
+
+        return new JsonResponse($data);
     }
 
     #[Route('/pages/by-slug/{slug}', name: 'api_page_by_slug', methods: ['GET'])]

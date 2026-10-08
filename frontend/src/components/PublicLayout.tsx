@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { NavLink, Outlet, useLocation, useNavigate } from 'react-router'
 import { isLocale } from '../lib/i18n'
@@ -17,6 +18,9 @@ export function PublicLayout() {
   const logout = useLogout()
   const siteName = settings.data?.siteName ?? 'Evently'
   const inAdmin = pathname.startsWith('/admin-app')
+  // On small screens the menu is collapsed; opened on one page, it is closed on the next one
+  const [menuOpenedOn, setMenuOpenedOn] = useState<string | null>(null)
+  const menuOpen = menuOpenedOn === pathname
 
   const linkClass = ({ isActive }: { isActive: boolean }) =>
     `inline-flex min-h-11 items-center rounded px-2 hover:underline ${isActive ? 'underline underline-offset-4' : ''}`
@@ -38,7 +42,21 @@ export function PublicLayout() {
             <NavLink to="/" className="font-heading text-xl font-bold">
               {siteName}
             </NavLink>
-            <nav aria-label={t('app.mainNav')} className="flex flex-wrap items-center gap-x-2">
+            <button
+              type="button"
+              className="inline-flex min-h-11 items-center gap-2 rounded border border-current px-3 md:hidden"
+              aria-expanded={menuOpen}
+              aria-controls="main-nav"
+              onClick={() => setMenuOpenedOn(menuOpen ? null : pathname)}
+            >
+              <span aria-hidden="true">{menuOpen ? '✕' : '☰'}</span>
+              {t('app.menu')}
+            </button>
+            <nav
+              id="main-nav"
+              aria-label={t('app.mainNav')}
+              className={`${menuOpen ? 'flex' : 'hidden'} w-full flex-col items-start gap-x-2 md:flex md:w-auto md:flex-row md:flex-wrap md:items-center`}
+            >
               <NavLink to="/" end className={linkClass}>
                 {t('nav.home')}
               </NavLink>

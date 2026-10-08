@@ -2,7 +2,8 @@
   "app": {
     "skipToContent": "Skip to content",
     "mainNav": "Main navigation",
-    "poweredBy": "Powered by Evently"
+    "poweredBy": "Powered by Evently",
+    "menu": "Menu"
   },
   "common": {
     "loading": "Loading…",
@@ -30,7 +31,11 @@
   "language": {
     "label": "Language",
     "fr": "Français",
-    "en": "English"
+    "en": "English",
+    "in": {
+      "fr": "French",
+      "en": "English"
+    }
   },
   "roles": {
     "ROLE_SUBSCRIBER": "Subscriber",
@@ -69,7 +74,9 @@
     "eventEnd": "End date",
     "location": "Location",
     "adminSection": "Administrator account",
-    "submit": "Install the website"
+    "submit": "Install the website",
+    "demo": "Install the demo content",
+    "demoHint": "A complete fictional festival: data sets, charts, articles, programme, map and tickets. Handy to discover Evently; everything can be edited."
   },
   "home": {
     "title": "Welcome",
@@ -374,7 +381,9 @@
     "chooseImage": "Choose an image",
     "caption": "Caption",
     "chart": "Chart",
-    "newChart": "New chart"
+    "newChart": "New chart",
+    "translation": "Version in the other language",
+    "translationHint": "Readers can switch between versions once both are published."
   },
   "public": {
     "articles": {
@@ -391,7 +400,8 @@
       "program": "Every time slot, day by day.",
       "map": "Stages, services and areas of the site.",
       "tickets": "Offers and where to buy your tickets."
-    }
+    },
+    "readIn": "Read in {{language}}"
   },
   "ratings": {
     "average_one": "Average rating: {{average}} / 5 ({{count}} rating)",
