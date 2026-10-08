@@ -14,6 +14,9 @@ Hors périmètre, ne pas développer ici : le CMS lui-même (front React, back S
 
 - HTML / JavaScript / Three.js / TailwindCSS. Pas de framework, pas de back-end.
 - Aucune dépendance sans validation préalable.
+- Tailwind via le CLI standalone (sans npm), à placer dans `tools/tailwindcss.exe` (non versionné, [téléchargement](https://github.com/tailwindlabs/tailwindcss/releases/latest)). Source : `assets/css/input.css` ; fichier généré : `assets/css/style.css`, à ne jamais modifier à la main. Recompiler après chaque modification de classes :
+  `./tools/tailwindcss.exe -i assets/css/input.css -o assets/css/style.css --minify` (ajouter `--watch` pendant le développement).
+- Three.js 0.169 hébergé dans `assets/js/vendor/three/` (build minifié + uniquement les modules complémentaires utilisés), chargé via l'importmap de `index.html` et `en/index.html`. Dans l'importmap, les chemins doivent commencer par `./` ou `../`.
 
 ## Structure
 
@@ -24,7 +27,9 @@ Hors périmètre, ne pas développer ici : le CMS lui-même (front React, back S
 - `a-propos.html` : équipe, objectifs du projet.
 - `contact.html` : formulaire ou coordonnées de contact.
 - `mentions-legales.html` : mentions légales et politique de confidentialité.
-- `assets/` : ressources, images, icônes, modèles 3D.
+- `en/` : version anglaise, mêmes noms de fichiers que la version française. Le sélecteur de langue du header affiche la langue courante (drapeau + FR/EN) et pointe vers la page équivalente dans l'autre langue : toute page ajoutée ou modifiée l'est dans les **deux langues**.
+- `assets/` : `css/` (Tailwind), `js/` (`nav.js` menu mobile, `scene.js` scène 3D), `fonts/` (Space Grotesk auto-hébergée), `img/`, ressources, modèles 3D.
+- Les textes provisoires sont balisés `<span class="todo">[À compléter]</span>` (`[To be completed]` en anglais).
 
 ## Scène 3D de l'accueil
 
@@ -36,10 +41,12 @@ Le brief impose une scène 3D en WebGL sur la page d'accueil pour présenter l'o
   2. **Salon professionnel**, vu à hauteur d'homme, en longeant les stands. Au bout du salon, la caméra se tourne vers une fenêtre bleu ciel, puis vers le sol.
   3. **Trail**, vu du ciel. La caméra descend vers la ligne de départ et un texte apparaît (« Prêt pour le départ ? »).
 - Le texte de la page doit rester lisible et utilisable si WebGL n'est pas disponible.
+- Code dans `assets/js/scene.js`. Amélioration progressive : par défaut la section `#experience` est statique ; `scene.js` ajoute la classe `has-webgl` sur `<html>` pour activer le mode scénarisé. Sans WebGL, sans JS ou avec `prefers-reduced-motion`, la version statique reste affichée.
+- Les textes affichés dans la 3D (stands, arche…) passent par `T('fr', 'en')` dans `scene.js`.
 
 ## Conventions
 
-- Contenu du site en français.
+- Contenu du site en français, avec une version anglaise complète dans `en/` (exigence du brief).
 - Le header, la nav et le footer sont dupliqués dans chaque page : toute modification de l'un d'eux doit être reportée sur **toutes les pages**.
 - Responsive obligatoire (mobile d'abord).
 - Accessibilité de base : balises sémantiques, `alt` sur les images, contrastes suffisants, navigation au clavier.
@@ -47,7 +54,8 @@ Le brief impose une scène 3D en WebGL sur la page d'accueil pour présenter l'o
 
 ## Méthode de travail
 
-- Lis `../lessons.md` avant de commencer.
+- Lis `lessons.md` avant de commencer.
+- Les tâches sont suivies dans `backlog.md` : coche-les une fois terminées et note les décisions prises dans sa section « Décisions ».
 - Si la demande est ambiguë, pose une question avant de coder.
 - Si quelque chose ne se passe pas comme prévu : arrête-toi, explique le problème et propose un nouveau plan avant de continuer.
 - Ne modifie que ce qui est demandé. Signale les améliorations possibles sans les appliquer.
@@ -65,7 +73,7 @@ Le brief impose une scène 3D en WebGL sur la page d'accueil pour présenter l'o
 
 ## Apprentissage continu
 
-Après chaque correction de ma part, ajoute une règle dans `../lessons.md` (crée-le s'il n'existe pas) :
+Après chaque correction de ma part, ajoute une règle dans `lessons.md` (crée-le s'il n'existe pas) :
 
 - une ligne par règle, formulée comme une consigne (« Toujours… » / « Ne jamais… ») ;
 - pas de doublon : reformule une règle existante plutôt que d'en ajouter une proche.
