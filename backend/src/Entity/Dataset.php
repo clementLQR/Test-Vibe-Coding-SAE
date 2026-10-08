@@ -97,7 +97,7 @@ class Dataset
 
     /** @var Collection<int, DatasetVariable> */
     #[ORM\OneToMany(targetEntity: DatasetVariable::class, mappedBy: 'dataset', cascade: ['persist', 'remove'], orphanRemoval: true)]
-    #[ORM\OrderBy(['columnIndex' => 'ASC'])]
+    #[ORM\OrderBy(['columnIndex' => \SortDirection::Ascending])]
     #[Groups(['dataset:read'])]
     private Collection $variables;
 

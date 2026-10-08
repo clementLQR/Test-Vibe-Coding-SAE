@@ -20,8 +20,8 @@ services:
   php:
     build:
       context: .
-      dockerfile: docker/php/Dockerfile
-      target: dev
+      dockerfile: docker/Dockerfile
+      target: php-dev
     volumes:
       - ./backend:/var/www/backend
       - backend-var:/var/www/backend/var

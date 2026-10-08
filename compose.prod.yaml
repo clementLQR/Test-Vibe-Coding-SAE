@@ -1,0 +1,60 @@
+# Evently — production stack.
+#   Build the images locally : docker compose -f compose.prod.yaml build
+#   Run                      : docker compose -f compose.prod.yaml up -d
+# Images are named ${EVENTLY_REGISTRY}/evently-{web,php}:${EVENTLY_VERSION}; the distribution
+# package (distribution/) uses the same names without the build sections.
+name: evently-prod
+
+services:
+  web:
+    image: ${EVENTLY_REGISTRY:-evently}/evently-web:${EVENTLY_VERSION:-latest}
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      target: web
+    ports:
+      - "${HTTP_PORT:-80}:80"
+    volumes:
+      - uploads:/var/www/backend/public/uploads:ro
+    depends_on:
+      - php
+    restart: unless-stopped
+
+  php:
+    image: ${EVENTLY_REGISTRY:-evently}/evently-php:${EVENTLY_VERSION:-latest}
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+      target: php
+    environment:
+      APP_SECRET: ${APP_SECRET:?Set APP_SECRET in .env}
+      DATABASE_URL: "mysql://${DB_USER}:${DB_PASSWORD}@db:3306/${DB_NAME}?serverVersion=8.4&charset=utf8mb4"
+      DEFAULT_URI: ${SITE_URL:-http://localhost}
+    volumes:
+      - uploads:/var/www/backend/public/uploads
+      - datasets:/var/www/backend/var/datasets
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  db:
+    image: mysql:8.4
+    environment:
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+    volumes:
+      - db-data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-u", "root", "-p${DB_ROOT_PASSWORD}"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+    restart: unless-stopped
+
+volumes:
+  db-data:
+  uploads:
+  datasets:

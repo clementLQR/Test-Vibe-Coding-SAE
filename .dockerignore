@@ -1,0 +1,13 @@
+# Keep the build context small (eco-design) and free of secrets
+.git
+.env
+**/node_modules
+frontend/dist
+backend/vendor
+backend/var
+backend/public/uploads
+backend/public/bundles
+site-vitrine
+docs
+*.md
+!backend/resources/demo/*.md

@@ -47,9 +47,11 @@ Projet du lundi 12/10/2026 (S42) au vendredi 29/01/2027 (S4). Les dates exactes 
 
 - [x] **E2-1** (M, 1,5 j) En tant que nouvel utilisateur, à la première visite, l'installeur me fait choisir la langue, le nom du site, les dates et lieu de l'événement, et créer le compte admin.
   - Installeur inaccessible dès qu'un admin existe (vérifié côté API).
-- [ ] **E2-2** (S, 1 j) Option « installer les données de démonstration » (articles, jeux de données, programme, plan).
-- [ ] **E2-3** (M, 1 j, S6) Paquet téléchargeable : `compose.yaml` de prod utilisant les images publiées, `.env.example`, `README` d'installation FR/EN.
+- [x] **E2-2** (S, 1 j) Option « installer les données de démonstration » (articles, jeux de données, programme, plan).
+- [x] **E2-3** (M, 1 j, S6) Paquet téléchargeable : `compose.yaml` de prod utilisant les images publiées, `.env.example`, `README` d'installation FR/EN.
+  - Fait : `docker/Dockerfile` (cibles `php` et `web`), `compose.prod.yaml`, dossier `distribution/` (compose sur les images publiées, `.env.example`, guide FR/EN). Pile de production testée de bout en bout sur une base vide.
 - [ ] **E2-4** (M, 0,5 j, S6) Publication des images `web` et `php` sur un registre Docker, versionnées.
+  - Images construites et versionnées par `EVENTLY_VERSION`. Reste à choisir le registre (Docker Hub ou GitLab de l’université) et à publier.
 
 ## E3 — Médiathèque (S1)
 
@@ -147,18 +149,22 @@ Projet du lundi 12/10/2026 (S42) au vendredi 29/01/2027 (S4). Les dates exactes 
 
 ## E11 — Internationalisation (S6)
 
-- [ ] **E11-1** (M, 1 j) Toute l'interface (public, admin, installeur, erreurs API) disponible en FR et en EN.
-- [ ] **E11-2** (M, 1 j) Contenus traduisibles : article, page et créneau ont une version par langue ; lien entre les versions.
-- [ ] **E11-3** (S, 0,5 j) Formats de dates et de nombres selon la langue (y compris dans les graphiques).
+- [x] **E11-1** (M, 1 j) Toute l'interface (public, admin, installeur, erreurs API) disponible en FR et en EN.
+- [x] **E11-2** (M, 1 j) Contenus traduisibles : article, page et créneau ont une version par langue ; lien entre les versions.
+  - Articles : versions FR/EN liées par une clé de traduction, lien « Read in English » et `hreflang`. Pages, créneaux et offres : une version par langue, filtrée selon la langue choisie.
+- [x] **E11-3** (S, 0,5 j) Formats de dates et de nombres selon la langue (y compris dans les graphiques).
 
 ## E12 — Qualité, sécurité, accessibilité, éco-conception (continu, bilan S6)
 
-- [ ] **E12-1** (M, 1 j) Audit sécurité : en-têtes HTTP (CSP, HSTS en prod), CSRF, uploads, SSRF, droits ; corrections.
+- [x] **E12-1** (M, 1 j) Audit sécurité : en-têtes HTTP (CSP, HSTS en prod), CSRF, uploads, SSRF, droits ; corrections.
+  - Fait : en-têtes (nosniff, Referrer-Policy, Permissions-Policy, X-Frame-Options, COOP, CSP stricte en production), CSRF par contrôle d’origine, uploads validés, SSRF bloquée, droits testés pour chaque rôle. HSTS : à poser sur le reverse proxy HTTPS (documenté).
 - [ ] **E12-2** (M, 1 j) Audit accessibilité (axe / Lighthouse, clavier, lecteur d'écran sur les parcours clés) ; corrections.
+  - Fait : menu mobile repliable, règles `jsx-a11y` sans avertissement, alternatives textuelles (graphiques, plan), étoiles et formulaires au clavier. Reste : passage axe / Lighthouse et lecteur d’écran dans un vrai navigateur.
 - [ ] **E12-3** (M, 0,5 j) Audit éco-conception (poids des pages, requêtes, EcoIndex) ; corrections.
-- [ ] **E12-4** (M, 1 j) Couverture de tests : services métier (analyse CSV, registre des graphiques, résolution des thèmes) et droits.
+  - Fait : découpage du code par route (bundle principal 164 → 109 Ko compressés), ECharts (241 Ko) et Leaflet (44 Ko) chargés à la demande, images WebP, polices système. Reste : mesure EcoIndex dans un navigateur.
+- [x] **E12-4** (M, 1 j) Couverture de tests : services métier (analyse CSV, registre des graphiques, résolution des thèmes) et droits.
 - [ ] **E12-5** (S, 1 j) Tests de bout en bout des parcours clés (Playwright, si validé).
-- [ ] **E12-6** (S, 0,5 j) Documentation technique : README, schéma de la base, API (OpenAPI).
+- [x] **E12-6** (S, 0,5 j) Documentation technique : README, schéma de la base, API (OpenAPI).
 
 ## E13 — Livrables SAÉ (S6–S7, principalement à ta charge)
 

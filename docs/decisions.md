@@ -57,3 +57,10 @@ Format : date — décision — raison.
 - 2026-10-08 — Billetterie sans paiement : chaque offre renvoie vers le service de billetterie de l'organisateur. Les prix sont stockés en centimes. — Périmètre du MVP ; pas d'erreur d'arrondi sur des montants.
 - 2026-10-08 — Favoris du programme gardés dans le navigateur (`localStorage`), sans compte. — Fonction de confort, aucune donnée personnelle côté serveur.
 - 2026-10-08 — Vite surveille les fichiers par interrogation dans Docker (`VITE_USE_POLLING`). — Sous Windows, le dossier partagé n'envoie pas d'événements : Vite servait encore le code du sprint 0 (signalé par l'utilisateur).
+- 2026-10-08 — Un seul `docker/Dockerfile` à plusieurs cibles (`php-dev`, `php`, `web`). — L'image nginx a besoin des fichiers publics produits par Composer (ressources EasyAdmin) : les cibles partagent l'étape de build.
+- 2026-10-08 — En production : PHP en `www-data`, OPcache sans revalidation, migrations appliquées au démarrage par l'entrypoint, démarrage refusé sans `APP_SECRET`. — Mise à jour = changer de version et relancer ; aucune commande manuelle.
+- 2026-10-08 — Migrations Doctrine non transactionnelles. — MySQL valide implicitement chaque modification de structure ; Doctrine signalait des transactions fictives.
+- 2026-10-08 — En-têtes de sécurité dans nginx (fichier inclus partout), CSP stricte seulement en production (Vite a besoin de scripts en ligne en dev), HSTS laissé au reverse proxy HTTPS. — Défense en profondeur sans casser le développement.
+- 2026-10-08 — Code découpé par route : accueil, articles et pages publiques dans le bundle principal ; installeur, modules et administration à la demande. — 164 → 109 Ko compressés pour un visiteur.
+- 2026-10-08 — Données de démonstration générées par un service (`DemoContentLoader`) qui valide chaque graphique contre son CSV. Les CSV vivent dans `backend/resources/demo/`. — La démo doit toujours être valide et être embarquée dans l'image.
+- 2026-10-08 — Paquet `distribution/` : compose sur les images publiées, sans code source. Le registre est un paramètre (`EVENTLY_REGISTRY`). — Installation « à la WordPress » : un dossier, un `.env`, une commande.

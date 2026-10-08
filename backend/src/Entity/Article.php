@@ -88,7 +88,7 @@ class Article implements BlockContainer
 
     /** @var Collection<int, Block> */
     #[ORM\OneToMany(targetEntity: Block::class, mappedBy: 'article', cascade: ['persist', 'remove'], orphanRemoval: true)]
-    #[ORM\OrderBy(['position' => 'ASC'])]
+    #[ORM\OrderBy(['position' => \SortDirection::Ascending])]
     #[Groups(['content:read'])]
     private Collection $blocks;
 

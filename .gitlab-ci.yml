@@ -16,8 +16,10 @@ backend:
     MYSQL_ROOT_PASSWORD: evently-ci-root
     DATABASE_URL: "mysql://root:evently-ci-root@db:3306/evently?serverVersion=8.4&charset=utf8mb4"
   before_script:
-    - apk add --no-cache git unzip icu-dev libzip-dev
-    - docker-php-ext-install pdo_mysql intl zip
+    - apk add --no-cache git unzip icu-dev libzip-dev libpng-dev libjpeg-turbo-dev libwebp-dev
+    # GD with JPEG and WebP: the media library converts uploads to WebP
+    - docker-php-ext-configure gd --with-jpeg --with-webp
+    - docker-php-ext-install pdo_mysql intl zip gd exif
     - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
     - cd backend
     - composer install --no-interaction --no-progress

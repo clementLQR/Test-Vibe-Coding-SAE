@@ -39,7 +39,8 @@ Hors périmètre : le site vitrine (dossier `site-vitrine/`, voir `site-vitrine/
 ```
 backend/      Symfony (API, entités, sécurité, EasyAdmin)
 frontend/     React + TS (site public + admin)
-docker/       Dockerfiles et conf nginx / php
+docker/       Dockerfile (dev et prod) et conf nginx / php
+distribution/ Paquet d’installation pour les organisateurs
 site-vitrine/ Site vitrine (projet séparé)
 backend/resources/demo/  Jeux de données CSV d’exemple (séparateur « ; »), aussi utilisés par les données de démonstration
 docs/         architecture, backlog, décisions
@@ -61,6 +62,9 @@ Depuis la racine (copier `.env.example` en `.env` la première fois). Sous Git B
 | Back : tests / analyse + style | `docker compose exec php composer test` / `composer lint` (`composer fix` corrige le style) |
 | Front : tests, lint, types, format | dans `frontend/` : `npm test`, `npm run lint`, `npm run typecheck`, `npm run format` |
 | Front : build de prod | dans `frontend/` : `npm run build` |
+| Données de démonstration (site installé et vide) | `docker compose exec php bin/console app:demo` |
+| Images de production | `docker compose -f compose.prod.yaml build` (cibles `php` et `web` de `docker/Dockerfile`) |
+| Essai de la prod sans toucher au dev | `docker compose -p evently-smoke -f compose.prod.yaml --env-file <fichier> up -d`, puis `down -v` sur ce projet uniquement |
 
 Le serveur Vite tourne dans le conteneur `node` derrière nginx : on passe toujours par http://localhost:8080 (les routes `/api` et `/admin` vont à Symfony, le reste à React). L'admin React est sous `/admin-app`, EasyAdmin sous `/admin`.
 

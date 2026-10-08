@@ -79,7 +79,7 @@ class Page implements BlockContainer
 
     /** @var Collection<int, Block> */
     #[ORM\OneToMany(targetEntity: Block::class, mappedBy: 'page', cascade: ['persist', 'remove'], orphanRemoval: true)]
-    #[ORM\OrderBy(['position' => 'ASC'])]
+    #[ORM\OrderBy(['position' => \SortDirection::Ascending])]
     #[Groups(['content:read'])]
     private Collection $blocks;
 
